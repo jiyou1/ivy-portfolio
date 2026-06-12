@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import {
   AnimatePresence,
   motion,
@@ -345,22 +346,24 @@ function WorkCard({ p }) {
         </span>
       </div>
 
-      {CAN_HOVER && (
-        <AnimatePresence>
-          {hovered && (
-            <motion.div
-              style={{ x: reduce ? mx : sx, y: reduce ? my : sy, top: 0, left: 0 }}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.18, ease: "easeOut" }}
-              className="pointer-events-none fixed z-[60] rounded-full bg-ink px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.08em] text-white shadow-[0_8px_24px_rgba(11,14,20,0.35)]"
-            >
-              View Case Study
-            </motion.div>
-          )}
-        </AnimatePresence>
-      )}
+      {CAN_HOVER &&
+        createPortal(
+          <AnimatePresence>
+            {hovered && (
+              <motion.div
+                style={{ x: reduce ? mx : sx, y: reduce ? my : sy, top: 0, left: 0 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.18, ease: "easeOut" }}
+                className="pointer-events-none fixed z-[60] rounded-full bg-ink px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.08em] text-white shadow-[0_8px_24px_rgba(11,14,20,0.35)]"
+              >
+                View Case Study
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body
+        )}
     </motion.a>
   );
 }
