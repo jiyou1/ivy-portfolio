@@ -10,6 +10,8 @@ const PROJECTS = [
     desc: "End-to-end design and React build of a membership management system, delivered for a real client's daily operations with full handoff.",
     tags: "FIGMA · REACT · DESIGN SYSTEM",
     cover: "/covers/icoi.png",
+    href: "/decks/icoi-poster.pdf",
+    external: false,
   },
   {
     slug: "lattelearn",
@@ -18,6 +20,8 @@ const PROJECTS = [
     desc: "A focus companion that brings the café study experience home. Led a 9-person team from concept to a packaged desktop app.",
     tags: "FIGMA · ELECTRON · PM",
     cover: "/covers/lattelearn.png",
+    href: "/decks/lattelearn.pdf",
+    external: false,
   },
   {
     slug: "roomietask",
@@ -26,6 +30,8 @@ const PROJECTS = [
     desc: "Shared task coordination app designed through surveys, interviews, affinity mapping, prototyping, and moderated usability testing.",
     tags: "RESEARCH · PROTOTYPING · TESTING",
     cover: "/covers/roomietask.png",
+    href: "/decks/roomietask.pdf",
+    external: false,
   },
   {
     slug: "designathon",
@@ -34,22 +40,8 @@ const PROJECTS = [
     desc: "Website and event experience for UCI's largest student design event, serving 200+ participants with a 4-person design team.",
     tags: "FIGMA · WEB DESIGN · BRANDING",
     cover: "/covers/designathon.png",
-  },
-  {
-    slug: "99divine",
-    label: "E-COMMERCE UI · FREELANCE",
-    title: "99DIVINE",
-    desc: "Esports brand e-commerce UI in Figma: wireframes, reusable component specs, and interaction flows for a 20+ item catalog.",
-    tags: "UI DESIGN · COMPONENTS · FIGMA",
-    cover: "/covers/99divine.png",
-  },
-  {
-    slug: "prime-signage",
-    label: "DIGITAL SIGNAGE · HARDWARE + SOFTWARE",
-    title: "Prime Academy Signage",
-    desc: "In-academy TV advertising on Raspberry Pi displays via the Yodeck CMS: content design, scheduling, and seasonal campaigns.",
-    tags: "YODECK · RASPBERRY PI · CONTENT",
-    cover: "/covers/prime.png",
+    href: "https://ucidesignathon.devpost.com/",
+    external: true,
   },
 ];
 
@@ -65,7 +57,6 @@ const ENG_TOOLS = ["REACT", "JAVASCRIPT", "HTML/CSS", "TAILWIND", "GIT/GITHUB", 
 const LINKS = {
   email: "mailto:jiyoul@uci.edu",
   linkedin: "https://www.linkedin.com/in/jiyouivylee",
-  instagram: "https://www.instagram.com/ee.jyoo",
   resume: "/resume.pdf",
 };
 
@@ -241,35 +232,10 @@ function About() {
             ))}
           </div>
 
-          <div className="mt-10 max-w-xl overflow-hidden rounded-2xl border border-white/25 bg-[#0f1421]/95 shadow-[0_16px_40px_rgba(13,31,89,0.30)]">
-            <div className="flex items-center gap-2 px-6 pt-4">
-              <span className="h-2.5 w-2.5 rounded-full bg-[#f57066]" />
-              <span className="h-2.5 w-2.5 rounded-full bg-[#fac74d]" />
-              <span className="h-2.5 w-2.5 rounded-full bg-[#73c766]" />
-              <span className="ml-2 font-mono text-[11px] text-[#8c99b3]">ivy.ts</span>
-            </div>
-            <pre className="px-6 pb-5 pt-3 font-mono text-[13px] leading-[1.7] text-[#c7e0ff]">
-{`const ivy = {
-  designs: ["Figma", "design systems"],
-  builds:  ["React", "Tailwind", "Electron"],
-  ships:   true,
-};`}
-            </pre>
-            <div className="flex items-center gap-2 px-6 pb-5">
-              <span className="font-mono text-xs text-holo-cyan">❯</span>
-              <motion.span
-                animate={{ opacity: [1, 0, 1] }}
-                transition={{ duration: 1.1, repeat: Infinity }}
-                className="h-4 w-2 bg-holo-cyan"
-              />
-            </div>
-          </div>
-
           <p className="mt-10 text-[11px] font-semibold tracking-[0.12em] text-grayt">FIND ME</p>
           <ul className="mt-3 space-y-2 text-sm">
             <li><span className="mr-3 font-semibold text-blue">LinkedIn</span><a className="hover:text-blue" href={LINKS.linkedin} target="_blank" rel="noreferrer">linkedin.com/in/jiyouivylee</a></li>
             <li><span className="mr-3 font-semibold text-blue">Email</span><a className="hover:text-blue" href={LINKS.email}>jiyoul@uci.edu</a></li>
-            <li><span className="mr-3 font-semibold text-blue">Instagram</span><a className="hover:text-blue" href={LINKS.instagram} target="_blank" rel="noreferrer">@ee.jyoo</a></li>
             <li><span className="mr-3 font-semibold text-blue">Resume</span><a className="hover:text-blue" href={LINKS.resume} target="_blank" rel="noreferrer">PDF download ↓</a></li>
           </ul>
         </div>
@@ -283,10 +249,13 @@ function About() {
 function WorkCard({ p }) {
   const reduce = useReducedMotion();
   return (
-    <motion.article
+    <motion.a
+      href={p.href}
+      target="_blank"
+      rel="noreferrer"
       whileHover={reduce ? {} : { y: -8 }}
       transition={{ type: "spring", stiffness: 260, damping: 20 }}
-      className="glass group rounded-[28px] p-6"
+      className="glass group block rounded-[28px] p-6"
     >
       <div className="relative aspect-[592/360] overflow-hidden rounded-2xl border border-imgbg bg-white">
         <span className="absolute inset-0 flex items-center justify-center text-[11px] font-semibold tracking-[0.06em] text-blue">
@@ -304,22 +273,18 @@ function WorkCard({ p }) {
       <p className="mt-3 text-[14px] leading-[1.55] text-ink/90">{p.desc}</p>
       <div className="mt-5 flex items-center justify-between">
         <span className="text-[9.5px] font-semibold tracking-[0.08em] text-blue">{p.tags}</span>
-        <button
-          type="button"
-          title="Case study coming soon"
-          className="cursor-default rounded-full bg-blue/80 px-4 py-2 text-[10.5px] font-semibold tracking-[0.06em] text-white"
-        >
-          CASE STUDY SOON
-        </button>
+        <span className="rounded-full bg-blue px-4 py-2 text-[10.5px] font-semibold tracking-[0.06em] text-white transition-transform group-hover:-translate-y-0.5">
+          VIEW ↗
+        </span>
       </div>
-    </motion.article>
+    </motion.a>
   );
 }
 
 function Works() {
   return (
     <section id="projects" className="relative px-5 py-20 sm:px-10 lg:px-16">
-      <SectionLabel>01 — SELECTED WORKS</SectionLabel>
+      <SectionLabel>02 — SELECTED WORKS</SectionLabel>
       <h2 className="mt-3 text-4xl font-bold tracking-[-0.02em] sm:text-5xl">
         Designed, built, and shipped.
       </h2>
@@ -338,12 +303,11 @@ function Contact() {
   const buttons = [
     ["EMAIL", LINKS.email, true],
     ["LINKEDIN", LINKS.linkedin, false],
-    ["INSTAGRAM", LINKS.instagram, false],
     ["RESUME ↓", LINKS.resume, false],
   ];
   return (
     <section id="contact" className="relative px-5 py-28 text-center sm:px-10">
-      <SectionLabel>02 — GET IN TOUCH ✉</SectionLabel>
+      <SectionLabel>03 — GET IN TOUCH ✉</SectionLabel>
       <h2 className="mx-auto mt-4 max-w-3xl text-4xl font-bold tracking-[-0.02em] sm:text-5xl">
         I'm looking for new opportunities.
       </h2>
