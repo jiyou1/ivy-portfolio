@@ -173,7 +173,7 @@ function Hero() {
         alt=""
         aria-hidden
         onError={(e) => (e.currentTarget.style.display = "none")}
-        className="pointer-events-none absolute right-[2%] top-24 w-[300px] select-none drop-shadow-[0_24px_50px_rgba(51,89,204,0.18)] sm:w-[380px] lg:right-[6%] lg:w-[460px]"
+        className="pointer-events-none absolute right-[2%] top-24 hidden w-[300px] select-none drop-shadow-[0_24px_50px_rgba(51,89,204,0.18)] sm:w-[380px] lg:right-[6%] lg:block lg:w-[460px]"
         animate={reduce ? {} : { y: [0, -16, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
