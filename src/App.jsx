@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+} from "framer-motion";
 
 /* ---------- data ---------- */
 
@@ -281,13 +287,39 @@ function About() {
 
 /* ---------- works ---------- */
 
+// hover-capable, fine pointer only — skip the cursor label on touch devices
+const CAN_HOVER =
+  typeof window !== "undefined" &&
+  window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
 function WorkCard({ p }) {
   const reduce = useReducedMotion();
+  const [hovered, setHovered] = useState(false);
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const sx = useSpring(mx, { stiffness: 350, damping: 30, mass: 0.4 });
+  const sy = useSpring(my, { stiffness: 350, damping: 30, mass: 0.4 });
+
+  const moveTo = (e) => {
+    mx.set(e.clientX + 16);
+    my.set(e.clientY + 16);
+  };
+  const handleEnter = (e) => {
+    moveTo(e);
+    // jump the springs to the cursor so the label fades in place, not from 0,0
+    sx.jump(e.clientX + 16);
+    sy.jump(e.clientY + 16);
+    setHovered(true);
+  };
+
   return (
     <motion.a
       href={p.href}
       target="_blank"
       rel="noreferrer"
+      onMouseEnter={CAN_HOVER ? handleEnter : undefined}
+      onMouseMove={CAN_HOVER ? moveTo : undefined}
+      onMouseLeave={CAN_HOVER ? () => setHovered(false) : undefined}
       whileHover={reduce ? {} : { y: -8 }}
       transition={{ type: "spring", stiffness: 260, damping: 20 }}
       className="glass group block rounded-[28px] p-6"
@@ -312,6 +344,23 @@ function WorkCard({ p }) {
           VIEW ↗
         </span>
       </div>
+
+      {CAN_HOVER && (
+        <AnimatePresence>
+          {hovered && (
+            <motion.div
+              style={{ x: reduce ? mx : sx, y: reduce ? my : sy, top: 0, left: 0 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.18, ease: "easeOut" }}
+              className="pointer-events-none fixed z-[60] rounded-full bg-ink px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.08em] text-white shadow-[0_8px_24px_rgba(11,14,20,0.35)]"
+            >
+              View Case Study
+            </motion.div>
+          )}
+        </AnimatePresence>
+      )}
     </motion.a>
   );
 }
