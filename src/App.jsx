@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 /* ---------- data ---------- */
@@ -87,27 +88,61 @@ function Blobs() {
 
 function Nav() {
   const items = [
-    ["HOME", "#home"],
-    ["ABOUT ME", "#about"],
-    ["PROJECTS", "#projects"],
-    ["GET IN TOUCH", "#contact"],
+    ["HOME", "#home", "home"],
+    ["ABOUT ME", "#about", "about"],
+    ["PROJECTS", "#projects", "projects"],
+    ["GET IN TOUCH", "#contact", "contact"],
   ];
+  const [active, setActive] = useState("home");
+
+  useEffect(() => {
+    const sections = items
+      .map(([, , id]) => document.getElementById(id))
+      .filter(Boolean);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) setActive(visible[0].target.id);
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: [0, 0.25, 0.5, 1] }
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <nav className="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-4 sm:px-10 lg:px-16">
-      <div className="glass flex items-center gap-5 rounded-full px-5 py-3 sm:gap-8 sm:px-7">
-        {items.map(([label, href], i) => (
-          <a
-            key={label}
-            href={href}
-            className={
-              i === 0
-                ? "rounded-full bg-ink px-4 py-1.5 text-[11px] font-semibold tracking-[0.08em] text-white"
-                : "hidden text-[11px] font-medium tracking-[0.08em] text-ink transition-colors hover:text-blue sm:block"
-            }
-          >
-            {label}
-          </a>
-        ))}
+      <div
+        className="glass flex items-center gap-5 rounded-full px-5 py-3 sm:gap-8 sm:px-7"
+        style={{ background: "rgba(255, 255, 255, 0.7)" }}
+      >
+        {items.map(([label, href, id]) => {
+          const isActive = active === id;
+          return (
+            <a
+              key={label}
+              href={href}
+              aria-current={isActive ? "page" : undefined}
+              className={
+                "relative rounded-full px-4 py-1.5 text-[11px] font-semibold tracking-[0.08em] transition-colors " +
+                (isActive ? "text-white" : "text-ink hover:text-blue") +
+                (id === "home" ? "" : " hidden sm:block")
+              }
+            >
+              {isActive && (
+                <motion.span
+                  layoutId="navpill"
+                  className="absolute inset-0 -z-0 rounded-full bg-ink"
+                  transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                />
+              )}
+              <span className="relative z-10">{label}</span>
+            </a>
+          );
+        })}
       </div>
       <a
         href={LINKS.resume}
