@@ -61,10 +61,15 @@ const PROJECTS = [
     desc: "Redesigned the website, unified the print and in-center signage, and shipped one brand across every surface for an Irvine test-prep academy.",
     tags: "WEB · BRANDING · SIGNAGE",
     cover: "/covers/prime-academy.jpg",
+    video: "/videos/Prime_New_Website.mp4",
     href: "/work/prime-academy",
     external: false,
   },
 ];
+
+// TODO: Built-in_Retina_Display.mp4 (old site) and _0d2018.mp4 (TV signage)
+// live in public/videos/ — wire them into the Prime Academy case study page
+// as the before-state and signage sections respectively.
 
 const BIO = [
   "I didn't start in the creative space. I started with math: the certainty of it, the way a hard problem clicks open when you find the right structure. That pull led me to computer science, and to UC Irvine's Donald Bren School of Information & Computer Sciences, where I'm finishing my B.S. in Informatics with a specialization in Human-Computer Interaction.",
@@ -106,15 +111,15 @@ function Blobs() {
 
 /* ---------- cover ---------- */
 
-// TODO: swap Prime Academy cover to the Prime_New_Website.mp4 redesign video when added in VS Code.
 function Cover({ src, video, alt }) {
   if (video) {
     return (
       <video
         src={video}
+        poster={src}
         autoPlay
-        muted
         loop
+        muted
         playsInline
         className="relative h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
       />
