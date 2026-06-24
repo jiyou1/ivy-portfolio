@@ -443,13 +443,15 @@ function Contact() {
       <h2 className="mx-auto mt-4 max-w-3xl text-4xl font-bold tracking-[-0.02em] sm:text-5xl">
         I'm looking for new opportunities.
       </h2>
-      <DotLottieReact
-        src="https://lottie.host/8649ec98-28e0-47ed-8b22-d22cdd0bef09/HBovoFV3Eb.lottie"
-        autoplay
-        loop
-        style={{ width: 88, height: 88 }}
-        aria-hidden="true"
-      />
+      <div className="mx-auto mt-4 flex justify-center">
+        <DotLottieReact
+          src="https://lottie.host/8649ec98-28e0-47ed-8b22-d22cdd0bef09/HBovoFV3Eb.lottie"
+          autoplay
+          loop
+          style={{ width: 88, height: 88 }}
+          aria-hidden="true"
+        />
+      </div>
       <p className="mx-auto mt-5 max-w-xl text-[15px] leading-[1.6] text-grayt">
         I'm always on the lookout for new opportunities to grow and learn. I love
         tackling challenges and adapting to changes as they come.
