@@ -104,16 +104,9 @@ export default function CaseStudy({ slug }) {
                 className="h-full w-full object-cover"
               />
             </div>
-            {/* TV signage animation */}
-            <div className="overflow-hidden rounded-2xl bg-imgbg">
-              <video
-                src="/videos/_0d2018.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="h-full w-full object-cover"
-              />
+            {/* TODO: Replace with real signage footage at /videos/prime-academy-signage.mp4 */}
+            <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl bg-imgbg text-[11px] font-semibold tracking-[0.06em] text-blue">
+              SIGNAGE VIDEO — COMING SOON
             </div>
             {/* SAT flyer */}
             <div className="overflow-hidden rounded-2xl bg-imgbg">
@@ -195,16 +188,9 @@ export default function CaseStudy({ slug }) {
                 <div className="flex aspect-[4/3] items-center justify-center rounded-2xl bg-imgbg text-[11px] font-semibold tracking-[0.06em] text-grayt">
                   BEFORE — old signage
                 </div>
-                <div className="overflow-hidden rounded-2xl bg-imgbg">
-                  <p className="px-3 pt-3 text-[10px] font-semibold tracking-[0.08em] text-blue">AFTER</p>
-                  <video
-                    src="/videos/_0d2018.mp4"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="h-full w-full object-cover"
-                  />
+                {/* TODO: Replace with real signage footage at /videos/prime-academy-signage.mp4 */}
+                <div className="flex aspect-[4/3] items-center justify-center rounded-2xl bg-imgbg text-[11px] font-semibold tracking-[0.06em] text-blue">
+                  AFTER — COMING SOON
                 </div>
               </div>
             </div>

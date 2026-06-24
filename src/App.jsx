@@ -67,9 +67,8 @@ const PROJECTS = [
   },
 ];
 
-// TODO: Built-in_Retina_Display.mp4 (old site) and _0d2018.mp4 (TV signage)
-// live in public/videos/ — wire them into the Prime Academy case study page
-// as the before-state and signage sections respectively.
+// TODO: When prime-academy-signage.mp4 is added to public/videos/,
+// wire it into the case study signage sections (Solution grid + Before/After).
 
 const BIO = [
   "I didn't start in the creative space. I started with math: the certainty of it, the way a hard problem clicks open when you find the right structure. That pull led me to computer science, and to UC Irvine's Donald Bren School of Information & Computer Sciences, where I'm finishing my B.S. in Informatics with a specialization in Human-Computer Interaction.",
