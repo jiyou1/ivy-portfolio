@@ -1,0 +1,165 @@
+import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+
+const SECTIONS = [
+  {
+    id: "overview",
+    label: "OVERVIEW",
+    content:
+      "Prime Academy is a test-prep academy based in Irvine, CA, offering SAT, ACT, and AP courses. The project spanned web redesign, print collateral, and in-center signage — all unified under one brand system.",
+  },
+  {
+    id: "problem",
+    label: "THE PROBLEM",
+    content:
+      "The existing brand lacked cohesion: the website felt dated, print flyers used inconsistent layouts and colors, and in-center signage didn't match either. Parents and students encountered a different visual identity at every touchpoint.",
+  },
+  {
+    id: "process-01",
+    label: "PROCESS 01 — RESEARCH & AUDIT",
+    content:
+      "Conducted a full brand audit across web, print, and physical signage. Catalogued every color, typeface, and layout pattern in use, then benchmarked against three competitor academies in the area.",
+  },
+  {
+    id: "process-02",
+    label: "PROCESS 02 — BRAND SYSTEM",
+    content:
+      "Defined a unified color palette, type scale, and component library in Figma. Created reusable templates for flyers, posters, and digital banners so future materials stay on-brand without a designer in the loop.",
+  },
+  {
+    id: "process-03",
+    label: "PROCESS 03 — DESIGN & BUILD",
+    content:
+      "Redesigned the website with a mobile-first approach, then extended the system to print flyers and in-center signage. Every surface — screen or paper — uses the same grid, spacing, and visual language.",
+  },
+  {
+    id: "solution",
+    label: "SOLUTION SCREENS",
+    content:
+      "Final deliverables included a fully responsive marketing site, a suite of course flyers (SAT, ACT, AP), and wayfinding signage for the Irvine learning center. Placeholder screens below.",
+  },
+  {
+    id: "iteration",
+    label: "ITERATION — BEFORE & AFTER",
+    items: [
+      { label: "Website Homepage", before: "Placeholder — old homepage", after: "Placeholder — redesigned homepage" },
+      { label: "Course Flyer", before: "Placeholder — old flyer layout", after: "Placeholder — unified flyer" },
+      { label: "In-Center Signage", before: "Placeholder — inconsistent signage", after: "Placeholder — branded signage" },
+    ],
+  },
+  {
+    id: "takeaways",
+    label: "TAKEAWAYS",
+    content:
+      "Shipping one brand across every surface taught me that consistency is a design decision you make once and enforce everywhere. The hardest part wasn't the visual work — it was getting stakeholders aligned on a single source of truth.",
+  },
+];
+
+export default function CaseStudy({ slug }) {
+  const navigate = useNavigate();
+
+  return (
+    <div className="relative overflow-x-clip">
+      {/* top bar */}
+      <nav className="fixed inset-x-0 top-0 z-50 flex items-center px-5 py-4 sm:px-10 lg:px-16">
+        <Link
+          to="/"
+          className="glass rounded-full px-5 py-3 text-[11px] font-semibold tracking-[0.06em] text-blue transition-transform hover:-translate-y-0.5"
+        >
+          ← Back to Home
+        </Link>
+      </nav>
+
+      <main className="relative mx-auto max-w-[960px] px-5 pb-28 pt-28 sm:px-10">
+        {/* Hero */}
+        <motion.header
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <p className="text-[12px] font-semibold tracking-[0.14em] text-blue">
+            BRAND SYSTEM &middot; WEB &middot; PRINT &middot; SIGNAGE
+          </p>
+          <h1 className="mt-4 text-[clamp(2.5rem,7vw,4.5rem)] font-bold leading-[1.08] tracking-[-0.03em]">
+            Prime Academy
+          </h1>
+          <p className="mt-4 max-w-xl text-lg text-grayt">
+            One brand, every surface — from screen to signage.
+          </p>
+          <div className="mt-8 aspect-[16/9] w-full overflow-hidden rounded-2xl bg-imgbg">
+            <img
+              src="/covers/prime-academy.jpg"
+              alt="Prime Academy hero"
+              onError={(e) => (e.currentTarget.style.display = "none")}
+              className="h-full w-full object-cover"
+            />
+          </div>
+        </motion.header>
+
+        {/* Sections */}
+        {SECTIONS.map((s) => (
+          <section key={s.id} className="mt-20">
+            <p className="text-[12px] font-semibold tracking-[0.14em] text-blue">
+              {s.label}
+            </p>
+
+            {s.content && (
+              <p className="mt-4 text-[15px] leading-[1.7] text-ink/90">
+                {s.content}
+              </p>
+            )}
+
+            {s.id === "solution" && (
+              <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
+                {[1, 2, 3, 4].map((n) => (
+                  <div
+                    key={n}
+                    className="flex aspect-[4/3] items-center justify-center rounded-2xl bg-imgbg text-[11px] font-semibold tracking-[0.06em] text-blue"
+                  >
+                    SCREEN {n} PLACEHOLDER
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {s.items && (
+              <div className="mt-8 space-y-10">
+                {s.items.map((item) => (
+                  <div key={item.label}>
+                    <p className="mb-3 text-sm font-semibold text-ink">
+                      {item.label}
+                    </p>
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                      <div className="flex aspect-[4/3] items-center justify-center rounded-2xl bg-imgbg text-[11px] font-semibold tracking-[0.06em] text-grayt">
+                        BEFORE — {item.before}
+                      </div>
+                      <div className="flex aspect-[4/3] items-center justify-center rounded-2xl bg-imgbg text-[11px] font-semibold tracking-[0.06em] text-blue">
+                        AFTER — {item.after}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </section>
+        ))}
+
+        {/* Next project */}
+        <section className="mt-24 text-center">
+          <p className="text-[12px] font-semibold tracking-[0.14em] text-blue">
+            NEXT PROJECT
+          </p>
+          <button
+            onClick={() => {
+              navigate("/");
+              window.scrollTo(0, 0);
+            }}
+            className="mt-4 text-2xl font-bold tracking-[-0.01em] text-ink transition-colors hover:text-blue"
+          >
+            View All Projects &rarr;
+          </button>
+        </section>
+      </main>
+    </div>
+  );
+}

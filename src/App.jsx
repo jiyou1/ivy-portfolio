@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { Routes, Route, Link } from "react-router-dom";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import {
   AnimatePresence,
   motion,
@@ -7,6 +9,7 @@ import {
   useReducedMotion,
   useSpring,
 } from "framer-motion";
+import CaseStudy from "./CaseStudy";
 
 /* ---------- data ---------- */
 
@@ -51,6 +54,16 @@ const PROJECTS = [
     href: "https://ucidesignathon.devpost.com/",
     external: true,
   },
+  {
+    slug: "prime-academy",
+    label: "BRAND SYSTEM · WEB · PRINT · SIGNAGE",
+    title: "Prime Academy",
+    desc: "Redesigned the website, unified the print and in-center signage, and shipped one brand across every surface for an Irvine test-prep academy.",
+    tags: "WEB · BRANDING · SIGNAGE",
+    cover: "/covers/prime-academy.jpg",
+    href: "/work/prime-academy",
+    external: false,
+  },
 ];
 
 const BIO = [
@@ -88,6 +101,32 @@ function Blobs() {
       <div className="blob h-[360px] w-[360px] bg-gradient-to-br from-holo-cyan/70 to-holo-violet/35 bottom-[700px] left-[-130px]" />
       <div className="blob h-[340px] w-[340px] bg-gradient-to-br from-holo-pink/70 to-holo-cyan/35 bottom-[60px] left-[420px]" />
     </>
+  );
+}
+
+/* ---------- cover ---------- */
+
+// TODO: swap Prime Academy cover to the Prime_New_Website.mp4 redesign video when added in VS Code.
+function Cover({ src, video, alt }) {
+  if (video) {
+    return (
+      <video
+        src={video}
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="relative h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+      />
+    );
+  }
+  return (
+    <img
+      src={src}
+      alt={alt}
+      onError={(e) => (e.currentTarget.style.display = "none")}
+      className="relative h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+    />
   );
 }
 
@@ -307,44 +346,45 @@ function WorkCard({ p }) {
   };
   const handleEnter = (e) => {
     moveTo(e);
-    // jump the springs to the cursor so the label fades in place, not from 0,0
     sx.jump(e.clientX + 16);
     sy.jump(e.clientY + 16);
     setHovered(true);
   };
 
+  const isInternal = !p.external && p.href.startsWith("/work");
+  const Wrapper = isInternal ? Link : "a";
+  const wrapperProps = isInternal
+    ? { to: p.href }
+    : { href: p.href, target: "_blank", rel: "noreferrer" };
+
   return (
-    <motion.a
-      href={p.href}
-      target="_blank"
-      rel="noreferrer"
+    <motion.div
       onMouseEnter={CAN_HOVER ? handleEnter : undefined}
       onMouseMove={CAN_HOVER ? moveTo : undefined}
       onMouseLeave={CAN_HOVER ? () => setHovered(false) : undefined}
       whileHover={reduce ? {} : { y: -8 }}
       transition={{ type: "spring", stiffness: 260, damping: 20 }}
-      className="glass group block rounded-[28px] p-6"
     >
-      <div className="relative aspect-[592/360] overflow-hidden rounded-2xl border border-imgbg bg-white">
-        <span className="absolute inset-0 flex items-center justify-center text-[11px] font-semibold tracking-[0.06em] text-blue">
-          COVER — {p.title.toUpperCase()}
-        </span>
-        <motion.img
-          src={p.cover}
-          alt={p.title + " cover"}
-          onError={(e) => (e.currentTarget.style.display = "none")}
-          className="relative h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-        />
-      </div>
-      <p className="mt-5 text-[10.5px] font-medium tracking-[0.12em] text-grayt">{p.label}</p>
-      <h3 className="mt-2 text-2xl font-bold tracking-[-0.01em]">{p.title}</h3>
-      <p className="mt-3 text-[14px] leading-[1.55] text-ink/90">{p.desc}</p>
-      <div className="mt-5 flex items-center justify-between">
-        <span className="text-[9.5px] font-semibold tracking-[0.08em] text-blue">{p.tags}</span>
-        <span className="rounded-full bg-blue px-4 py-2 text-[10.5px] font-semibold tracking-[0.06em] text-white transition-transform group-hover:-translate-y-0.5">
-          VIEW ↗
-        </span>
-      </div>
+      <Wrapper
+        {...wrapperProps}
+        className="glass group block rounded-[28px] p-6"
+      >
+        <div className="relative aspect-[592/360] overflow-hidden rounded-2xl border border-imgbg bg-white">
+          <span className="absolute inset-0 flex items-center justify-center text-[11px] font-semibold tracking-[0.06em] text-blue">
+            COVER — {p.title.toUpperCase()}
+          </span>
+          <Cover src={p.cover} video={p.video} alt={p.title + " cover"} />
+        </div>
+        <p className="mt-5 text-[10.5px] font-medium tracking-[0.12em] text-grayt">{p.label}</p>
+        <h3 className="mt-2 text-2xl font-bold tracking-[-0.01em]">{p.title}</h3>
+        <p className="mt-3 text-[14px] leading-[1.55] text-ink/90">{p.desc}</p>
+        <div className="mt-5 flex items-center justify-between">
+          <span className="text-[9.5px] font-semibold tracking-[0.08em] text-blue">{p.tags}</span>
+          <span className="rounded-full bg-blue px-4 py-2 text-[10.5px] font-semibold tracking-[0.06em] text-white transition-transform group-hover:-translate-y-0.5">
+            VIEW ↗
+          </span>
+        </div>
+      </Wrapper>
 
       {CAN_HOVER &&
         createPortal(
@@ -364,7 +404,7 @@ function WorkCard({ p }) {
           </AnimatePresence>,
           document.body
         )}
-    </motion.a>
+    </motion.div>
   );
 }
 
@@ -398,6 +438,13 @@ function Contact() {
       <h2 className="mx-auto mt-4 max-w-3xl text-4xl font-bold tracking-[-0.02em] sm:text-5xl">
         I'm looking for new opportunities.
       </h2>
+      <DotLottieReact
+        src="https://lottie.host/8649ec98-28e0-47ed-8b22-d22cdd0bef09/HBovoFV3Eb.lottie"
+        autoplay
+        loop
+        style={{ width: 88, height: 88 }}
+        aria-hidden="true"
+      />
       <p className="mx-auto mt-5 max-w-xl text-[15px] leading-[1.6] text-grayt">
         I'm always on the lookout for new opportunities to grow and learn. I love
         tackling challenges and adapting to changes as they come.
@@ -424,9 +471,9 @@ function Contact() {
   );
 }
 
-/* ---------- app ---------- */
+/* ---------- home page ---------- */
 
-export default function App() {
+function Home() {
   return (
     <div className="relative overflow-x-clip">
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
@@ -440,5 +487,16 @@ export default function App() {
         <Contact />
       </main>
     </div>
+  );
+}
+
+/* ---------- app ---------- */
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/work/prime-academy" element={<CaseStudy slug="prime-academy" />} />
+    </Routes>
   );
 }
