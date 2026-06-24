@@ -1,5 +1,25 @@
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import {
+  Compass,
+  PuzzlePiece,
+  MagnifyingGlass,
+  Swatches,
+  Hammer,
+  CheckCircle,
+  ArrowsClockwise,
+  Lightbulb,
+  ArrowRight,
+} from "@phosphor-icons/react";
+
+function SectionLabel({ icon: Icon, children }) {
+  return (
+    <div className="flex items-center gap-2 text-blue">
+      <Icon size={16} weight="duotone" />
+      <span className="text-[12px] font-semibold tracking-[0.14em] uppercase">{children}</span>
+    </div>
+  );
+}
 
 export default function CaseStudy({ slug }) {
   const navigate = useNavigate();
@@ -30,7 +50,7 @@ export default function CaseStudy({ slug }) {
             Prime Academy
           </h1>
           <p className="mt-4 max-w-xl text-lg text-grayt">
-            One brand, every surface — from screen to signage.
+            One brand, every surface, from screen to signage.
           </p>
           <div className="mt-8 aspect-[16/9] w-full overflow-hidden rounded-2xl bg-imgbg">
             <video
@@ -47,67 +67,51 @@ export default function CaseStudy({ slug }) {
 
         {/* Overview */}
         <section className="mt-20">
-          <p className="text-[12px] font-semibold tracking-[0.14em] text-blue">OVERVIEW</p>
-          <p className="mt-4 text-[15px] leading-[1.7] text-ink/90">
-            Prime Academy is a test-prep academy based in Irvine, CA, offering SAT, ACT, and AP courses. The project spanned web redesign, print collateral, and in-center signage — all unified under one brand system.
+          <SectionLabel icon={Compass}>OVERVIEW</SectionLabel>
+          <p className="mt-4 text-base leading-[1.75] text-ink/90">
+            Prime Academy is a test-prep academy based in Irvine, CA, offering SAT, ACT, and AP courses. The project spanned web redesign, print collateral, and in-center signage, all unified under one brand system.
           </p>
         </section>
 
         {/* Problem */}
         <section className="mt-20">
-          <p className="text-[12px] font-semibold tracking-[0.14em] text-blue">THE PROBLEM</p>
-          <p className="mt-4 text-[15px] leading-[1.7] text-ink/90">
+          <SectionLabel icon={PuzzlePiece}>THE PROBLEM</SectionLabel>
+          <p className="mt-4 text-base leading-[1.75] text-ink/90">
             The existing brand lacked cohesion: the website felt dated, print flyers used inconsistent layouts and colors, and in-center signage didn't match either. Parents and students encountered a different visual identity at every touchpoint.
           </p>
         </section>
 
         {/* Process 01 */}
         <section className="mt-20">
-          <p className="text-[12px] font-semibold tracking-[0.14em] text-blue">PROCESS 01 — RESEARCH &amp; AUDIT</p>
-          <p className="mt-4 text-[15px] leading-[1.7] text-ink/90">
+          <SectionLabel icon={MagnifyingGlass}>PROCESS 01: RESEARCH &amp; AUDIT</SectionLabel>
+          <p className="mt-4 text-base leading-[1.75] text-ink/90">
             Conducted a full brand audit across web, print, and physical signage. Catalogued every color, typeface, and layout pattern in use, then benchmarked against three competitor academies in the area.
           </p>
         </section>
 
         {/* Process 02 */}
         <section className="mt-20">
-          <p className="text-[12px] font-semibold tracking-[0.14em] text-blue">PROCESS 02 — BRAND SYSTEM</p>
-          <p className="mt-4 text-[15px] leading-[1.7] text-ink/90">
+          <SectionLabel icon={Swatches}>PROCESS 02: BRAND SYSTEM</SectionLabel>
+          <p className="mt-4 text-base leading-[1.75] text-ink/90">
             Defined a unified color palette, type scale, and component library in Figma. Created reusable templates for flyers, posters, and digital banners so future materials stay on-brand without a designer in the loop.
           </p>
         </section>
 
         {/* Process 03 */}
         <section className="mt-20">
-          <p className="text-[12px] font-semibold tracking-[0.14em] text-blue">PROCESS 03 — DESIGN &amp; BUILD</p>
-          <p className="mt-4 text-[15px] leading-[1.7] text-ink/90">
-            Redesigned the website with a mobile-first approach, then extended the system to print flyers and in-center signage. Every surface — screen or paper — uses the same grid, spacing, and visual language.
+          <SectionLabel icon={Hammer}>PROCESS 03: DESIGN &amp; BUILD</SectionLabel>
+          <p className="mt-4 text-base leading-[1.75] text-ink/90">
+            Redesigned the website with a mobile-first approach, then extended the system to print flyers and in-center signage. Every surface, screen or paper, uses the same grid, spacing, and visual language.
           </p>
         </section>
 
-        {/* Solution screens */}
+        {/* Solution: deliverables gallery (unique assets only) */}
         <section className="mt-20">
-          <p className="text-[12px] font-semibold tracking-[0.14em] text-blue">SOLUTION</p>
-          <p className="mt-4 text-[15px] leading-[1.7] text-ink/90">
+          <SectionLabel icon={CheckCircle}>SOLUTION</SectionLabel>
+          <p className="mt-4 text-base leading-[1.75] text-ink/90">
             Final deliverables included a fully responsive marketing site, a suite of course flyers (SAT, ACT, AP), and animated TV signage for the Irvine learning center.
           </p>
           <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
-            {/* Redesigned website */}
-            <div className="overflow-hidden rounded-2xl bg-imgbg">
-              <video
-                src="/videos/Prime_New_Website.mp4"
-                poster="/covers/prime-academy.jpg"
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="h-full w-full object-cover"
-              />
-            </div>
-            {/* TODO: Replace with real signage footage at /videos/prime-academy-signage.mp4 */}
-            <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl bg-imgbg text-[11px] font-semibold tracking-[0.06em] text-blue">
-              SIGNAGE VIDEO — COMING SOON
-            </div>
             {/* SAT flyer */}
             <div className="overflow-hidden rounded-2xl bg-imgbg">
               <img
@@ -124,14 +128,16 @@ export default function CaseStudy({ slug }) {
                 className="h-full w-full object-cover"
               />
             </div>
+            {/* TODO: Replace with real signage footage at /videos/prime-academy-signage.mp4 */}
+            <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl bg-imgbg text-[11px] font-semibold tracking-[0.06em] text-blue sm:col-span-2">
+              SIGNAGE VIDEO: COMING SOON
+            </div>
           </div>
         </section>
 
-        {/* Iteration — Before & After */}
+        {/* Iteration: Before & After */}
         <section className="mt-20">
-          <p className="text-[12px] font-semibold tracking-[0.14em] text-blue">
-            ITERATION — BEFORE &amp; AFTER
-          </p>
+          <SectionLabel icon={ArrowsClockwise}>ITERATION: BEFORE &amp; AFTER</SectionLabel>
           <div className="mt-8 space-y-10">
             {/* Website */}
             <div>
@@ -168,7 +174,7 @@ export default function CaseStudy({ slug }) {
               <p className="mb-3 text-sm font-semibold text-ink">Course Flyer</p>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="flex aspect-[4/3] items-center justify-center rounded-2xl bg-imgbg text-[11px] font-semibold tracking-[0.06em] text-grayt">
-                  BEFORE — old flyer layout
+                  BEFORE: old flyer layout
                 </div>
                 <div className="overflow-hidden rounded-2xl bg-imgbg">
                   <p className="px-3 pt-3 text-[10px] font-semibold tracking-[0.08em] text-blue">AFTER</p>
@@ -186,11 +192,11 @@ export default function CaseStudy({ slug }) {
               <p className="mb-3 text-sm font-semibold text-ink">In-Center Signage</p>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="flex aspect-[4/3] items-center justify-center rounded-2xl bg-imgbg text-[11px] font-semibold tracking-[0.06em] text-grayt">
-                  BEFORE — old signage
+                  BEFORE: old signage
                 </div>
                 {/* TODO: Replace with real signage footage at /videos/prime-academy-signage.mp4 */}
                 <div className="flex aspect-[4/3] items-center justify-center rounded-2xl bg-imgbg text-[11px] font-semibold tracking-[0.06em] text-blue">
-                  AFTER — COMING SOON
+                  AFTER: COMING SOON
                 </div>
               </div>
             </div>
@@ -199,17 +205,15 @@ export default function CaseStudy({ slug }) {
 
         {/* Takeaways */}
         <section className="mt-20">
-          <p className="text-[12px] font-semibold tracking-[0.14em] text-blue">TAKEAWAYS</p>
-          <p className="mt-4 text-[15px] leading-[1.7] text-ink/90">
-            Shipping one brand across every surface taught me that consistency is a design decision you make once and enforce everywhere. The hardest part wasn't the visual work — it was getting stakeholders aligned on a single source of truth.
+          <SectionLabel icon={Lightbulb}>TAKEAWAYS</SectionLabel>
+          <p className="mt-4 text-base leading-[1.75] text-ink/90">
+            Shipping one brand across every surface taught me that consistency is a design decision you make once and enforce everywhere. The hardest part wasn't the visual work, it was getting stakeholders aligned on a single source of truth.
           </p>
         </section>
 
         {/* Next project */}
         <section className="mt-24 text-center">
-          <p className="text-[12px] font-semibold tracking-[0.14em] text-blue">
-            NEXT PROJECT
-          </p>
+          <SectionLabel icon={ArrowRight}>NEXT PROJECT</SectionLabel>
           <button
             onClick={() => {
               navigate("/");
