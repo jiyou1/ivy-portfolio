@@ -130,24 +130,45 @@ export default function CaseStudy({ slug }) {
           <p className="mt-4 text-base leading-[1.75] text-ink/90">
             Final deliverables included a fully responsive marketing site and a suite of course flyers (SAT, ACT, AP) for the Irvine learning center.
           </p>
-          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
-            {/* SAT flyer */}
-            <div className="overflow-hidden rounded-2xl bg-imgbg">
-              <img
-                src="/images/SAT Flyer 2026 Summer.png"
-                alt="SAT course flyer"
-                className="h-full w-full object-cover"
-              />
-            </div>
-            {/* ACT flyer */}
-            <div className="overflow-hidden rounded-2xl bg-imgbg">
+          <motion.div
+            initial="rest"
+            whileHover="fan"
+            whileTap="fan"
+            className="relative mx-auto mt-8 h-[520px] w-[380px] cursor-pointer sm:h-[600px] sm:w-[440px]"
+          >
+            {/* ACT flyer (behind) */}
+            <motion.div
+              variants={{
+                rest: { rotate: 3, x: 10, y: 8, scale: 0.97 },
+                fan: { rotate: 6, x: 120, y: -10, scale: 1 },
+              }}
+              transition={{ type: "spring", stiffness: 260, damping: 20 }}
+              className="absolute inset-0 overflow-hidden rounded-2xl bg-white shadow-[0_16px_40px_rgba(26,46,102,0.18)]"
+              style={{ zIndex: 1 }}
+            >
               <img
                 src="/images/ACT Flyer 2026 Summer (Tabloid ver.2).png"
                 alt="ACT course flyer"
                 className="h-full w-full object-cover"
               />
-            </div>
-          </div>
+            </motion.div>
+            {/* SAT flyer (front) */}
+            <motion.div
+              variants={{
+                rest: { rotate: -2, x: 0, y: 0, scale: 1 },
+                fan: { rotate: -5, x: -120, y: -10, scale: 1 },
+              }}
+              transition={{ type: "spring", stiffness: 260, damping: 20 }}
+              className="absolute inset-0 overflow-hidden rounded-2xl bg-white shadow-[0_16px_40px_rgba(26,46,102,0.22)]"
+              style={{ zIndex: 2 }}
+            >
+              <img
+                src="/images/SAT Flyer 2026 Summer.png"
+                alt="SAT course flyer"
+                className="h-full w-full object-cover"
+              />
+            </motion.div>
+          </motion.div>
         </section>
 
         {/* Iteration: Before & After */}
