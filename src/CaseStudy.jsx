@@ -225,7 +225,7 @@ export default function CaseStudy({ slug }) {
 
         {/* Digital Signage: 0 to 1 */}
         <section className="mt-14">
-          <p className="text-[12px] font-semibold tracking-[0.14em] text-grayt">BUILT FROM SCRATCH &middot; 0 TO 1</p>
+          <p className="text-[13px] font-semibold tracking-[0.14em] text-ink/60">BUILT FROM SCRATCH &middot; 0 TO 1</p>
           <SectionLabel icon={Monitor}>DIGITAL SIGNAGE</SectionLabel>
           <h2 className="mt-3 text-4xl font-bold tracking-[-0.02em] sm:text-5xl">
             There was no signage before.
