@@ -16,8 +16,8 @@ import {
 function SectionLabel({ icon: Icon, children }) {
   return (
     <div className="flex items-center gap-2 text-blue">
-      <Icon size={16} weight="duotone" />
-      <span className="text-[12px] font-semibold tracking-[0.14em] uppercase">{children}</span>
+      <Icon size={18} weight="duotone" />
+      <span className="text-[13px] font-semibold tracking-[0.14em] uppercase">{children}</span>
     </div>
   );
 }
@@ -25,14 +25,14 @@ function SectionLabel({ icon: Icon, children }) {
 function BeforeAfterPair({ label, beforeContent, afterContent }) {
   return (
     <div>
-      <p className="mb-3 text-sm font-semibold text-ink">{label}</p>
+      <p className="mb-3 text-base font-semibold text-ink">{label}</p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="overflow-hidden rounded-2xl border-2 border-ink/10 bg-imgbg">
-          <p className="px-3 pt-3 text-[10px] font-semibold tracking-[0.08em] text-grayt">BEFORE</p>
+          <p className="px-3 pt-3 text-[11px] font-semibold tracking-[0.08em] text-grayt">BEFORE</p>
           {beforeContent}
         </div>
         <div className="overflow-hidden rounded-2xl border-2 border-blue/20 bg-imgbg">
-          <p className="px-3 pt-3 text-[10px] font-semibold tracking-[0.08em] text-blue">AFTER</p>
+          <p className="px-3 pt-3 text-[11px] font-semibold tracking-[0.08em] text-blue">AFTER</p>
           {afterContent}
         </div>
       </div>
@@ -49,7 +49,7 @@ export default function CaseStudy({ slug }) {
       <nav className="fixed inset-x-0 top-0 z-50 flex items-center px-5 py-4 sm:px-10 lg:px-16">
         <Link
           to="/"
-          className="glass rounded-full px-5 py-3 text-[11px] font-semibold tracking-[0.06em] text-blue transition-transform hover:-translate-y-0.5"
+          className="glass rounded-full px-5 py-3 text-[12px] font-semibold tracking-[0.06em] text-blue transition-transform hover:-translate-y-0.5"
         >
           ← Back to Home
         </Link>
@@ -62,7 +62,7 @@ export default function CaseStudy({ slug }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <p className="text-[12px] font-semibold tracking-[0.14em] text-blue">
+          <p className="text-[13px] font-semibold tracking-[0.14em] text-blue">
             BRAND SYSTEM &middot; WEB &middot; PRINT &middot; SIGNAGE
           </p>
           <h1 className="mt-4 text-[clamp(2.5rem,7vw,4.5rem)] font-bold leading-[1.08] tracking-[-0.03em]">
@@ -134,7 +134,8 @@ export default function CaseStudy({ slug }) {
             initial="rest"
             whileHover="fan"
             whileTap="fan"
-            className="relative mx-auto mt-8 h-[520px] w-[380px] cursor-pointer sm:h-[600px] sm:w-[440px]"
+            className="relative mx-auto mt-8 cursor-pointer"
+            style={{ width: "min(440px, 100%)", aspectRatio: "11 / 17" }}
           >
             {/* ACT flyer (behind) */}
             <motion.div
@@ -149,7 +150,7 @@ export default function CaseStudy({ slug }) {
               <img
                 src="/images/ACT Flyer 2026 Summer (Tabloid ver.2).png"
                 alt="ACT course flyer"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-contain"
               />
             </motion.div>
             {/* SAT flyer (front) */}
@@ -165,7 +166,7 @@ export default function CaseStudy({ slug }) {
               <img
                 src="/images/SAT Flyer 2026 Summer.png"
                 alt="SAT course flyer"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-contain"
               />
             </motion.div>
           </motion.div>
@@ -224,7 +225,7 @@ export default function CaseStudy({ slug }) {
 
         {/* Digital Signage: 0 to 1 */}
         <section className="mt-14">
-          <p className="text-[10px] font-semibold tracking-[0.14em] text-grayt">BUILT FROM SCRATCH &middot; 0 TO 1</p>
+          <p className="text-[12px] font-semibold tracking-[0.14em] text-grayt">BUILT FROM SCRATCH &middot; 0 TO 1</p>
           <SectionLabel icon={Monitor}>DIGITAL SIGNAGE</SectionLabel>
           <h2 className="mt-3 text-4xl font-bold tracking-[-0.02em] sm:text-5xl">
             There was no signage before.
@@ -242,7 +243,7 @@ export default function CaseStudy({ slug }) {
                   className="h-full w-full object-cover"
                 />
               </div>
-              <figcaption className="mt-3 text-[13px] leading-relaxed text-grayt">
+              <figcaption className="mt-3 text-sm leading-relaxed text-grayt">
                 Configuring the Raspberry Pi player that drives the lobby display.
               </figcaption>
             </figure>
@@ -258,7 +259,7 @@ export default function CaseStudy({ slug }) {
                   className="h-full w-full object-cover rounded-2xl"
                 />
               </div>
-              <figcaption className="mt-3 text-[13px] leading-relaxed text-grayt">
+              <figcaption className="mt-3 text-sm leading-relaxed text-grayt">
                 The finished signage running in the center.
               </figcaption>
             </figure>
