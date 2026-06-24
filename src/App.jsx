@@ -67,8 +67,6 @@ const PROJECTS = [
   },
 ];
 
-// TODO: When prime-academy-signage.mp4 is added to public/videos/,
-// wire it into the case study signage sections (Solution grid + Before/After).
 
 const BIO = [
   "I didn't start in the creative space. I started with math: the certainty of it, the way a hard problem clicks open when you find the right structure. That pull led me to computer science, and to UC Irvine's Donald Bren School of Information & Computer Sciences, where I'm finishing my B.S. in Informatics with a specialization in Human-Computer Interaction.",
