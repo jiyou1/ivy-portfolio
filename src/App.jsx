@@ -300,22 +300,26 @@ function Floaties() {
 function TypedName({ text }) {
   const reduce = useReducedMotion();
   const [n, setN] = useState(reduce ? text.length : 0);
-  const done = n >= text.length;
 
   useEffect(() => {
-    if (reduce || done) return;
-    const t = setTimeout(() => setN((c) => c + 1), 110);
+    if (reduce) return;
+    if (n < text.length) {
+      const t = setTimeout(() => setN(n + 1), 110);
+      return () => clearTimeout(t);
+    }
+    // finished a pass: hold the full name, then restart the loop
+    const t = setTimeout(() => setN(0), 2600);
     return () => clearTimeout(t);
-  }, [n, reduce, done]);
+  }, [n, reduce, text.length]);
 
   return (
     <span className="font-display italic">
       <span aria-hidden="true">{text.slice(0, n)}</span>
-      {!reduce && !done && (
+      {!reduce && (
         <span
           aria-hidden="true"
-          className="caret-blink ml-[0.04em] inline-block w-[0.05em] align-baseline"
-          style={{ height: "0.72em", background: "currentColor" }}
+          className="caret-blink ml-[0.12em] inline-block w-[0.035em] align-baseline"
+          style={{ height: "0.72em", background: "var(--color-blue)" }}
         />
       )}
     </span>
@@ -337,8 +341,11 @@ function StarToggle() {
       className="inline-flex cursor-pointer leading-none text-blue"
       style={{ fontSize: "1.35em" }}
       whileHover={reduce ? undefined : { scale: 1.15 }}
-      animate={reduce ? {} : { rotate: spins * 360, scale: spins === 0 ? 1 : [1, 1.5, 1] }}
-      transition={{ rotate: { duration: 0.6, ease: "easeInOut" }, scale: { duration: 0.5, ease: "easeOut" } }}
+      animate={reduce ? {} : { rotate: spins * 360, scale: [1, 1.3, 1] }}
+      transition={{
+        rotate: { duration: 0.6, ease: "easeInOut" },
+        scale: { duration: 0.5, ease: "easeOut", repeat: Infinity, repeatDelay: 4.5 },
+      }}
     >
       ✳
     </motion.button>
@@ -494,7 +501,7 @@ function About({ onSkill }) {
 
         {/* strict 24px (space-y-6) vertical rhythm through the whole bio column */}
         <div className="max-w-2xl space-y-6">
-          <SectionLabel>01 — ABOUT ME ☺</SectionLabel>
+          <SectionLabel>01 — ABOUT ME <span className="align-middle text-[18px]">☺</span></SectionLabel>
           <h2 className="text-4xl font-bold tracking-[-0.02em] sm:text-5xl">
             Designer who ships.
           </h2>
