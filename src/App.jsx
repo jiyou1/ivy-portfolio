@@ -11,7 +11,6 @@ import {
 import CaseStudy from "./CaseStudy";
 import { Envelope } from "@phosphor-icons/react";
 import {
-  Star,
   Sparks,
   CursorPointer,
   Rocket,
@@ -221,25 +220,22 @@ function Nav() {
       </div>
       <Link
         to="/playground"
-        className="group glass relative isolate overflow-hidden rounded-full px-5 py-3 text-[11px] font-semibold tracking-[0.06em] text-blue-text transition-all duration-300 hover:text-white hover:shadow-[0_12px_34px_rgba(28,16,72,0.5)]"
+        className="group glass relative isolate overflow-hidden rounded-full px-5 py-3 text-[11px] font-semibold tracking-[0.06em] text-blue-text transition-all duration-300 hover:-translate-y-0.5 hover:text-white hover:shadow-[0_10px_28px_rgba(88,28,180,0.45)]"
       >
-        {/* space-dark gradient with tiny stars, revealed on hover */}
+        {/* smooth indigo -> violet fill, revealed on hover */}
         <span
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          style={{
-            background:
-              "radial-gradient(1.6px 1.6px at 18% 32%, #fff, transparent), radial-gradient(1.4px 1.4px at 68% 62%, #fff, transparent), radial-gradient(1.2px 1.2px at 44% 80%, rgba(255,255,255,0.85), transparent), radial-gradient(1.2px 1.2px at 86% 24%, rgba(255,255,255,0.7), transparent), linear-gradient(120deg, #0a0f2c 0%, #1a1040 55%, #35185f 100%)",
-          }}
+          style={{ background: "linear-gradient(135deg, #1e1b4b 0%, #4c1d95 55%, #7c3aed 100%)" }}
         />
         <span className="relative inline-flex items-center gap-1.5">
-          Join my PLAYGROUND
-          <Star
-            width={13}
-            height={13}
+          Join my Playground
+          <Sparks
+            width={14}
+            height={14}
             strokeWidth={2}
             aria-hidden
-            className="transition-transform duration-500 group-hover:rotate-[200deg]"
+            className="transition-transform duration-500 group-hover:rotate-90"
           />
         </span>
       </Link>
@@ -296,54 +292,6 @@ function Floaties() {
         />
       ))}
     </>
-  );
-}
-
-/* Typewriter for the hero eyebrow. Types out, holds, then loops forever. Screen
-   readers get the full text immediately via aria-label; reduced-motion users see
-   it instantly with no caret. The line's full width is reserved up front so
-   nothing shifts as it types. */
-function TypedLine({ text }) {
-  const reduce = useReducedMotion();
-  const [n, setN] = useState(reduce ? text.length : 0);
-
-  useEffect(() => {
-    if (reduce) return;
-    if (n < text.length) {
-      const t = setTimeout(() => setN(n + 1), 95);
-      return () => clearTimeout(t);
-    }
-    // finished a pass: hold the full line, then restart the loop
-    const t = setTimeout(() => setN(0), 2600);
-    return () => clearTimeout(t);
-  }, [n, reduce, text.length]);
-
-  if (reduce) {
-    return (
-      <p className="text-[12px] font-medium tracking-[0.14em] text-grayt">{text}</p>
-    );
-  }
-
-  return (
-    <p
-      className="relative text-[12px] font-medium tracking-[0.14em] text-grayt"
-      aria-label={text}
-    >
-      {/* invisible full-width placeholder reserves the line so there's no shift */}
-      <span aria-hidden="true" className="invisible">
-        {text}
-        <span className="typed-caret" />
-      </span>
-      {/* animated overlay — caret blinks continuously through the loop */}
-      <span aria-hidden="true" className="absolute inset-0">
-        {text.slice(0, n)}
-        <motion.span
-          className="typed-caret"
-          animate={{ opacity: [1, 1, 0, 0] }}
-          transition={{ duration: 1, times: [0, 0.5, 0.5, 1], repeat: Infinity, ease: "linear" }}
-        />
-      </span>
-    </p>
   );
 }
 
@@ -444,7 +392,9 @@ function Hero() {
       <Floaties />
       <div className="flex flex-col gap-6">
         <div className="flex items-center gap-2">
-          <TypedLine text="WELCOME TO MY CREATIVE STUDIO" />
+          <p className="text-[12px] font-medium tracking-[0.14em] text-grayt">
+            WELCOME TO MY CREATIVE STUDIO
+          </p>
           <StarToggle />
         </div>
         <motion.h1
