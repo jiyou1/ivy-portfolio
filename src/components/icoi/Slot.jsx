@@ -1,0 +1,39 @@
+import { useState } from "react";
+
+/* Asset-or-placeholder. Reads real files from /public/case/icoi/ when they exist;
+   otherwise renders a labelled dashed placeholder so the page can be built and
+   reviewed before Ivy delivers assets (spec §7). Placeholders never ship as
+   content: a missing/broken src falls back to the Slot box. */
+const MIN_H = {
+  default: "min-h-[200px]",
+  tall: "min-h-[420px]",
+  wide: "min-h-[320px]",
+  beat: "min-h-[240px]",
+  photo: "min-h-[200px]",
+};
+
+export default function Slot({ src, alt = "", label, variant = "default", className = "" }) {
+  const [failed, setFailed] = useState(!src);
+
+  if (src && !failed) {
+    return (
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        onError={() => setFailed(true)}
+        className={`w-full rounded-2xl border border-stroke object-cover ${className}`}
+      />
+    );
+  }
+
+  return (
+    <div
+      className={`flex items-center justify-center rounded-2xl border-[1.5px] border-dashed border-stroke-2 bg-imgbg ${MIN_H[variant]} ${className}`}
+    >
+      <span className="whitespace-pre-line px-6 text-center font-plex text-[12px] leading-[1.8] text-grayt">
+        {label}
+      </span>
+    </div>
+  );
+}

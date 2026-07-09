@@ -10,7 +10,32 @@
   --color-holo-cyan: #8cdeff;
   --color-holo-violet: #b89eff;
   --color-holo-pink: #ffb8eb;
+
+  /* ICOI case study tokens (icoi-case-study-DESIGN.md §1) */
+  --color-stroke: #e2e9f5;
+  --color-stroke-2: #c7d3e8;
+  --color-legal: #3a4252;
+  --color-prose: #2a3140;
+  /* status ramp: text / border / fill per status */
+  --color-st-good: #0a9b5b;
+  --color-st-good-border: #bfe7d4;
+  --color-st-good-fill: #edfaf3;
+  --color-st-info: #0a6fe0;
+  --color-st-info-border: #bfdffb;
+  --color-st-info-fill: #edf6ff;
+  --color-st-warn: #c77400;
+  --color-st-warn-border: #f2ddbb;
+  --color-st-warn-fill: #fdf6e9;
+  --color-st-bad: #c23a3a;
+  --color-st-bad-border: #f1c9c9;
+  --color-st-bad-fill: #fdf0f0;
+  --color-st-hon: #7a5ad6;
+  --color-st-hon-border: #ded2fb;
+  --color-st-hon-fill: #f5f1fe;
+
   --font-sans: "Inter", system-ui, sans-serif;
+  --font-instrument: "Instrument Serif", Georgia, serif;
+  --font-plex: "IBM Plex Mono", ui-monospace, monospace;
   --font-serif: "Fraunces", Georgia, serif;
   --font-display: "DM Serif Display", Georgia, serif;
   --font-korean: "Noto Serif KR", "Fraunces", serif;
