@@ -1,6 +1,7 @@
 import { Envelope } from "@phosphor-icons/react";
 import { Mail, Linkedin, Download } from "iconoir-react";
 import SectionLabel from "./SectionLabel";
+import Spark from "../Spark";
 import { LINKS } from "../data/site";
 
 export default function Contact() {
@@ -39,7 +40,9 @@ export default function Contact() {
           </a>
         ))}
       </div>
-      <p className="mt-14 text-[13px] text-grayt">designed and built by ivy jiyou lee ☆</p>
+      <p className="mt-14 text-[13px] text-grayt">
+        designed and built by ivy jiyou lee <Spark size={13} twinkleOnHover className="ml-1 align-middle" />
+      </p>
     </section>
   );
 }
