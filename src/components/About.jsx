@@ -1,30 +1,67 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { Figma, Component, Frame, Search, Atom, Code, Html5, Wind, GitBranch } from "iconoir-react";
 import SectionLabel from "./SectionLabel";
 import { SKILLS } from "../data/skills";
 import { BIO, LINKS } from "../data/site";
 
-function Polaroid({ src, caption, rotate, x, y, z, fan }) {
+/* Draggable polaroid stack. Each card can be dragged aside to reveal the ones
+   behind; grabbing a card lifts it to the front and it stays there on release. */
+const PHOTOS = [
+  { src: "/polaroid3.jpg", caption: "irvine, ca", rotate: -9, left: 0, top: 60 },
+  { src: "/polaroid2.jpg", caption: "likelion days ☆", rotate: 8, left: 120, top: 40 },
+  { src: "/polaroid1.jpg", caption: "ivy ☺ 2026", rotate: -2, left: 60, top: 100 },
+];
+
+function Polaroid({ photo, z, reduce, onLift }) {
+  const { src, caption, rotate, left, top } = photo;
   return (
     <motion.div
-      variants={{
-        rest: { rotate, x, y },
-        fan: { rotate: fan.rotate, x: fan.x, y: fan.y },
-      }}
-      transition={{ type: "spring", stiffness: 220, damping: 16 }}
-      style={{ zIndex: z }}
-      className="absolute w-[200px] rounded-md bg-white p-3 pb-2 shadow-[0_16px_30px_rgba(26,46,102,0.22)] sm:w-[230px]"
+      drag
+      dragMomentum={false}
+      dragElastic={0.14}
+      dragConstraints={{ left: -170, right: 230, top: -110, bottom: 150 }}
+      onPointerDown={onLift}
+      initial={{ rotate }}
+      whileHover={reduce ? undefined : { scale: 1.03 }}
+      whileDrag={{ scale: 1.05 }}
+      style={{ left, top, zIndex: z, cursor: "grab" }}
+      className="absolute w-[200px] touch-none rounded-md bg-white p-3 pb-2 shadow-[0_16px_30px_rgba(26,46,102,0.22)] active:cursor-grabbing sm:w-[230px]"
     >
       <div className="aspect-square w-full overflow-hidden rounded-[3px] bg-imgbg">
         <img
           src={src}
           alt=""
+          draggable={false}
           onError={(e) => (e.currentTarget.style.display = "none")}
-          className="h-full w-full object-cover"
+          className="pointer-events-none h-full w-full select-none object-cover"
         />
       </div>
-      <p className="py-2 text-center font-hand text-xl text-ink">{caption}</p>
+      <p className="select-none py-2 text-center font-hand text-xl text-ink">{caption}</p>
     </motion.div>
+  );
+}
+
+function Polaroids() {
+  const reduce = useReducedMotion();
+  const [zOrder, setZOrder] = useState(() => PHOTOS.map((_, i) => i + 1));
+  const bringToFront = (i) =>
+    setZOrder((prev) => {
+      const max = Math.max(...prev);
+      if (prev[i] === max) return prev;
+      const next = [...prev];
+      next[i] = max + 1;
+      return next;
+    });
+  return (
+    <div
+      className="relative mx-auto h-[420px] w-[340px] shrink-0 sm:w-[420px]"
+      aria-label="Photos of Ivy (drag to rearrange)"
+    >
+      {PHOTOS.map((p, i) => (
+        <Polaroid key={p.src} photo={p} z={zOrder[i]} reduce={reduce} onLift={() => bringToFront(i)} />
+      ))}
+    </div>
   );
 }
 
@@ -61,17 +98,7 @@ export default function About({ onSkill }) {
   return (
     <section id="about" className="relative px-5 py-20 sm:px-10 lg:px-16">
       <div className="flex flex-col gap-16 lg:flex-row lg:items-start">
-        <motion.div
-          initial="rest"
-          whileHover="fan"
-          whileTap="fan"
-          className="relative mx-auto h-[420px] w-[340px] shrink-0 sm:w-[420px]"
-          aria-label="Photos of Ivy"
-        >
-          <Polaroid src="/polaroid3.jpg" caption="irvine, ca" rotate={-9} x={0} y={60} z={1} fan={{ rotate: -16, x: -56, y: 36 }} />
-          <Polaroid src="/polaroid2.jpg" caption="likelion days ☆" rotate={8} x={120} y={40} z={2} fan={{ rotate: 16, x: 186, y: 16 }} />
-          <Polaroid src="/polaroid1.jpg" caption="ivy ☺ 2026" rotate={-2} x={60} y={100} z={3} fan={{ rotate: 0, x: 64, y: 120 }} />
-        </motion.div>
+        <Polaroids />
 
         {/* 8pt rhythm: eyebrow hugs the heading (8px); larger gaps break groups */}
         <div className="max-w-2xl">
