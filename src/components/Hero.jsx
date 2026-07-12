@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Sparks, CursorPointer, Rocket } from "iconoir-react";
-import Spark from "../Spark";
 
 /* Floating hero assets (inflatable vol.2 pack) — one overlapping cluster in the
    right ~40% of the hero, vertically centered on the headline. The old iridescent
@@ -84,45 +83,28 @@ function TypedName({ text }) {
   );
 }
 
-/* Types the eyebrow once, starting after startDelay ms (so it begins only once
-   the Spark's bloom has landed). Blinking caret while typing. aria-label carries
-   the full text for screen readers; reduced motion shows it whole with no caret. */
-function TypedLine({ text, startDelay = 0 }) {
+/* The eyebrow's trailing sparkle — a playful click toy: spins 360° and bounces
+   bigger on each click to hint that it's interactive. Decorative (mouse-only),
+   hidden from the a11y tree. */
+function StarToggle() {
   const reduce = useReducedMotion();
-  const [n, setN] = useState(reduce ? text.length : 0);
-  const [started, setStarted] = useState(reduce || startDelay === 0);
-
-  useEffect(() => {
-    if (reduce || started) return;
-    const t = setTimeout(() => setStarted(true), startDelay);
-    return () => clearTimeout(t);
-  }, [reduce, started, startDelay]);
-
-  useEffect(() => {
-    if (reduce || !started || n >= text.length) return;
-    const t = setTimeout(() => setN((c) => c + 1), 55);
-    return () => clearTimeout(t);
-  }, [reduce, started, n, text.length]);
-
-  if (reduce) {
-    return <p className="text-[12px] font-medium tracking-[0.14em] text-grayt">{text}</p>;
-  }
-
-  const done = n >= text.length;
+  const [spins, setSpins] = useState(0);
   return (
-    <p className="relative text-[12px] font-medium tracking-[0.14em] text-grayt" aria-label={text}>
-      {/* invisible full-width placeholder reserves the line so nothing shifts */}
-      <span aria-hidden="true" className="invisible">{text}</span>
-      <span aria-hidden="true" className="absolute inset-0">
-        {text.slice(0, n)}
-        {!done && (
-          <span
-            className="caret-blink ml-[1px] inline-block w-[2px] align-baseline"
-            style={{ height: "1em", background: "var(--color-blue)" }}
-          />
-        )}
-      </span>
-    </p>
+    <motion.button
+      type="button"
+      aria-hidden="true"
+      tabIndex={-1}
+      onClick={() => setSpins((s) => s + 1)}
+      className="inline-flex cursor-pointer leading-none text-grayt"
+      whileHover={reduce ? undefined : { scale: 1.15 }}
+      animate={reduce ? {} : { rotate: spins * 360, scale: [1, 1.3, 1] }}
+      transition={{
+        rotate: { duration: 0.6, ease: "easeInOut" },
+        scale: { duration: 0.5, ease: "easeOut", repeat: Infinity, repeatDelay: 4.5 },
+      }}
+    >
+      ✳
+    </motion.button>
   );
 }
 
@@ -178,8 +160,10 @@ export default function Hero() {
       <Floaties />
       <div className="flex flex-col gap-6">
         <div className="flex items-center gap-2">
-          <Spark size={18} bloom delay={0.1} />
-          <TypedLine text="WELCOME TO MY CREATIVE STUDIO" startDelay={800} />
+          <p className="text-[12px] font-medium tracking-[0.14em] text-grayt">
+            WELCOME TO MY CREATIVE STUDIO
+          </p>
+          <StarToggle />
         </div>
         <motion.h1
           initial={reduce ? false : { opacity: 0, y: 24 }}
