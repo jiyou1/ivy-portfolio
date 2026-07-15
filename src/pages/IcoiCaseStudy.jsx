@@ -18,6 +18,7 @@ import {
   Globe,
   Group,
   Presentation,
+  WarningTriangle,
 } from "iconoir-react";
 
 const ASSETS = "/case/icoi/";
@@ -61,7 +62,6 @@ const IMPACT = [
 const REFLECT = [
   { k: "Read the source", p: "The client's own vocabulary had drifted from their legal document. Nobody was wrong on purpose. Now I ask for the governing document before I ask for the feature list." },
   { k: "Derive, don't enter", p: "Any status a human types is a status that goes stale. If a rule can be computed from events, the interface should compute it and show its work." },
-  { k: "[ HONEST MISS ]", p: "[ SLOT: one thing you got wrong and fixed. Unglamorous is good. This card is what makes the other two believable. ]" },
 ];
 
 export default function IcoiCaseStudy() {
@@ -399,7 +399,7 @@ export default function IcoiCaseStudy() {
         <section id="reflect" className="pt-24">
           <Eyebrow n="06" icon={LightBulb}>Reflection</Eyebrow>
           <H2>What this project changed about how I work</H2>
-          <div className="my-10 grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div className="my-10 grid grid-cols-1 gap-4 md:grid-cols-2">
             {REFLECT.map((c) => (
               <div key={c.k} className="rounded-2xl border border-stroke bg-white p-7">
                 <span className="mb-3 block font-plex text-[11px] uppercase tracking-[0.12em] text-blue-text">
@@ -408,6 +408,21 @@ export default function IcoiCaseStudy() {
                 <p className="m-0 text-[14px] text-prose">{c.p}</p>
               </div>
             ))}
+          </div>
+
+          {/* honest miss: the candid third beat, given full width and the warn ramp
+              + left rule so it reads as deliberate self-critique, not another win card */}
+          <div className="rounded-2xl border border-stroke border-l-[3px] border-l-st-warn bg-white p-7">
+            <span className="mb-3 flex items-center gap-2 font-plex text-[11px] uppercase tracking-[0.12em] text-st-warn">
+              <WarningTriangle width={13} height={13} strokeWidth={2} aria-hidden />
+              Honest miss
+            </span>
+            <p className="m-0 max-w-[720px] text-[15px] leading-[1.65] text-prose">
+              My early designs let admins manually edit member status, reasoning that humans should be
+              able to catch errors the system missed. I had it backwards. The bylaws were too complex to
+              memorize, which meant hand edits would introduce errors, not catch them. The fix was making
+              status read-only and pointing corrections at the underlying events instead.
+            </p>
           </div>
         </section>
       </main>
