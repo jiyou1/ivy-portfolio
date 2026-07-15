@@ -20,7 +20,7 @@ export const PROJECTS = [
     desc: "A focus companion that brings the café study experience home. Led a 9-person team from concept to a packaged desktop app.",
     tags: "FIGMA · ELECTRON · PM",
     cover: "/covers/lattelearn.jpg",
-    href: "/decks/lattelearn.pdf",
+    href: "/work/lattelearn",
     external: false,
     skills: ["FIGMA", "PROTOTYPING", "MOTION DESIGN", "GIT"],
   },

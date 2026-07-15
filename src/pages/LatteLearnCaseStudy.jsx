@@ -1,10 +1,26 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import CaseBlobs from "../components/icoi/CaseBlobs";
+import CafeMesh from "../components/lattelearn/CafeMesh";
 import Toc from "../components/icoi/Toc";
 import Slot from "../components/icoi/Slot";
 import BylawTrace from "../components/icoi/BylawTrace";
 import CompetitorMatrix from "../components/lattelearn/CompetitorMatrix";
+import {
+  Community,
+  Table2Columns,
+  GitFork,
+  CoffeeCup,
+  Rocket,
+  StatsReport,
+  LightBulb,
+  AppWindow,
+  Group,
+  GraduationCap,
+  TaskList,
+  DesignPencil,
+  ArrowRight,
+  GithubCircle,
+} from "iconoir-react";
 
 /* LatteLearn case study — a sibling of the ICOI page: same architecture (TOC
    scrollspy rail, skip button, Slot placeholders, section scaffolding, the
@@ -29,26 +45,9 @@ const CAFE_TOKENS = {
   "--color-imgbg": "#EDE5D6",
   "--color-stroke": "#E5DCCC",
   "--color-stroke-2": "#D9CDB8",
-  backgroundColor: "#F4EFE6",
+  // NB: no opaque backgroundColor here — the café base is a separate -z-20 layer
+  // below the mesh, so the warm blobs (-z-10) aren't painted over.
 };
-
-/* three warm gradient blobs (caramel #E8C88F leading, blended toward #FFB8EB),
-   behind hero / the metaphor section / reflection — same no-blur technique as
-   the home page */
-const CAFE_BLOBS = [
-  {
-    width: 620, height: 620, top: -140, right: -170,
-    background: "radial-gradient(circle at 32% 32%, rgba(232,200,143,.60), rgba(255,184,235,.26) 60%, transparent 76%)",
-  },
-  {
-    width: 560, height: 560, top: "44%", right: -200,
-    background: "radial-gradient(circle at 60% 40%, rgba(232,200,143,.50), rgba(255,184,235,.24) 62%, transparent 78%)",
-  },
-  {
-    width: 520, height: 520, bottom: -150, left: -180,
-    background: "radial-gradient(circle at 40% 55%, rgba(255,184,235,.34), rgba(232,200,143,.42) 58%, transparent 76%)",
-  },
-];
 
 const TOC_SECTIONS = [
   ["01", "context", "Context"],
@@ -61,9 +60,10 @@ const TOC_SECTIONS = [
 ];
 
 /* ---------- prose scaffolding (prose caps at 760px; media spans 1080) ---------- */
-function Eyebrow({ n, children }) {
+function Eyebrow({ n, icon: Icon, children }) {
   return (
     <span className="inline-flex items-center gap-2 font-plex text-[12px] uppercase tracking-[0.14em] text-blue-text">
+      {Icon && <Icon width={14} height={14} strokeWidth={2} aria-hidden />}
       {n && <span>{n}</span>}
       {children}
     </span>
@@ -76,6 +76,17 @@ const H2 = ({ children, ...rest }) => (
 );
 const P = ({ children }) => (
   <p className="mb-4 max-w-[760px] text-[17px] leading-[1.65] text-prose">{children}</p>
+);
+/* Em: a small caramel bottom-half highlight for the one phrase per paragraph that
+   carries the point — the café-warm sibling of ICOI's pink <Hl>. Text darkens to
+   ink so the emphasis reads as hierarchy, not just color. */
+const Em = ({ children }) => (
+  <b
+    className="font-medium not-italic text-ink"
+    style={{ background: "linear-gradient(transparent 62%, rgba(232,200,143,0.6) 62%)" }}
+  >
+    {children}
+  </b>
 );
 
 /* frosted café card — the one material for matrix / stats / reflection */
@@ -108,9 +119,9 @@ const STATS = [
 ];
 
 const REFLECT = [
-  ["AS PM", "Nine people, mixed experience, one academic cycle: shipping meant cutting features early and often. Every scope cut that hurt in week 6 is the reason we had a packaged app in week 16."],
-  ["AS DESIGNER", "The café metaphor only worked because we mapped flows before drawing screens. Personality came last, on top of structure, never instead of it."],
-  ["NEXT", "Account sync, mobile, and shared study rooms: the café is better with friends at the next table."],
+  ["AS PM", TaskList, "Nine people, mixed experience, one academic cycle: shipping meant cutting features early and often. Every scope cut that hurt in week 6 is the reason we had a packaged app in week 16."],
+  ["AS DESIGNER", DesignPencil, "The café metaphor only worked because we mapped flows before drawing screens. Personality came last, on top of structure, never instead of it."],
+  ["NEXT", ArrowRight, "Account sync, mobile, and shared study rooms: the café is better with friends at the next table."],
 ];
 
 const LEDGER = [
@@ -134,6 +145,22 @@ const LEDGER = [
 export default function LatteLearnCaseStudy() {
   const shippedHeadingRef = useRef(null);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const prevTitle = document.title;
+    document.title = "LatteLearn · Ivy Jiyou Lee";
+    const meta = document.querySelector('meta[name="description"]');
+    const prevDesc = meta?.getAttribute("content");
+    meta?.setAttribute(
+      "content",
+      "A focus companion app that brings the café study experience home. PM and Design Lead on a 9-person team that shipped a packaged pixel-art desktop app in one academic cycle."
+    );
+    return () => {
+      document.title = prevTitle;
+      if (meta && prevDesc != null) meta.setAttribute("content", prevDesc);
+    };
+  }, []);
+
   const onSkip = (e) => {
     e.preventDefault();
     document.getElementById("shipped")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -142,7 +169,9 @@ export default function LatteLearnCaseStudy() {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden text-prose" style={CAFE_TOKENS}>
-      <CaseBlobs blobs={CAFE_BLOBS} />
+      {/* café base color, below the warm mesh */}
+      <div aria-hidden="true" className="absolute inset-0 -z-20 bg-bg" />
+      <CafeMesh />
       <Toc sections={TOC_SECTIONS} />
 
       {/* content gutter: reserve the fixed TOC rail's column (+32px gap) so the
@@ -186,13 +215,16 @@ export default function LatteLearnCaseStudy() {
                   Lead.
                 </p>
                 <div className="mb-6 flex flex-wrap gap-2">
-                  <span className="inline-flex items-center rounded-full border border-transparent bg-blue px-3.5 py-1.5 font-plex text-[12px] text-white">
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-transparent bg-blue px-3.5 py-1.5 font-plex text-[12px] text-white">
+                    <AppWindow width={13} height={13} strokeWidth={2} aria-hidden />
                     Packaged Electron app
                   </span>
-                  <span className="inline-flex items-center rounded-full border border-stroke bg-white/60 px-3.5 py-1.5 font-plex text-[12px] text-ink backdrop-blur-xl">
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-stroke bg-white/60 px-3.5 py-1.5 font-plex text-[12px] text-ink backdrop-blur-xl">
+                    <Group width={13} height={13} strokeWidth={2} aria-hidden />
                     Team of 9
                   </span>
-                  <span className="inline-flex items-center rounded-full border border-stroke bg-white/60 px-3.5 py-1.5 font-plex text-[12px] text-ink backdrop-blur-xl">
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-stroke bg-white/60 px-3.5 py-1.5 font-plex text-[12px] text-ink backdrop-blur-xl">
+                    <GraduationCap width={13} height={13} strokeWidth={2} aria-hidden />
                     LikeLion US 2024-25
                   </span>
                 </div>
@@ -220,46 +252,48 @@ export default function LatteLearnCaseStudy() {
 
           {/* ================= 01 CONTEXT ================= */}
           <section id="context" className="pt-24">
-            <Eyebrow n="01">Context</Eyebrow>
+            <Eyebrow n="01" icon={Community}>Context</Eyebrow>
             <H2>Studying alone is a focus problem and a loneliness problem</H2>
             <P>
               Students study better in cafés: gentle noise, other people working, a reason to stay
-              seated. LatteLearn asks what happens if the café comes to the desktop: a focus companion
-              where the timer, the task list, and the music live inside one warm pixel-art room.
+              seated. LatteLearn asks what happens if <Em>the café comes to the desktop</Em>: a focus
+              companion where the timer, the task list, and the music live inside one warm pixel-art
+              room.
             </P>
             <P>
               Team Espresso was nine people of mixed experience in LikeLion US's 2024-25 cohort, with
-              exactly one academic cycle to go from idea to packaged app. I was PM and Design Lead: the
-              schedule and the screens were both mine.
+              exactly one academic cycle to go from idea to packaged app. I was{" "}
+              <Em>PM and Design Lead</Em>: the schedule and the screens were both mine.
             </P>
           </section>
 
           {/* ================= 02 THE GAP ================= */}
           <section id="gap" className="pt-24">
-            <Eyebrow n="02">The gap</Eyebrow>
+            <Eyebrow n="02" icon={Table2Columns}>The gap</Eyebrow>
             <H2>Five focus tools, and none of them is a place</H2>
             <P>
               We mapped the focus-tool landscape across the dimensions our users cared about. Blockers
               block, timers time, ambience apps play noise. No single product combined ambiance,
-              pomodoro structure, task management, and analytics. That empty column became LatteLearn.
+              pomodoro structure, task management, and analytics. <Em>That empty column became
+              LatteLearn.</Em>
             </P>
             <CompetitorMatrix />
             <P>
-              Cold Turkey and SelfControl started our research as blockers, but blocking is not
-              accompanying: the real competitors were the rooms (Virtual Cottage, I Miss The Office,
-              LifeAt) and the timers (Pomofocus). LatteLearn had to be both.
+              Cold Turkey and SelfControl started our research as blockers, but <Em>blocking is not
+              accompanying</Em>: the real competitors were the rooms (Virtual Cottage, I Miss The
+              Office, LifeAt) and the timers (Pomofocus). LatteLearn had to be both.
             </P>
           </section>
 
           {/* ================= 03 FLOWS BEFORE SCREENS ================= */}
           <section id="flows" className="pt-24">
-            <Eyebrow n="03">Flows before screens</Eyebrow>
+            <Eyebrow n="03" icon={GitFork}>Flows before screens</Eyebrow>
             <H2>Four flows mapped before a single screen was drawn</H2>
             <P>
-              Tasks, timer, customization, music: each mapped as a full user flow first, so the
-              interface followed how studying actually happens instead of how features list nicely. The
-              café metaphor only worked because it was laid over this structure, personality on top of
-              logic, never instead of it.
+              Tasks, timer, customization, music: each mapped as <Em>a full user flow first</Em>, so
+              the interface followed how studying actually happens instead of how features list nicely.
+              The café metaphor only worked because it was laid over this structure, personality on top
+              of logic, never instead of it.
             </P>
             <Slot
               variant="wide"
@@ -272,11 +306,11 @@ export default function LatteLearnCaseStudy() {
 
           {/* ================= 04 THE METAPHOR LEDGER ================= */}
           <section id="metaphor" className="pt-24">
-            <Eyebrow n="04">The metaphor ledger</Eyebrow>
+            <Eyebrow n="04" icon={CoffeeCup}>The metaphor ledger</Eyebrow>
             <H2>Every café object earns its job</H2>
             <P>
-              The rule for the metaphor: nothing is decoration. Each object in the room is a control,
-              traced the way a requirement traces to UI.
+              The rule for the metaphor: <Em>nothing is decoration</Em>. Each object in the room is a
+              control, traced the way a requirement traces to UI.
             </P>
 
             {LEDGER.map((row) => (
@@ -298,19 +332,20 @@ export default function LatteLearnCaseStudy() {
             />
             <P>
               The lo-fi wireframes prove the discipline: function first, no personality yet. The café
-              was applied to a working skeleton, which is why it reads as a place and not as a skin.
+              was applied to a working skeleton, which is why it reads as <Em>a place and not as a
+              skin</Em>.
             </P>
           </section>
 
           {/* ================= 05 WHAT SHIPPED ================= */}
           <section id="shipped" className="pt-24">
-            <Eyebrow n="05">What shipped</Eyebrow>
+            <Eyebrow n="05" icon={Rocket}>What shipped</Eyebrow>
             <H2 ref={shippedHeadingRef} tabIndex={-1}>
               One study session, start to finish
             </H2>
             <P>
-              Shipped as a packaged Electron app (React frontend, Flask backend). The tour follows a
-              session, not a feature list:
+              Shipped as a packaged Electron app (React frontend, Flask backend). The tour follows{" "}
+              <Em>a session, not a feature list</Em>:
             </P>
 
             <div className="my-10 flex flex-col gap-12">
@@ -337,12 +372,12 @@ export default function LatteLearnCaseStudy() {
 
           {/* ================= 06 THE PM LENS ================= */}
           <section id="pm" className="pt-24">
-            <Eyebrow n="06">The PM lens</Eyebrow>
+            <Eyebrow n="06" icon={StatsReport}>The PM lens</Eyebrow>
             <H2>Nine people, mixed experience, one academic cycle</H2>
             <P>
-              Shipping meant cutting features early and often. Every scope cut that hurt in week 6 is
-              the reason we had a packaged app in week 16. [ SLOT: one concrete cut and how the team
-              took it: what was cut, who argued for keeping it, what the app gained ]
+              Shipping meant <Em>cutting features early and often</Em>. Every scope cut that hurt in
+              week 6 is the reason we had a packaged app in week 16. [ SLOT: one concrete cut and how
+              the team took it: what was cut, who argued for keeping it, what the app gained ]
             </P>
             <Glass className="my-8 p-6">
               <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
@@ -358,12 +393,15 @@ export default function LatteLearnCaseStudy() {
 
           {/* ================= 07 REFLECTION ================= */}
           <section id="reflect" className="pt-24">
-            <Eyebrow n="07">Reflection</Eyebrow>
+            <Eyebrow n="07" icon={LightBulb}>Reflection</Eyebrow>
             <H2>All the things we learned</H2>
             <div className="my-8 grid grid-cols-1 gap-4 md:grid-cols-3">
-              {REFLECT.map(([k, body]) => (
+              {REFLECT.map(([k, Icon, body]) => (
                 <Glass key={k} className="p-7">
-                  <span className="mb-3 block font-plex text-[11px] uppercase tracking-[0.12em] text-blue-text">
+                  <span className="mb-3 flex items-center gap-2 font-plex text-[11px] uppercase tracking-[0.12em] text-blue-text">
+                    <span className="flex h-7 w-7 flex-none items-center justify-center rounded-full border border-stroke bg-white/70 text-blue-text">
+                      <Icon width={15} height={15} strokeWidth={2} aria-hidden />
+                    </span>
                     {k}
                   </span>
                   <p className="m-0 text-[14px] leading-[1.6] text-prose">{body}</p>
@@ -375,29 +413,35 @@ export default function LatteLearnCaseStudy() {
 
         <footer className="mx-auto max-w-[1080px] px-8 pb-16 pt-24">
           <div className="h-px bg-stroke" />
-          <p className="pt-8 font-plex text-[12px] text-grayt">
-            <a
-              href="https://github.com/Jaeminp2/LatteLearn"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-text hover:underline"
-            >
-              github.com/Jaeminp2/LatteLearn
-            </a>{" "}
-            ·{" "}
-            <a
-              href="https://github.com/Jaeminp2/LatteLearn"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-text hover:underline"
-            >
-              interactive prototype ↗
-            </a>{" "}
-            · next case study →{" "}
-            <Link to="/work/icoi" className="text-blue-text hover:underline">
-              ICOI
-            </Link>
-          </p>
+          <div className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            {/* GitHub elevated to the primary action — an accent button with the
+                logo — since the shipped, packaged code is the headline proof. */}
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                href="https://github.com/Jaeminp2/LatteLearn"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-blue px-5 py-2.5 text-[14px] font-semibold text-white shadow-[0_12px_28px_-12px_rgba(139,109,70,0.75)] transition-transform hover:-translate-y-0.5"
+              >
+                <GithubCircle width={18} height={18} strokeWidth={2} aria-hidden />
+                View the code on GitHub
+              </a>
+              <a
+                href="https://github.com/Jaeminp2/LatteLearn"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-full border border-stroke bg-white/60 px-4 py-2.5 font-plex text-[12px] text-ink backdrop-blur-xl transition-colors hover:border-blue"
+              >
+                interactive prototype ↗
+              </a>
+            </div>
+            <p className="m-0 font-plex text-[12px] text-grayt">
+              next case study →{" "}
+              <Link to="/work/icoi" className="text-blue-text underline underline-offset-2">
+                ICOI
+              </Link>
+            </p>
+          </div>
         </footer>
       </div>
     </div>

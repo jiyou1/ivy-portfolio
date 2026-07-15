@@ -416,7 +416,7 @@ export default function IcoiCaseStudy() {
         <div className="h-px bg-stroke" />
         <p className="pt-8 font-plex text-[12px] text-grayt">
           next case study →{" "}
-          <a href="#" className="text-blue-text">LatteLearn</a> ·{" "}
+          <Link to="/work/lattelearn" className="text-blue-text">LatteLearn</Link> ·{" "}
           <a href="/#projects" className="text-blue-text">back to all work</a>
         </p>
       </footer>
