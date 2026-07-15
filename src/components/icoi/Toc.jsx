@@ -9,9 +9,10 @@ const ICOI_SECTIONS = [
   ["01", "context", "Context"],
   ["02", "before", "The spreadsheet"],
   ["03", "rules", "Rules → interface"],
-  ["04", "log", "The audit trail"],
-  ["05", "shipped", "What shipped"],
-  ["06", "reflect", "Reflection"],
+  ["04", "modals", "One rule, two modals"],
+  ["05", "log", "The audit trail"],
+  ["06", "shipped", "What shipped"],
+  ["07", "reflect", "Reflection"],
 ];
 
 /* `sections` lets a sibling case study (LatteLearn) reuse this exact rail with a

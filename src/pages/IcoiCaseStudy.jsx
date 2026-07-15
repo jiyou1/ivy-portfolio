@@ -8,6 +8,9 @@ import VerdictTable from "../components/icoi/VerdictTable";
 import StateMachine from "../components/icoi/StateMachine";
 import BeforeSheet from "../components/icoi/BeforeSheet";
 import BylawsTable from "../components/icoi/BylawsTable";
+import ShippedFeatures from "../components/icoi/ShippedFeatures";
+import ZoomFigure from "../components/icoi/ZoomFigure";
+import ActivityLog from "../components/icoi/ActivityLog";
 import {
   Book,
   Table,
@@ -19,6 +22,7 @@ import {
   Group,
   Presentation,
   WarningTriangle,
+  MultiWindow,
 } from "iconoir-react";
 
 const ASSETS = "/case/icoi/";
@@ -44,20 +48,6 @@ const H3 = ({ children }) => (
 const P = ({ children }) => (
   <p className="mb-4 max-w-[760px] text-[17px] leading-[1.65] text-prose">{children}</p>
 );
-
-const BEATS = [
-  { t: "Check membership statistics", d: "Admin logs in and sees active members, pending applications, and upcoming renewals at a glance.", label: "[ SLOT ] dashboard screenshot", img: "beat-1.png" },
-  { t: "View member details", d: "Admin finds a member and records an event. The system derives the status and logs the change with a timestamp.", label: "[ SLOT ] member detail screenshot", img: "beat-2.png" },
-  { t: "Verify members at events", d: "A volunteer scans a member's unique QR code to instantly confirm membership, replacing paper sign-in sheets.", label: "[ SLOT ] QR scanner screenshot", img: "beat-3.png" },
-  { t: "Full audit of admin actions", d: "Every action is logged with field-level detail. Leadership can see who changed what, and when.", label: "[ SLOT ] activity log screenshot", img: "beat-4.png" },
-];
-
-const IMPACT = [
-  ["500+", "member nonprofit off manual process"],
-  ["§-driven", "status transitions automated from bylaws"],
-  ["QR", "verification replaces paper rosters"],
-  ["Full", "field-level audit logging"],
-];
 
 const REFLECT = [
   { k: "Read the source", p: "The client's own vocabulary had drifted from their legal document. Nobody was wrong on purpose. Now I ask for the governing document before I ask for the feature list." },
@@ -280,12 +270,6 @@ export default function IcoiCaseStudy() {
             the warnings.
           </P>
 
-          <Slot
-            src={ASSETS + "member-detail.png"}
-            className="my-8"
-            label={"[ SLOT ] member detail screen · status badge with derived-from tooltip,\nseniority vs join date fields, suspension countdown"}
-          />
-
           <H3>The family membership wrinkle</H3>
           <P>
             §3.6 adds a nested model: a Family Membership carries up to two votes (primary + spouse),
@@ -295,9 +279,34 @@ export default function IcoiCaseStudy() {
           </P>
         </section>
 
-        {/* ================= 04 AUDIT TRAIL ================= */}
+        {/* ================= 04 ONE RULE, TWO MODALS ================= */}
+        <section id="modals" className="pt-24">
+          <Eyebrow n="04" icon={MultiWindow}>The family model</Eyebrow>
+          <H2>One rule, two different modals</H2>
+          <P>
+            That family wrinkle hides the hardest design problem in the project.
+            Adding a family member sounds like one feature. The bylaws make it two: a spouse holds their
+            own membership, so linking an existing member must exist. A child under 18 holds no
+            individual membership at all, so there is nothing to link. Below is the working file where
+            that rule got untangled, notes included.
+          </P>
+
+          <ZoomFigure
+            src="/work/icoi/family-modal-exploration.png"
+            alt="Annotated Figma exploration board for the add-family-member modal, showing the spouse and child branches"
+            caption="The exploration board: one modal, two branches. Spouse unlocks Link Existing because both people hold memberships. Child locks to Create New, with the constraint noted where it was discovered."
+          />
+
+          <P>
+            The relation field ended up controlling what the modal is allowed to do. That decision came
+            from the bylaws' family model, not from a UI pattern, and the notes on this board are where
+            it happened.
+          </P>
+        </section>
+
+        {/* ================= 05 AUDIT TRAIL ================= */}
         <section id="log" className="pt-24">
-          <Eyebrow n="04" icon={ClockRotateRight}>The audit trail</Eyebrow>
+          <Eyebrow n="05" icon={ClockRotateRight}>The audit trail</Eyebrow>
           <H2>The activity log the bylaws quietly demand</H2>
           <BylawTrace
             excerpts={[
@@ -322,59 +331,36 @@ export default function IcoiCaseStudy() {
           <P>
             The frontend problem: one feed has to hold heterogeneous events (payments, status
             transitions, edits, approvals, board actions), attribute each to an admin, and stay scannable
-            for a volunteer who checks it monthly. [ SLOT: 2 to 3 sentences on the specific design
-            decisions: grouping, filtering, event grammar ]
+            for a volunteer who checks it monthly.
           </P>
-          <Slot
-            variant="tall"
-            src={ASSETS + "activity-log.png"}
-            className="my-8"
-            label={"[ SLOT ] activity log UI · annotated\ncallouts on event grammar, attribution, filters"}
-          />
+          <P>
+            So every recorded action falls into one color-coded type. The color carries the intent, so
+            the feed stays readable at a glance. Expand a type to see the actions inside it and what each
+            one captures.
+          </P>
+          <ActivityLog />
         </section>
 
-        {/* ================= 05 WHAT SHIPPED ================= */}
+        {/* ================= 06 WHAT SHIPPED ================= */}
         <section id="shipped" className="pt-24">
-          <Eyebrow n="05" icon={Rocket}>What shipped</Eyebrow>
+          <Eyebrow n="06" icon={Rocket}>What shipped</Eyebrow>
           <H2 ref={shippedHeadingRef} tabIndex={-1}>
             A day in the life of ICOI staff
           </H2>
           <P>
-            As the team's only designer, every screen started in my Figma, built on a design system I
-            created, and I led the frontend that shipped it. Rather than a feature list, here is how a
-            staff day actually flows through it:
+            Five screens, one data model. Every number an admin sees is computed from the same records.
           </P>
+          <ShippedFeatures />
 
-          <div className="my-10 flex flex-col gap-12">
-            {BEATS.map((b, i) => (
-              <div key={b.t} className="flex gap-5">
-                <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full border-[1.5px] border-stroke-2 bg-white font-plex text-[14px] font-semibold text-blue-text">
-                  {i + 1}
-                </span>
-                <div className="min-w-0 flex-1">
-                  <h3 className="mt-1 text-[18px] font-semibold">{b.t}</h3>
-                  <p className="mb-0 mt-2 max-w-[760px] text-[17px] leading-[1.65] text-prose">{b.d}</p>
-                  <Slot variant="beat" src={ASSETS + b.img} className="mt-4" label={b.label} />
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div role="list" className="my-12 grid grid-cols-2 gap-4 border-y border-stroke py-6 md:grid-cols-4">
-            {IMPACT.map(([big, small]) => (
-              <div role="listitem" key={small}>
-                <b className="block text-[22px] font-extrabold tracking-[-0.02em]">{big}</b>
-                <span className="mt-1 block text-[13px] leading-[1.5] text-grayt">{small}</span>
-              </div>
-            ))}
-          </div>
-
-          <H3>Presented at the UCI ICS Expo</H3>
-          <P>
-            We closed the project presenting the system as the Data Solutions Architecture Group at UCI's
-            ICS capstone expo.
-          </P>
-          <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
+          {/* clear break: the expo is a distinct closing beat, not part of the
+              interactive walkthrough, so give it a hairline rule + generous space */}
+          <div className="mt-16 border-t border-stroke pt-8">
+            <H3>Presented at the UCI ICS Expo</H3>
+            <P>
+              We closed the project presenting the system as the Data Solutions Architecture Group at UCI's
+              ICS capstone expo.
+            </P>
+            <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
             {[
               ["expo-booth.jpg", "Our EXPO poster and our booth, presenting."],
               ["expo-team.jpg", "The five of us at team bonding, grabbing coffee :)"],
@@ -392,12 +378,13 @@ export default function IcoiCaseStudy() {
                 </figcaption>
               </figure>
             ))}
+            </div>
           </div>
         </section>
 
-        {/* ================= 06 REFLECTION ================= */}
+        {/* ================= 07 REFLECTION ================= */}
         <section id="reflect" className="pt-24">
-          <Eyebrow n="06" icon={LightBulb}>Reflection</Eyebrow>
+          <Eyebrow n="07" icon={LightBulb}>Reflection</Eyebrow>
           <H2>What this project changed about how I work</H2>
           <div className="my-10 grid grid-cols-1 gap-4 md:grid-cols-2">
             {REFLECT.map((c) => (
