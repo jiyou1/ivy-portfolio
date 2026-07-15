@@ -31,7 +31,7 @@ export const PROJECTS = [
     desc: "Shared task coordination app designed through surveys, interviews, affinity mapping, prototyping, and moderated usability testing.",
     tags: "RESEARCH · PROTOTYPING · TESTING",
     cover: "/covers/roomietask.jpg",
-    href: "/decks/roomietask.pdf",
+    href: "/work/roomietask",
     external: false,
     skills: ["FIGMA", "USER RESEARCH", "PROTOTYPING", "ACCESSIBILITY"],
   },
