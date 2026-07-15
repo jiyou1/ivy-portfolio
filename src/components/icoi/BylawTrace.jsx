@@ -21,9 +21,22 @@ export function M({ children }) {
   return <b className="font-semibold text-blue-text">{children}</b>;
 }
 
-function Excerpt({ cite, children }) {
+/* `glass` swaps the solid-white card for the LatteLearn frosted surface while
+   keeping the structural 3px ink left-rule; ICOI leaves it off for the white
+   card. Everything else (colors) resolves from CSS tokens, so the same arrow and
+   type reskin per page automatically. */
+function Excerpt({ cite, children, glass, wide }) {
+  const surface = glass
+    ? "border-white/70 border-l-ink bg-white/60 backdrop-blur-xl shadow-[0_10px_30px_-14px_rgba(139,109,70,0.4)]"
+    : "border-stroke border-l-ink bg-white";
   return (
-    <div className="my-8 max-w-[640px] rounded-r-xl border border-l-[3px] border-stroke border-l-ink bg-white px-7 py-6">
+    <div
+      className={
+        "my-8 rounded-r-xl border border-l-[3px] px-7 py-6 " +
+        (wide ? "max-w-[1056px] " : "max-w-[640px] ") +
+        surface
+      }
+    >
       <span className="mb-3 block font-plex text-[12px] font-semibold tracking-[0.06em] text-ink">
         {cite}
       </span>
@@ -32,16 +45,16 @@ function Excerpt({ cite, children }) {
   );
 }
 
-export default function BylawTrace({ excerpts, means }) {
+export default function BylawTrace({ excerpts, means, glass = false, wide = false }) {
   return (
     <>
       {excerpts.map((e, i) => (
-        <Excerpt key={e.cite ?? i} cite={e.cite}>
+        <Excerpt key={e.cite ?? i} cite={e.cite} glass={glass} wide={wide}>
           {e.quote}
         </Excerpt>
       ))}
       {/* means-arrow: pulled up under the excerpt, indented to align with its text */}
-      <div className="mb-8 -mt-4 flex max-w-[640px] items-baseline gap-3 pl-8">
+      <div className={"mb-8 -mt-4 flex items-baseline gap-3 pl-8 " + (wide ? "max-w-[1056px]" : "max-w-[640px]")}>
         <span className="shrink-0 font-plex font-semibold text-blue">→</span>
         <p className="m-0 text-[15px] text-ink">{means}</p>
       </div>

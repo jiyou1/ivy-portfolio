@@ -5,7 +5,10 @@ export const PROJECTS = [
     title: "ICOI Membership Portal",
     desc: "End-to-end design and React build of a membership management system, delivered for a real client's daily operations with full handoff.",
     tags: "FIGMA · REACT · DESIGN SYSTEM",
-    cover: "/covers/icoi.jpg",
+    // Cover renders `video` as an autoplay/muted/loop/playsInline element; the
+    // poster is the video's first frame so there's no flash before it plays.
+    cover: "/covers/icoi-thumbnail-poster.png",
+    video: "/videos/icoi-thumbnail.mp4",
     href: "/work/icoi",
     external: false,
     skills: ["FIGMA", "DESIGN SYSTEMS", "PROTOTYPING", "REACT", "TYPESCRIPT", "HTML/CSS", "TAILWIND CSS", "REST APIS", "GIT"],

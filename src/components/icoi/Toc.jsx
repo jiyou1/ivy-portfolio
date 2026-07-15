@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
    also appears on hover. Labels stay in the DOM (opacity, not display) so screen
    readers always read them. Hidden below 880px. Anchor links smooth-scroll via
    the global scroll-behavior (which reduced-motion disables). */
-const SECTIONS = [
+const ICOI_SECTIONS = [
   ["01", "context", "Context"],
   ["02", "before", "The spreadsheet"],
   ["03", "rules", "Rules → interface"],
@@ -14,11 +14,15 @@ const SECTIONS = [
   ["06", "reflect", "Reflection"],
 ];
 
-export default function Toc() {
-  const [active, setActive] = useState("context");
+/* `sections` lets a sibling case study (LatteLearn) reuse this exact rail with a
+   different set of anchors; ICOI keeps the default. Colors come from CSS tokens
+   (--color-blue-text etc.), so a page that overrides those tokens reskins the
+   rail for free. */
+export default function Toc({ sections = ICOI_SECTIONS }) {
+  const [active, setActive] = useState(sections[0][1]);
 
   useEffect(() => {
-    const els = SECTIONS.map(([, id]) => document.getElementById(id)).filter(Boolean);
+    const els = sections.map(([, id]) => document.getElementById(id)).filter(Boolean);
     const io = new IntersectionObserver(
       (entries) => {
         const vis = entries
@@ -30,7 +34,7 @@ export default function Toc() {
     );
     els.forEach((e) => io.observe(e));
     return () => io.disconnect();
-  }, []);
+  }, [sections]);
 
   return (
     <nav
@@ -38,16 +42,18 @@ export default function Toc() {
       className="fixed left-16 top-1/2 z-40 hidden -translate-y-1/2 min-[880px]:block"
     >
       <ul className="flex flex-col gap-1">
-        {SECTIONS.map(([n, id, label]) => {
+        {sections.map(([n, id, label]) => {
           const isActive = active === id;
           return (
             <li key={id}>
               <a
                 href={`#${id}`}
+                aria-label={label}
                 aria-current={isActive ? "true" : undefined}
                 className="group flex items-baseline gap-3 py-2"
               >
                 <span
+                  aria-hidden="true"
                   className={
                     "font-plex text-[11px] transition-colors " +
                     (isActive ? "text-blue-text" : "text-stroke-2 group-hover:text-blue")
@@ -56,6 +62,7 @@ export default function Toc() {
                   {n}
                 </span>
                 <span
+                  aria-hidden="true"
                   className={
                     "text-[13px] tracking-[0.02em] transition-all duration-150 motion-reduce:transition-none " +
                     (isActive

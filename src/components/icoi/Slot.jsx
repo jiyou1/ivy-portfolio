@@ -12,8 +12,22 @@ const MIN_H = {
   photo: "min-h-[200px]",
 };
 
-export default function Slot({ src, alt = "", label, variant = "default", className = "" }) {
-  const [failed, setFailed] = useState(!src);
+export default function Slot({ src, video, alt = "", label, variant = "default", className = "" }) {
+  const [failed, setFailed] = useState(!src && !video);
+
+  if (video) {
+    return (
+      <video
+        src={video}
+        poster={src}
+        autoPlay
+        loop
+        muted
+        playsInline
+        className={`w-full rounded-2xl border border-stroke object-cover ${className}`}
+      />
+    );
+  }
 
   if (src && !failed) {
     return (

@@ -6,6 +6,8 @@ import Slot from "../components/icoi/Slot";
 import BylawTrace, { Hl, M } from "../components/icoi/BylawTrace";
 import VerdictTable from "../components/icoi/VerdictTable";
 import StateMachine from "../components/icoi/StateMachine";
+import BeforeSheet from "../components/icoi/BeforeSheet";
+import BylawsTable from "../components/icoi/BylawsTable";
 import {
   Book,
   Table,
@@ -91,6 +93,10 @@ export default function IcoiCaseStudy() {
       <CaseBlobs />
       <Toc />
 
+      {/* Content gutter: reserve the fixed TOC rail's column (+32px gap) at the
+          widths where the rail is shown, so the centered content never slides
+          under the numerals. Content re-centers within the remaining band. */}
+      <div className="min-[880px]:pl-[256px]">
       <nav className="mx-auto max-w-[1080px] px-8 pt-8">
         <Link to="/" className="font-plex text-[13px] text-grayt transition-colors hover:text-ink">
           ← ivy jiyou lee
@@ -156,7 +162,8 @@ export default function IcoiCaseStudy() {
 
           <Slot
             variant="wide"
-            src={ASSETS + "hero.png"}
+            src={ASSETS + "hero-poster.jpg"}
+            video="/videos/icoi-case-study.mp4"
             className="mt-8"
             label={"[ HERO SLOT ]\nlive portal dashboard · screenshot or 8s screen recording\nshow real UI, not a mockup frame"}
           />
@@ -181,11 +188,7 @@ export default function IcoiCaseStudy() {
             ICOI weekly to decode bylaws and member workflows, then shipping working builds every
             two-week sprint for their feedback. The system was built with them, not presented to them.
           </P>
-          <Slot
-            src={ASSETS + "bylaws-vs-sheet.png"}
-            className="my-8"
-            label={"[ SLOT ] bylaws cover page + spreadsheet, side by side\nthe two sources of truth that disagreed"}
-          />
+          <BylawsTable />
         </section>
 
         {/* ================= 02 THE SPREADSHEET ================= */}
@@ -197,14 +200,7 @@ export default function IcoiCaseStudy() {
             privacy). Look at the status column's dropdown values, then look at what the bylaws define.
             They don't match.
           </P>
-          <Slot
-            variant="tall"
-            src={ASSETS + "before-sheet.png"}
-            className="my-8"
-            label={
-              '[ SLOT ] recreated "before" spreadsheet screenshot\n~30 rows · include a Voting member with outstanding balance YES,\nblank seniority dates, mixed date formats, a "Canceled" row'
-            }
-          />
+          <BeforeSheet />
           <VerdictTable />
           <P>
             The sheet also tracked outstanding balance as a manually typed YES/NO. In the bylaws,
@@ -378,13 +374,23 @@ export default function IcoiCaseStudy() {
             We closed the project presenting the system as the Data Solutions Architecture Group at UCI's
             ICS capstone expo.
           </P>
-          <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
             {[
-              ["[ SLOT ] expo · presenting at the poster", "expo-1.jpg"],
-              ["[ SLOT ] expo poster detail", "expo-2.jpg"],
-              ["[ SLOT ] team photo · the five of us", "expo-3.jpg"],
-            ].map(([label, img]) => (
-              <Slot key={img} variant="photo" src={ASSETS + img} className="m-0" label={label} />
+              ["expo-booth.jpg", "Our EXPO poster and our booth, presenting."],
+              ["expo-team.jpg", "The five of us at team bonding, grabbing coffee :)"],
+            ].map(([img, alt]) => (
+              <figure key={img} className="m-0">
+                <Slot
+                  variant="photo"
+                  src={ASSETS + img}
+                  alt={alt}
+                  className="m-0 aspect-[3/2]"
+                  label={`[ SLOT ] ${img}`}
+                />
+                <figcaption className="mt-2 font-plex text-[11px] leading-[1.5] text-grayt">
+                  {alt}
+                </figcaption>
+              </figure>
             ))}
           </div>
         </section>
@@ -414,6 +420,7 @@ export default function IcoiCaseStudy() {
           <a href="/#projects" className="text-blue-text">back to all work</a>
         </p>
       </footer>
+      </div>
     </div>
   );
 }
