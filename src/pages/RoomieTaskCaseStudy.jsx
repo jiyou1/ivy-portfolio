@@ -4,6 +4,7 @@ import SageMesh from "../components/roomietask/SageMesh";
 import GroupChat from "../components/roomietask/GroupChat";
 import Toc from "../components/icoi/Toc";
 import Slot from "../components/icoi/Slot";
+import ZoomFigure from "../components/icoi/ZoomFigure";
 
 /* RoomieTask case study — third sibling of the ICOI and LatteLearn pages. Same
    architecture (TOC scrollspy rail, skip button, Slot placeholders, section
@@ -251,12 +252,11 @@ export default function RoomieTaskCaseStudy() {
               from. Each cluster got a written design response before any UI existed: attribute every
               completion, automate rotation, show everything in one place.
             </P>
-            <Slot
-              variant="wide"
+            <ZoomFigure
               src={ASSETS + "affinity-map.png"}
-              alt="Affinity map with quantified clusters and design responses"
-              className="my-4 aspect-[1080/420]"
-              label={"[ SLOT ] affinity map · quantified clusters + design responses\n(optional inset: the raw first-pass clustering board)"}
+              alt="Affinity map: nineteen research pain points clustered into Unequal effort, Tracking breakdowns, and Awkward communication, each with a written design response"
+              aspect="1886 / 1206"
+              caption="Nineteen pain points clustered into three walls, sized by count, each answered with a written design response before any UI existed. Click to zoom."
             />
 
             <P>
