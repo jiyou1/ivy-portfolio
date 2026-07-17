@@ -83,7 +83,7 @@ export default function ZoomFigure({ src, alt, caption, aspect = "4 / 3", classN
           aria-label={`Open ${alt} at full resolution`}
           className="block w-full cursor-zoom-in overflow-hidden rounded-2xl border border-stroke focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue focus-visible:ring-offset-2"
         >
-          <img src={src} alt={alt} onError={() => setFailed(true)} className="block h-auto w-full" />
+          <img src={src} alt={alt} loading="lazy" decoding="async" onError={() => setFailed(true)} className="block h-auto w-full" />
         </button>
       )}
 

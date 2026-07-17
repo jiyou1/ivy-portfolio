@@ -4,6 +4,7 @@ import CaseStudy from "./pages/CaseStudy";
 import IcoiCaseStudy from "./pages/IcoiCaseStudy";
 import LatteLearnCaseStudy from "./pages/LatteLearnCaseStudy";
 import RoomieTaskCaseStudy from "./pages/RoomieTaskCaseStudy";
+import DesignathonCaseStudy from "./pages/DesignathonCaseStudy";
 import Playground from "./pages/Playground";
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
       <Route path="/work/icoi" element={<IcoiCaseStudy />} />
       <Route path="/work/lattelearn" element={<LatteLearnCaseStudy />} />
       <Route path="/work/roomietask" element={<RoomieTaskCaseStudy />} />
+      <Route path="/work/designathon" element={<DesignathonCaseStudy />} />
       <Route path="/playground" element={<Playground />} />
     </Routes>
   );

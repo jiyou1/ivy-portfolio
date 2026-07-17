@@ -35,6 +35,7 @@ export default function Slot({ src, video, alt = "", label, variant = "default",
         src={src}
         alt={alt}
         loading="lazy"
+        decoding="async"
         onError={() => setFailed(true)}
         className={`w-full rounded-2xl border border-stroke object-cover ${className}`}
       />

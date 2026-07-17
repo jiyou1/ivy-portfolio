@@ -25,7 +25,11 @@ export function M({ children }) {
    keeping the structural 3px ink left-rule; ICOI leaves it off for the white
    card. Everything else (colors) resolves from CSS tokens, so the same arrow and
    type reskin per page automatically. */
-function Excerpt({ cite, children, glass, wide }) {
+/* `mono` swaps the italic legal quote for an upright mono excerpt: used by the
+   generic ConstraintPair, where the excerpt is a project constraint, not a
+   verbatim legal clause. `cite` is optional so a constraint can render without a
+   § label. ICOI passes neither, so its excerpts are unchanged. */
+function Excerpt({ cite, children, glass, wide, mono }) {
   const surface = glass
     ? "border-white/70 border-l-ink bg-white/60 backdrop-blur-xl shadow-[0_10px_30px_-14px_rgba(139,109,70,0.4)]"
     : "border-stroke border-l-ink bg-white";
@@ -37,19 +41,25 @@ function Excerpt({ cite, children, glass, wide }) {
         surface
       }
     >
-      <span className="mb-3 block font-plex text-[12px] font-semibold tracking-[0.06em] text-ink">
-        {cite}
-      </span>
-      <p className="m-0 text-[15px] italic text-legal">{children}</p>
+      {cite && (
+        <span className="mb-3 block font-plex text-[12px] font-semibold tracking-[0.06em] text-ink">
+          {cite}
+        </span>
+      )}
+      {mono ? (
+        <p className="m-0 font-plex text-[13px] leading-[1.6] not-italic text-ink">{children}</p>
+      ) : (
+        <p className="m-0 text-[15px] italic text-legal">{children}</p>
+      )}
     </div>
   );
 }
 
-export default function BylawTrace({ excerpts, means, glass = false, wide = false }) {
+export default function BylawTrace({ excerpts, means, glass = false, wide = false, mono = false }) {
   return (
     <>
       {excerpts.map((e, i) => (
-        <Excerpt key={e.cite ?? i} cite={e.cite} glass={glass} wide={wide}>
+        <Excerpt key={e.cite ?? i} cite={e.cite} glass={glass} wide={wide} mono={mono}>
           {e.quote}
         </Excerpt>
       ))}

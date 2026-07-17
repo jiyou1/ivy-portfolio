@@ -8,11 +8,14 @@ import {
   useReducedMotion,
   useSpring,
 } from "framer-motion";
-import { Page } from "iconoir-react";
+import { Page, Eye } from "iconoir-react";
 import SectionLabel from "./SectionLabel";
 import { HOME_PROJECTS } from "../data/projects";
 
-function Cover({ src, video, alt }) {
+function Cover({ src, video, alt, position }) {
+  // `position` sets object-position for cards whose media needs a nudge away
+  // from the default center crop (e.g. a taller-than-card video).
+  const style = position ? { objectPosition: position } : undefined;
   if (video) {
     return (
       <video
@@ -22,6 +25,7 @@ function Cover({ src, video, alt }) {
         loop
         muted
         playsInline
+        style={style}
         className="relative h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
       />
     );
@@ -30,6 +34,9 @@ function Cover({ src, video, alt }) {
     <img
       src={src}
       alt={alt}
+      loading="lazy"
+      decoding="async"
+      style={style}
       onError={(e) => (e.currentTarget.style.display = "none")}
       className="relative h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
     />
@@ -83,7 +90,7 @@ function WorkCard({ p, dimmed }) {
           <span className="absolute inset-0 flex items-center justify-center text-[11px] font-semibold tracking-[0.06em] text-blue-text">
             COVER — {p.title.toUpperCase()}
           </span>
-          <Cover src={p.cover} video={p.video} alt={p.title + " cover"} />
+          <Cover src={p.cover} video={p.video} alt={p.title + " cover"} position={p.coverPosition} />
         </div>
         <p className="mt-5 text-[10.5px] font-medium tracking-[0.12em] text-grayt">{p.label}</p>
         <h3 className="mt-2 text-2xl font-bold tracking-[-0.01em]">{p.title}</h3>
@@ -106,8 +113,9 @@ function WorkCard({ p, dimmed }) {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.18, ease: "easeOut" }}
-                className="pointer-events-none fixed z-[60] rounded-full bg-ink px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.08em] text-white shadow-[0_8px_24px_rgba(11,14,20,0.35)]"
+                className="pointer-events-none fixed z-[60] inline-flex items-center gap-1.5 rounded-full bg-ink px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.08em] text-white shadow-[0_8px_24px_rgba(11,14,20,0.35)]"
               >
+                <Eye width={13} height={13} strokeWidth={2.2} aria-hidden />
                 View Case Study
               </motion.div>
             )}

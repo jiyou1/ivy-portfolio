@@ -16,17 +16,30 @@ export default function Nav() {
     const sections = items
       .map(([, , id]) => document.getElementById(id))
       .filter(Boolean);
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible[0]) setActive(visible[0].target.id);
-      },
-      { rootMargin: "-45% 0px -45% 0px", threshold: [0, 0.25, 0.5, 1] }
-    );
-    sections.forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
+    // Active section = the last one whose top has scrolled above a line just
+    // below the fixed nav. Measuring near the top (not the viewport center)
+    // keeps "home" active at scrollY 0 even though the hero is shorter than
+    // half the viewport, and it updates on every scroll tick.
+    const onScroll = () => {
+      const line = 120; // px below the top, roughly under the fixed nav bar
+      let current = sections[0]?.id ?? "home";
+      for (const s of sections) {
+        if (s.getBoundingClientRect().top <= line) current = s.id;
+      }
+      // At the very bottom the last section may be too short to reach the line.
+      const doc = document.documentElement;
+      if (window.innerHeight + window.scrollY >= doc.scrollHeight - 2) {
+        current = sections[sections.length - 1]?.id ?? current;
+      }
+      setActive(current);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

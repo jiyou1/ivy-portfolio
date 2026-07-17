@@ -269,14 +269,6 @@ export default function IcoiCaseStudy() {
             (payments, approvals, board votes), and the interface derives the status, the countdowns, and
             the warnings.
           </P>
-
-          <H3>The family membership wrinkle</H3>
-          <P>
-            §3.6 adds a nested model: a Family Membership carries up to two votes (primary + spouse),
-            covers dependent children, and every child ages out at 18, at which point voting requires
-            their own individual membership. One record, multiple people, per-person eligibility, and a
-            birthday-triggered event. The spreadsheet had one row for all of it.
-          </P>
         </section>
 
         {/* ================= 04 ONE RULE, TWO MODALS ================= */}
@@ -292,7 +284,7 @@ export default function IcoiCaseStudy() {
           </P>
 
           <ZoomFigure
-            src="/work/icoi/family-modal-exploration.png"
+            src="/work/icoi/family-modal-exploration.webp"
             alt="Annotated Figma exploration board for the add-family-member modal, showing the spouse and child branches"
             caption="The exploration board: one modal, two branches. Spouse unlocks Link Existing because both people hold memberships. Child locks to Create New, with the constraint noted where it was discovered."
           />

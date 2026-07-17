@@ -16,11 +16,11 @@ import { Expand, Xmark, NavArrowLeft, NavArrowRight } from "iconoir-react";
 const BASE = "/case/icoi/bylaws/";
 
 const PAGES = [
-  { file: "p01.png", tag: "p. 1", note: "Scanned cover — zero selectable text", rot: -5, lift: 12 },
-  { file: "p03.png", tag: "p. 3", note: "Contents · 60+ subsections to map", rot: 3, lift: 30 },
-  { file: "p07.png", tag: "§ 3.4", note: "Suspension & termination — the clause we traced", rot: -3, lift: 0 },
-  { file: "p13.png", tag: "p. 13", note: "Nominations — one unbroken wall of text", rot: 4, lift: 22 },
-  { file: "p27.png", tag: "att. C", note: "Org-structure chart, hand-drawn boxes", rot: -6, lift: 38 },
+  { file: "p01.webp", tag: "p. 1", note: "Scanned cover — zero selectable text", rot: -5, lift: 12 },
+  { file: "p03.webp", tag: "p. 3", note: "Contents · 60+ subsections to map", rot: 3, lift: 30 },
+  { file: "p07.webp", tag: "§ 3.4", note: "Suspension & termination — the clause we traced", rot: -3, lift: 0 },
+  { file: "p13.webp", tag: "p. 13", note: "Nominations — one unbroken wall of text", rot: 4, lift: 22 },
+  { file: "p27.webp", tag: "att. C", note: "Org-structure chart, hand-drawn boxes", rot: -6, lift: 38 },
 ];
 
 /* ---------- full-size reader ---------- */
@@ -144,6 +144,7 @@ function Sheet({ page, i, reduce, hovered, setHovered, onOpen }) {
           alt=""
           draggable={false}
           loading="lazy"
+          decoding="async"
           className="pointer-events-none block w-full select-none object-cover"
           style={{ aspectRatio: "1286 / 1664" }}
         />

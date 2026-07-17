@@ -3,7 +3,25 @@
     "allow": [
       "Bash(git add *)",
       "Bash(git commit -q -m ' *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(git rm *)",
+      "Bash(npm run *)",
+      "Bash(unzip -l \"/Users/ivylee_1/Downloads/Inflatable abstract 3d illustrations vol.2 [Figma].zip\")",
+      "Bash(pkill -f \"vite\")",
+      "mcp__claude_ai_Figma__get_screenshot",
+      "Bash(git --no-pager diff HEAD --stat -- package.json package-lock.json)",
+      "Bash(git check-ignore *)",
+      "Read(//Users/ivylee_1/Downloads/**)",
+      "Bash(/usr/bin/python3 -c ' *)",
+      "Bash(/Library/Frameworks/Python.framework/Versions/3.10/bin/python3 -c \"import fitz; print\\('pymupdf', fitz.__doc__[:40]\\)\")",
+      "mcp__claude_ai_Figma__get_metadata",
+      "Bash(export CHROME_PATH=\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\")",
+      "Bash(npx --yes lighthouse@latest http://localhost:4730/work/lattelearn --only-categories=accessibility --output=json --output-path=./ll_lh2.json '--chrome-flags=--headless=new --no-sandbox' --quiet)",
+      "Bash(python3 -c ' *)",
+      "Bash(mv -f public/Dashboard.png public/work/icoi/shipped/ICOI-Dashboard-Mockup.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight public/work/icoi/shipped/ICOI-Dashboard-Mockup.png)",
+      "Bash(node -e \"console.log\\(require\\('./node_modules/react/package.json'\\).version\\)\")",
+      "Bash(node -e \"const p=require\\('./package.json'\\); console.log\\(JSON.stringify\\(p.scripts\\)\\)\")"
     ]
   }
 }

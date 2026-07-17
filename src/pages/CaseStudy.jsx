@@ -148,8 +148,10 @@ export default function CaseStudy({ slug }) {
               style={{ zIndex: 1 }}
             >
               <img
-                src="/images/ACT Flyer 2026 Summer (Tabloid ver.2).png"
+                src="/images/ACT Flyer 2026 Summer (Tabloid ver.2).webp"
                 alt="ACT course flyer"
+                loading="lazy"
+                decoding="async"
                 className="h-full w-full object-contain"
               />
             </motion.div>
@@ -164,8 +166,10 @@ export default function CaseStudy({ slug }) {
               style={{ zIndex: 2 }}
             >
               <img
-                src="/images/SAT Flyer 2026 Summer.png"
+                src="/images/SAT Flyer 2026 Summer.webp"
                 alt="SAT course flyer"
+                loading="lazy"
+                decoding="async"
                 className="h-full w-full object-contain"
               />
             </motion.div>
@@ -209,13 +213,17 @@ export default function CaseStudy({ slug }) {
                 <img
                   src="/images/Prime_SAT_ACT_Flyer_Letter (1) (1).jpg"
                   alt="Old SAT/ACT flyer"
+                  loading="lazy"
+                  decoding="async"
                   className="h-full w-full object-cover"
                 />
               }
               afterContent={
                 <img
-                  src="/images/SAT Flyer 2026 Summer.png"
+                  src="/images/SAT Flyer 2026 Summer.webp"
                   alt="Redesigned SAT flyer"
+                  loading="lazy"
+                  decoding="async"
                   className="h-full w-full object-cover"
                 />
               }
@@ -240,6 +248,8 @@ export default function CaseStudy({ slug }) {
                 <img
                   src="/images/prime-academy-pi-setup.jpg"
                   alt="Configuring the Raspberry Pi player"
+                  loading="lazy"
+                  decoding="async"
                   className="h-full w-full object-cover"
                 />
               </div>
