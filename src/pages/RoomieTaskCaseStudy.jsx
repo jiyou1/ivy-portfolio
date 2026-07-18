@@ -7,6 +7,7 @@ import GroupChat from "../components/roomietask/GroupChat";
 import Toc from "../components/icoi/Toc";
 import Slot from "../components/icoi/Slot";
 import ZoomFigure from "../components/icoi/ZoomFigure";
+import SeeNext from "../components/SeeNext";
 
 /* RoomieTask case study — third sibling of the ICOI and LatteLearn pages. Same
    architecture (TOC scrollspy rail, skip button, Slot placeholders, section
@@ -389,14 +390,10 @@ export default function RoomieTaskCaseStudy() {
 
         <footer className="mx-auto max-w-[1080px] px-8 pb-16 pt-24">
           <div className="h-px bg-stroke" />
-          <p className="pt-8 font-plex text-[12px] text-grayt">
-            next case study →{" "}
-            <Link to="/work/icoi" className="text-blue-text hover:underline">
-              ICOI
-            </Link>{" "}
-            ·{" "}
+          <SeeNext current="roomietask" />
+          <p className="pt-10 font-plex text-[12px] text-grayt">
             <a href="/#projects" className="text-blue-text hover:underline">
-              back to all work
+              ← back to all work
             </a>
           </p>
         </footer>

@@ -5,6 +5,7 @@ import Toc from "../components/icoi/Toc";
 import Slot from "../components/icoi/Slot";
 import BylawTrace from "../components/icoi/BylawTrace";
 import CompetitorMatrix from "../components/lattelearn/CompetitorMatrix";
+import SeeNext from "../components/SeeNext";
 import {
   Community,
   Table2Columns,
@@ -435,13 +436,11 @@ export default function LatteLearnCaseStudy() {
                 interactive prototype ↗
               </a>
             </div>
-            <p className="m-0 font-plex text-[12px] text-grayt">
-              next case study →{" "}
-              <Link to="/work/icoi" className="text-blue-text underline underline-offset-2">
-                ICOI
-              </Link>
-            </p>
+            <a href="/#projects" className="m-0 font-plex text-[12px] text-blue-text underline underline-offset-2">
+              ← back to all work
+            </a>
           </div>
+          <SeeNext current="lattelearn" />
         </footer>
       </div>
     </div>

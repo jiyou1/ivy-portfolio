@@ -9,6 +9,7 @@ import ShippedFeatures from "../components/icoi/ShippedFeatures";
 import CaseHero from "../components/case/CaseHero";
 import StatStrip from "../components/case/StatStrip";
 import CaseSection from "../components/case/CaseSection";
+import SeeNext from "../components/SeeNext";
 import ConstraintPair from "../components/case/ConstraintPair";
 import JudgmentBeats from "../components/case/JudgmentBeats";
 import ReflectionCards from "../components/case/ReflectionCards";
@@ -153,10 +154,9 @@ export default function DesignathonCaseStudy() {
 
         <footer className="mx-auto max-w-[1080px] px-8 pb-16 pt-24">
           <div className="h-px bg-stroke" />
-          <p className="pt-8 font-plex text-[12px] text-grayt">
-            next case study →{" "}
-            <Link to="/work/icoi" className="text-blue-text">ICOI Membership System</Link> ·{" "}
-            <a href="/#projects" className="text-blue-text">back to all work</a>
+          <SeeNext current="designathon" />
+          <p className="pt-10 font-plex text-[12px] text-grayt">
+            <a href="/#projects" className="text-blue-text">← back to all work</a>
           </p>
         </footer>
       </div>

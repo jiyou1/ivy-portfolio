@@ -104,11 +104,11 @@ const NOTES = [
   { hue: "vocab", tilt: "1.4deg", title: "made-up statuses",
     body: "Typed by hand. “Canceled” and “Eligible Nominee” aren’t statuses the bylaws define, and “Suspended,” the one that matters most, is never here." },
   { hue: "dues", tilt: "-1.1deg", title: "owes, still counts",
-    body: `${N.owe} owe dues; ${N.stillMember} are still Active or Voting. The bylaws suspend voting after 3 months unpaid — a YES in a cell enforces nothing.` },
+    body: `${N.owe} owe dues; ${N.stillMember} are still Active or Voting. The bylaws suspend voting after 3 months unpaid, but a YES in a cell enforces nothing.` },
   { hue: "dup", tilt: "1.7deg", title: "same person, twice",
-    body: "Hamza Sheikh appears twice — Active + owing here, Voting + paid there. Which record is the real member?" },
+    body: "Hamza Sheikh appears twice: Active + owing here, Voting + paid there. Which record is the real member?" },
   { hue: "notes", tilt: "-1.4deg", title: "rules live in Notes",
-    body: "Seniority exceptions, family votes, board decisions — the real logic sits in a freeform Notes column no system can read." },
+    body: "Seniority exceptions, family votes, board decisions: the real logic sits in a freeform Notes column no system can read." },
 ];
 
 function PostIt({ hue, tilt, title, body }) {
@@ -147,7 +147,7 @@ export default function BeforeSheet() {
         <div className="min-w-0 flex-1 overflow-hidden rounded-2xl border border-stroke bg-white">
           <div className="flex items-center justify-between gap-3 border-b border-stroke bg-imgbg px-4 py-3">
             <span className="font-plex text-[11px] uppercase tracking-[0.12em] text-grayt">
-              Membership tracker — as received
+              Membership tracker, as received
             </span>
             <span className="font-plex text-[11px] text-grayt">500+ rows · slice shown</span>
           </div>
@@ -192,7 +192,7 @@ export default function BeforeSheet() {
                             (!hue ? "text-prose " : "")
                           }
                         >
-                          {val === "" ? <span className="opacity-40">—</span> : val}
+                          {val === "" ? <span className="opacity-40">–</span> : val}
                         </td>
                       );
                     })}
@@ -213,8 +213,8 @@ export default function BeforeSheet() {
 
       <figcaption className="mt-4 max-w-[760px] text-[13px] leading-[1.5] text-grayt">
         The membership tracker as we received it, data recreated for privacy. The notes mark what a
-        person had to catch by eye on every one of 500+ rows — the reason status had to become a
-        computed fact, not a typed one.
+        person had to catch by eye on every one of 500+ rows. That is the reason status had to become
+        a computed fact, not a typed one.
       </figcaption>
     </figure>
   );

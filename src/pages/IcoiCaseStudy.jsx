@@ -11,6 +11,7 @@ import BylawsTable from "../components/icoi/BylawsTable";
 import ShippedFeatures from "../components/icoi/ShippedFeatures";
 import ZoomFigure from "../components/icoi/ZoomFigure";
 import ActivityLog from "../components/icoi/ActivityLog";
+import SeeNext from "../components/SeeNext";
 import {
   Book,
   Table,
@@ -38,16 +39,17 @@ function Eyebrow({ n, icon: Icon, children }) {
   );
 }
 const H2 = ({ children, ...rest }) => (
-  <h2 className="mb-4 mt-4 max-w-[760px] text-[28px] font-extrabold leading-tight tracking-[-0.02em]" {...rest}>
+  <h2 className="mb-4 mt-4 max-w-[760px] text-balance text-[28px] font-extrabold leading-tight tracking-[-0.02em]" {...rest}>
     {children}
   </h2>
 );
 const H3 = ({ children }) => (
-  <h3 className="mb-2 mt-8 max-w-[760px] text-[18px] font-semibold">{children}</h3>
+  <h3 className="mb-2 mt-8 max-w-[760px] text-balance text-[18px] font-semibold">{children}</h3>
 );
 const P = ({ children }) => (
-  // body runs the full media/image width (container ~1016px), not a narrow measure
-  <p className="mb-4 max-w-[1056px] text-[17px] leading-[1.65] text-prose">{children}</p>
+  // body caps at a comfortable reading measure (~68ch) so lines don't run the full
+  // media width; text-pretty keeps the last line from dropping a lone orphan word
+  <p className="mb-4 max-w-[680px] text-pretty text-[17px] leading-[1.65] text-prose">{children}</p>
 );
 
 const REFLECT = [
@@ -100,12 +102,12 @@ export default function IcoiCaseStudy() {
           <div className="grid grid-cols-1 items-start gap-16 min-[880px]:[grid-template-columns:1.2fr_1fr]">
             <div>
               <Eyebrow>Case study</Eyebrow>
-              <h1 className="mt-4 font-instrument text-[clamp(44px,6.5vw,76px)] font-normal leading-[1.04] tracking-[-0.015em]">
+              <h1 className="mt-4 text-balance font-instrument text-[clamp(44px,6.5vw,76px)] font-normal leading-[1.04] tracking-[-0.015em]">
                 500 members, 17 pages of bylaws, one source of truth.
               </h1>
               <dl className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-x-8">
                 {[
-                  ["Role", "Frontend Lead & Figma Designer"],
+                  ["Role", "Frontend Lead & UI Designer"],
                   ["Sponsor", "Islamic Center of Irvine"],
                   ["Duration", "Jan – Jun 2026, 2-week sprints"],
                   ["Tools", "Figma, React, Tailwind, Spring Boot, PostgreSQL"],
@@ -119,7 +121,7 @@ export default function IcoiCaseStudy() {
             </div>
 
             <div className="pt-2">
-              <p className="mb-6 text-[18px] leading-[1.6] text-prose">
+              <p className="mb-6 text-pretty text-[18px] leading-[1.6] text-prose">
                 A 500+ member nonprofit ran on Google Forms and a spreadsheet that contradicted its
                 own legal bylaws. As frontend lead and sole designer on a team of five, I designed the
                 entire system in Figma and led the React frontend that now runs ICOI's daily operations.
@@ -379,7 +381,7 @@ export default function IcoiCaseStudy() {
                 <span className="mb-3 block font-plex text-[11px] uppercase tracking-[0.12em] text-blue-text">
                   {c.k}
                 </span>
-                <p className="m-0 text-[14px] text-prose">{c.p}</p>
+                <p className="m-0 text-pretty text-[14px] text-prose">{c.p}</p>
               </div>
             ))}
 
@@ -390,7 +392,7 @@ export default function IcoiCaseStudy() {
                 <WarningTriangle width={13} height={13} strokeWidth={2} aria-hidden />
                 Honest miss
               </span>
-              <p className="m-0 text-[14px] text-prose">
+              <p className="m-0 text-pretty text-[14px] text-prose">
                 I let admins hand-edit status to catch the system's misses. That was backwards: the
                 bylaws were too complex to memorize, so I made status read-only.
               </p>
@@ -401,10 +403,9 @@ export default function IcoiCaseStudy() {
 
       <footer className="mx-auto max-w-[1080px] px-8 pb-16 pt-24">
         <div className="h-px bg-stroke" />
-        <p className="pt-8 font-plex text-[12px] text-grayt">
-          next case study →{" "}
-          <Link to="/work/lattelearn" className="text-blue-text">LatteLearn</Link> ·{" "}
-          <a href="/#projects" className="text-blue-text">back to all work</a>
+        <SeeNext current="icoi" />
+        <p className="pt-10 font-plex text-[12px] text-grayt">
+          <a href="/#projects" className="text-blue-text">← back to all work</a>
         </p>
       </footer>
       </div>
