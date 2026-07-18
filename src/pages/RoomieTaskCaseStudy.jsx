@@ -83,10 +83,13 @@ const STATS = [
 /* earthy accents on cream — one per stat, all AA at this size on #EFEDE0 */
 const STAT_COLORS = ["#565E2A", "#A4512E", "#3E6B5C", "#7A4A6B"];
 
-/* counts 0 → value when scrolled into view; static under reduced motion */
-function StatNumber({ value }) {
+/* counts 0 → value when scrolled into view; static under reduced motion.
+   `delay` staggers the strip left-to-right so the loading reads as a sequence. */
+function StatNumber({ value, delay = 0 }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
+  // fire only once the numeral itself is fully on screen, so the count isn't
+  // already finished while the strip is still entering the viewport
+  const inView = useInView(ref, { once: true, amount: 1 });
   const reduce = useReducedMotion();
   const num = parseInt(value, 10);
   const suffix = value.replace(/^\d+/, "");
@@ -96,15 +99,24 @@ function StatNumber({ value }) {
     if (!inView) return;
     if (reduce) return setDisplay(num);
     const controls = animate(0, num, {
-      duration: 1.1,
-      ease: [0.16, 1, 0.3, 1],
+      duration: 1.6,
+      delay,
+      ease: "easeOut",
       onUpdate: (v) => setDisplay(Math.round(v)),
     });
     return () => controls.stop();
-  }, [inView, num, reduce]);
+  }, [inView, num, reduce, delay]);
 
   return (
-    <span ref={ref}>
+    <span
+      ref={ref}
+      className="inline-block transition-all duration-500 ease-out"
+      style={
+        reduce
+          ? undefined
+          : { opacity: inView ? 1 : 0, transform: inView ? "none" : "translateY(10px)", transitionDelay: `${delay}s` }
+      }
+    >
       {display}
       {suffix}
     </span>
@@ -291,7 +303,7 @@ export default function RoomieTaskCaseStudy() {
                     className="block text-[26px] font-extrabold tracking-[-0.02em]"
                     style={{ color: STAT_COLORS[i % STAT_COLORS.length] }}
                   >
-                    <StatNumber value={big} />
+                    <StatNumber value={big} delay={i * 0.15} />
                   </b>
                   <span className="mt-1 block text-[13px] leading-[1.5] text-grayt">{small}</span>
                 </div>

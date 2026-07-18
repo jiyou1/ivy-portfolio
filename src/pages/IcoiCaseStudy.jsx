@@ -175,12 +175,12 @@ export default function IcoiCaseStudy() {
           <P>
             The operational reality was Google Forms feeding a shared Sheet, managed by a handful of
             volunteers. Every status change was a human typing into a cell. My job on the frontend: make
-            the interface enforce what the document says, so the humans don't have to remember it.
+            the interface <Hl>enforce what the document says</Hl>, so the humans don't have to remember it.
           </P>
           <P>
             We worked as a five-person capstone team (Data Solutions Architecture Group), meeting with
             ICOI weekly to decode bylaws and member workflows, then shipping working builds every
-            two-week sprint for their feedback. The system was built with them, not presented to them.
+            two-week sprint for their feedback. The system was <Hl>built with them, not presented to them</Hl>.
           </P>
           <BylawsTable />
         </section>
@@ -199,8 +199,8 @@ export default function IcoiCaseStudy() {
           <P>
             The sheet also tracked outstanding balance as a manually typed YES/NO. In the bylaws,
             balance timing is what changes a member's status automatically. A
-            cell someone forgot to update is how a member stays "Voting" a year after they legally
-            stopped being one.
+            cell someone forgot to update is how a member <Hl>stays "Voting" a year after they legally
+            stopped being one</Hl>.
           </P>
         </section>
 
@@ -262,7 +262,7 @@ export default function IcoiCaseStudy() {
 
           <P>
             The design conclusion that everything above forces:{" "}
-            <strong className="font-semibold text-ink">status is a computed fact, not a typed opinion.</strong>{" "}
+            <Hl>status is a computed fact, not a typed opinion.</Hl>{" "}
             In the shipped UI, admins never select a status from a dropdown. They record events
             (payments, approvals, board votes), and the interface derives the status, the countdowns, and
             the warnings.
@@ -338,7 +338,7 @@ export default function IcoiCaseStudy() {
             A day in the life of ICOI staff
           </H2>
           <P>
-            Five screens, one data model. Every number an admin sees is computed from the same records.
+            Five screens, one data model. Every number an admin sees is <Hl>computed from the same records</Hl>.
           </P>
           <ShippedFeatures />
 

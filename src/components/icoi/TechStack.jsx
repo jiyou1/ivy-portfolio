@@ -89,7 +89,7 @@ export function Sponsor() {
       )}
       <p className="max-w-[220px] text-[13px] leading-[1.5] text-prose">
 The <b className="font-semibold text-ink">Islamic Center of Irvine</b>, a nonprofit mosque and
-        community center in Irvine, CA.
+        community center in Irvine.
       </p>
     </div>
   );

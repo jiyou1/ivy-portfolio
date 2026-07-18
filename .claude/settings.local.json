@@ -21,7 +21,8 @@
       "Bash(mv -f public/Dashboard.png public/work/icoi/shipped/ICOI-Dashboard-Mockup.png)",
       "Bash(sips -g pixelWidth -g pixelHeight public/work/icoi/shipped/ICOI-Dashboard-Mockup.png)",
       "Bash(node -e \"console.log\\(require\\('./node_modules/react/package.json'\\).version\\)\")",
-      "Bash(node -e \"const p=require\\('./package.json'\\); console.log\\(JSON.stringify\\(p.scripts\\)\\)\")"
+      "Bash(node -e \"const p=require\\('./package.json'\\); console.log\\(JSON.stringify\\(p.scripts\\)\\)\")",
+      "Bash(git commit -q -m 'RoomieTask stats: make count-up visible — slower easeOut, per-stat stagger, fire at full visibility, rise-in *)"
     ]
   }
 }
