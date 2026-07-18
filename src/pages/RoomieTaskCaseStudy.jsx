@@ -311,13 +311,18 @@ export default function RoomieTaskCaseStudy() {
             </div>
 
             {/* affinity-mapping block */}
-            <H3>How we got there: affinity mapping</H3>
+            <H3>Synthesis: affinity mapping</H3>
             <P>
-              Nineteen pain points from our research went onto stickies and clustered into three walls:
-              Unequal effort (12 of 19), Tracking breakdowns (4 of 19), and Awkward communication (3 of
-              19). Unequal effort dominated by a wide margin, which is where the fairness principle came
-              from. Each cluster got a written design response before any UI existed: attribute every
-              completion, automate rotation, show everything in one place.
+              To turn raw research into a design direction, I ran an affinity mapping session. Nineteen
+              pain points from our surveys and interviews went up as individual notes, then grouped by
+              theme into three clusters: Unequal effort (12 of 19), Tracking breakdowns (4 of 19), and
+              Awkward communication (3 of 19).
+            </P>
+            <P>
+              Unequal effort dominated by a wide margin, and that set the project's guiding principle:
+              fairness. Before a single screen was designed, each cluster was translated into a concrete
+              design response, so the interface answered a real, prioritized need rather than a hunch:
+              attribute every completion, automate rotation, and keep everything in one shared place.
             </P>
             <ZoomFigure
               src={ASSETS + "affinity-map.png"}
