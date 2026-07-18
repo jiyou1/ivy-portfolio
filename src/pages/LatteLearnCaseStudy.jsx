@@ -299,8 +299,8 @@ export default function LatteLearnCaseStudy() {
             <Slot
               variant="wide"
               src={ASSETS + "flows.png"}
-              alt="The four LatteLearn user-flow diagrams"
-              className="my-8 aspect-[1080/460]"
+              alt="The four LatteLearn user-flow diagrams: tasks, timer, customization, music"
+              className="my-8 aspect-[2160/1168]"
               label={"[ SLOT ] the four user-flow diagrams\ntasks / timer / customization / music"}
             />
           </section>
@@ -328,7 +328,7 @@ export default function LatteLearnCaseStudy() {
               variant="wide"
               src={ASSETS + "lofi-vs-cafe.png"}
               alt="Lo-fi wireframe beside the café prototype, same layout"
-              className="my-8 aspect-[1080/380]"
+              className="my-8 aspect-[1467/1024]"
               label={"[ SLOT ] lo-fi wireframe vs café prototype\nsame layout, before/after personality"}
             />
             <P>
