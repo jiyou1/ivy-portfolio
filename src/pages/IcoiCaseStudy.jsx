@@ -46,7 +46,8 @@ const H3 = ({ children }) => (
   <h3 className="mb-2 mt-8 max-w-[760px] text-[18px] font-semibold">{children}</h3>
 );
 const P = ({ children }) => (
-  <p className="mb-4 max-w-[760px] text-[17px] leading-[1.65] text-prose">{children}</p>
+  // body runs the full media/image width (container ~1016px), not a narrow measure
+  <p className="mb-4 max-w-[1056px] text-[17px] leading-[1.65] text-prose">{children}</p>
 );
 
 const REFLECT = [
@@ -372,7 +373,7 @@ export default function IcoiCaseStudy() {
         <section id="reflect" className="pt-24">
           <Eyebrow n="07" icon={LightBulb}>Reflection</Eyebrow>
           <H2>What this project changed about how I work</H2>
-          <div className="my-10 grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="my-10 grid grid-cols-1 items-stretch gap-4 md:grid-cols-3">
             {REFLECT.map((c) => (
               <div key={c.k} className="rounded-2xl border border-stroke bg-white p-7">
                 <span className="mb-3 block font-plex text-[11px] uppercase tracking-[0.12em] text-blue-text">
@@ -381,20 +382,19 @@ export default function IcoiCaseStudy() {
                 <p className="m-0 text-[14px] text-prose">{c.p}</p>
               </div>
             ))}
-          </div>
 
-          {/* honest miss: the candid third beat, given full width and the warn ramp
-              + left rule so it reads as deliberate self-critique, not another win card */}
-          <div className="rounded-2xl border border-stroke border-l-[3px] border-l-st-warn bg-white p-7">
-            <span className="mb-3 flex items-center gap-2 font-plex text-[11px] uppercase tracking-[0.12em] text-st-warn">
-              <WarningTriangle width={13} height={13} strokeWidth={2} aria-hidden />
-              Honest miss
-            </span>
-            <p className="m-0 max-w-[720px] text-[15px] leading-[1.65] text-prose">
-              I first let admins hand-edit member status, thinking humans would catch what the system
-              missed. Backwards — the bylaws were too complex to memorize, so hand edits added errors
-              instead. I made status read-only and pointed corrections at the underlying events.
-            </p>
+            {/* honest miss: the candid third beat — red alert ramp + left rule so it
+                reads as deliberate self-critique, not another win card */}
+            <div className="rounded-2xl border border-red-200 border-l-[3px] border-l-red-500 bg-red-50 p-7">
+              <span className="mb-3 flex items-center gap-2 font-plex text-[11px] uppercase tracking-[0.12em] text-red-600">
+                <WarningTriangle width={13} height={13} strokeWidth={2} aria-hidden />
+                Honest miss
+              </span>
+              <p className="m-0 text-[14px] text-prose">
+                I let admins hand-edit status to catch the system's misses. Backwards — the bylaws were
+                too complex to memorize, so I made status read-only.
+              </p>
+            </div>
           </div>
         </section>
       </main>

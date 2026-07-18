@@ -61,8 +61,8 @@ export default function GroupChat() {
                 className={
                   "max-w-[85%] px-4 py-3 text-[15px] leading-[1.45] sm:max-w-[460px] " +
                   (isOut
-                    ? "rounded-[18px] rounded-br-[6px] bg-blue text-white"
-                    : "rounded-[18px] rounded-bl-[6px] bg-imgbg text-ink")
+                    ? "rounded-[18px] rounded-br-[6px] bg-[#0B93F6] text-white"
+                    : "rounded-[18px] rounded-bl-[6px] bg-[#E9E9EB] text-[#111]")
                 }
               >
                 {b.text}

@@ -165,7 +165,7 @@ export default function RoomieTaskCaseStudy() {
                 </h1>
                 <dl className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-x-8">
                   {[
-                    ["Role", "UX Research & Usability Testing Lead [ CONFIRM ROLE ]"],
+                    ["Role", "UI Design Lead"],
                     ["Team", "6 · INF 132 (UCI HCI studio)"],
                     ["Duration", "One quarter · Spring 2026 [ CONFIRM ]"],
                     ["Tools", "Figma, surveys & interviews, usability testing"],
