@@ -1,5 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { animate, useInView, useReducedMotion } from "framer-motion";
 import { ChatLines, Home, Wallet, Notes, Search, CheckCircle, WarningTriangle } from "iconoir-react";
 import CaseVideo from "../components/case/CaseVideo";
 import SageMesh from "../components/roomietask/SageMesh";
@@ -78,6 +79,37 @@ const STATS = [
   ["5", "roommates in moderated usability tests"],
   ["4", "coping tools already tried, and abandoned"],
 ];
+
+/* earthy accents on cream — one per stat, all AA at this size on #EFEDE0 */
+const STAT_COLORS = ["#565E2A", "#A4512E", "#3E6B5C", "#7A4A6B"];
+
+/* counts 0 → value when scrolled into view; static under reduced motion */
+function StatNumber({ value }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const reduce = useReducedMotion();
+  const num = parseInt(value, 10);
+  const suffix = value.replace(/^\d+/, "");
+  const [display, setDisplay] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    if (reduce) return setDisplay(num);
+    const controls = animate(0, num, {
+      duration: 1.1,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate: (v) => setDisplay(Math.round(v)),
+    });
+    return () => controls.stop();
+  }, [inView, num, reduce]);
+
+  return (
+    <span ref={ref}>
+      {display}
+      {suffix}
+    </span>
+  );
+}
 
 const RIVALS = [
   [ChatLines, "GROUP CHATS", `"Whose turn is it?" scrolls away by lunch. Nothing is actually tracked.`],
@@ -253,9 +285,14 @@ export default function RoomieTaskCaseStudy() {
 
             {/* 4-stat strip, hairline rules */}
             <div className="my-6 flex flex-wrap gap-6 border-y border-stroke py-6">
-              {STATS.map(([big, small]) => (
+              {STATS.map(([big, small], i) => (
                 <div key={small} className="w-[252px]">
-                  <b className="block text-[22px] font-extrabold tracking-[-0.02em] text-ink">{big}</b>
+                  <b
+                    className="block text-[26px] font-extrabold tracking-[-0.02em]"
+                    style={{ color: STAT_COLORS[i % STAT_COLORS.length] }}
+                  >
+                    <StatNumber value={big} />
+                  </b>
                   <span className="mt-1 block text-[13px] leading-[1.5] text-grayt">{small}</span>
                 </div>
               ))}

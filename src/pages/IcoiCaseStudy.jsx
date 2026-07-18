@@ -8,6 +8,7 @@ import VerdictTable from "../components/icoi/VerdictTable";
 import StateMachine from "../components/icoi/StateMachine";
 import BeforeSheet from "../components/icoi/BeforeSheet";
 import BylawsTable from "../components/icoi/BylawsTable";
+import { ToolChips, Sponsor } from "../components/icoi/TechStack";
 import ShippedFeatures from "../components/icoi/ShippedFeatures";
 import ZoomFigure from "../components/icoi/ZoomFigure";
 import ActivityLog from "../components/icoi/ActivityLog";
@@ -108,13 +109,13 @@ export default function IcoiCaseStudy() {
               <dl className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-x-8">
                 {[
                   ["Role", "Frontend Lead & UI Designer"],
-                  ["Sponsor", "Islamic Center of Irvine"],
+                  ["Sponsor", <Sponsor key="sp" />],
                   ["Duration", "Jan – Jun 2026, 2-week sprints"],
-                  ["Tools", "Figma, React, Tailwind, Spring Boot, PostgreSQL"],
+                  ["Tools", <ToolChips key="tc" />],
                 ].map(([dt, dd]) => (
                   <div key={dt}>
-                    <dt className="mb-1.5 font-plex text-[11px] uppercase tracking-[0.12em] text-grayt">{dt}</dt>
-                    <dd className="max-w-[220px] text-[14px] leading-[1.5]">{dd}</dd>
+                    <dt className="mb-2 font-plex text-[11px] uppercase tracking-[0.12em] text-grayt">{dt}</dt>
+                    <dd className="text-[14px] leading-[1.5]">{dd}</dd>
                   </div>
                 ))}
               </dl>

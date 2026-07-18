@@ -25,7 +25,7 @@ export const HERO = {
   lede: "For Design at UCI's Design-a-thon, the largest collegiate design hackathon in Southern California, I owned the Judges, Prizes, and Meet the Team pages across web and mobile, inside a site where every cloud, mascot, and coaster segment was illustrated by hand, to my spec, on someone else's timeline.",
   pills: ["UI/UX COMMITTEE", "DESIGN AT UCI", "APR 18–20, 2025"],
   meta: [
-    { label: "Role", value: "UI/UX Designer, Judges, Prizes, Meet the Team (web + mobile)" },
+    { label: "Role", value: "UI/UX Designer (web + mobile)" },
     { label: "Team", value: "4 designers" },
     { label: "Timeline", value: "Winter to Apr 2025" },
     { label: "Tools", value: "Figma" },
