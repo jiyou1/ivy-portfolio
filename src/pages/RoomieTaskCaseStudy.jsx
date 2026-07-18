@@ -18,6 +18,26 @@ import ZoomFigure from "../components/icoi/ZoomFigure";
 
 const ASSETS = "/case/roomietask/";
 
+/* Olive/cream skin — grabbed from the RoomieTask style guide's olive set and
+   layered over the site's shared token names (same mechanism as LatteLearn's
+   café tokens), so every reused component (Toc, Slot) renders warm-olive without
+   a per-page fork. --color-blue is the true olive accent for fills/large glyphs;
+   --color-blue-text is a deeper olive for small text to keep contrast on cream. */
+const OLIVE_TOKENS = {
+  "--color-bg": "#EFEDE0", // cream base
+  "--color-ink": "#282A1C", // near-black olive
+  "--color-prose": "#454636", // body
+  "--color-legal": "#454636",
+  "--color-grayt": "#6A6B54", // "muted" role, darkened to pass AA on cream
+  "--color-blue": "#6B7538", // true olive accent — fills, marks (large)
+  "--color-blue-text": "#565E2A", // accent-ink — small olive text (contrast-safe)
+  "--color-imgbg": "#E6E3D3",
+  "--color-stroke": "#DBD7C4",
+  "--color-stroke-2": "#CAC5A9",
+  // NB: no opaque backgroundColor here — the cream base is a separate -z-20 layer
+  // below the mesh, so the olive blobs (-z-10) aren't painted over.
+};
+
 const TOC_SECTIONS = [
   ["01", "context", "Context"],
   ["02", "research", "The research"],
@@ -120,7 +140,8 @@ export default function RoomieTaskCaseStudy() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden text-prose">
+    <div className="relative min-h-screen overflow-x-hidden text-prose" style={OLIVE_TOKENS}>
+      <div aria-hidden="true" className="absolute inset-0 -z-20 bg-bg" />
       <SageMesh />
       <Toc sections={TOC_SECTIONS} />
 
@@ -187,6 +208,7 @@ export default function RoomieTaskCaseStudy() {
 
             <Slot
               variant="wide"
+              bare
               src={ASSETS + "hero.png"}
               alt="RoomieTask mobile screens: Home with chores due and reminders, Chores with rotation, and Expenses with balances"
               className="mt-14 aspect-[930/537]"
@@ -195,7 +217,7 @@ export default function RoomieTaskCaseStudy() {
           </header>
 
           {/* ================= 01 CONTEXT ================= */}
-          <section id="context" className="pt-24">
+          <section id="context" className="pt-6">
             <Eyebrow n="01">Context</Eyebrow>
             <H2>Everyone wants a clean apartment. Nobody knows whose job it is.</H2>
             <P>

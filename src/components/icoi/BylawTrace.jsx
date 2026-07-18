@@ -29,17 +29,15 @@ export function M({ children }) {
    generic ConstraintPair, where the excerpt is a project constraint, not a
    verbatim legal clause. `cite` is optional so a constraint can render without a
    § label. ICOI passes neither, so its excerpts are unchanged. */
-function Excerpt({ cite, children, glass, wide, mono }) {
+function Excerpt({ cite, children, glass, wide, mono, grid }) {
   const surface = glass
     ? "border-white/70 border-l-ink bg-white/60 backdrop-blur-xl shadow-[0_10px_30px_-14px_rgba(139,109,70,0.4)]"
     : "border-stroke border-l-ink bg-white";
+  // grid mode: equal-height cards sized by the grid, no per-card margin/max-width
+  const box = grid ? "h-full " : "my-8 " + (wide ? "max-w-[1056px] " : "max-w-[640px] ");
   return (
     <div
-      className={
-        "my-8 rounded-r-xl border border-l-[3px] px-7 py-6 " +
-        (wide ? "max-w-[1056px] " : "max-w-[640px] ") +
-        surface
-      }
+      className={"rounded-r-xl border border-l-[3px] px-7 py-6 " + box + surface}
     >
       {cite && (
         <span className="mb-3 block font-plex text-[12px] font-semibold tracking-[0.06em] text-ink">
@@ -55,7 +53,31 @@ function Excerpt({ cite, children, glass, wide, mono }) {
   );
 }
 
-export default function BylawTrace({ excerpts, means, glass = false, wide = false, mono = false }) {
+export default function BylawTrace({ excerpts, means, glass = false, wide = false, mono = false, grid = false }) {
+  // grid mode: excerpts sit side-by-side as equal cards, means-arrows stack below
+  if (grid) {
+    const meansList = Array.isArray(means) ? means : [means];
+    return (
+      <div className="my-8 max-w-[1056px]">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+          {excerpts.map((e, i) => (
+            <Excerpt key={e.cite ?? i} cite={e.cite} glass={glass} mono={mono} grid>
+              {e.quote}
+            </Excerpt>
+          ))}
+        </div>
+        <div className="mt-6 space-y-3">
+          {meansList.map((m, i) => (
+            <div key={i} className="flex items-baseline gap-3 pl-1">
+              <span className="shrink-0 font-plex font-semibold text-blue">→</span>
+              <p className="m-0 text-[15px] text-ink">{m}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       {excerpts.map((e, i) => (

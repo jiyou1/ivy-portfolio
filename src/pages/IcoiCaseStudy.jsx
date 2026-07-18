@@ -50,8 +50,8 @@ const P = ({ children }) => (
 );
 
 const REFLECT = [
-  { k: "Read the source", p: "The client's own vocabulary had drifted from their legal document. Nobody was wrong on purpose. Now I ask for the governing document before I ask for the feature list." },
-  { k: "Derive, don't enter", p: "Any status a human types is a status that goes stale. If a rule can be computed from events, the interface should compute it and show its work." },
+  { k: "Read the source", p: "Ask for the governing document before the feature list. The client's words had quietly drifted from their own bylaws." },
+  { k: "Derive, don't enter", p: "Any status a human types goes stale. If a rule can be computed from events, compute it — don't ask." },
 ];
 
 export default function IcoiCaseStudy() {
@@ -207,6 +207,7 @@ export default function IcoiCaseStudy() {
           <P>The hardest translation problem lived in Section 3.4. Here is the trace, exactly as I worked it.</P>
 
           <BylawTrace
+            grid
             excerpts={[
               {
                 cite: "BYLAWS §3.4.A · SUSPENSION OF MEMBERSHIP",
@@ -219,17 +220,6 @@ export default function IcoiCaseStudy() {
                   </>
                 ),
               },
-            ]}
-            means={
-              <>
-                Suspension is <M>time-triggered, not admin-triggered</M>. The system computes it from
-                payment dates. No human types "suspended" into anything.
-              </>
-            }
-          />
-
-          <BylawTrace
-            excerpts={[
               {
                 cite: "BYLAWS §3.4.B · AUTOMATIC TERMINATION",
                 quote: (
@@ -251,13 +241,17 @@ export default function IcoiCaseStudy() {
                 ),
               },
             ]}
-            means={
+            means={[
+              <>
+                Suspension is <M>time-triggered, not admin-triggered</M>. The system computes it from
+                payment dates. No human types "suspended" into anything.
+              </>,
               <>
                 Same word, two futures. "Terminated" splits by <M>cause</M>, and the cause changes a
                 member's reinstatement rights. So the data model stores <M>termination type</M>, and{" "}
                 <M>seniority date is a separate field from join date</M>.
-              </>
-            }
+              </>,
+            ]}
           />
 
           <StateMachine />
@@ -397,10 +391,9 @@ export default function IcoiCaseStudy() {
               Honest miss
             </span>
             <p className="m-0 max-w-[720px] text-[15px] leading-[1.65] text-prose">
-              My early designs let admins manually edit member status, reasoning that humans should be
-              able to catch errors the system missed. I had it backwards. The bylaws were too complex to
-              memorize, which meant hand edits would introduce errors, not catch them. The fix was making
-              status read-only and pointing corrections at the underlying events instead.
+              I first let admins hand-edit member status, thinking humans would catch what the system
+              missed. Backwards — the bylaws were too complex to memorize, so hand edits added errors
+              instead. I made status read-only and pointed corrections at the underlying events.
             </p>
           </div>
         </section>

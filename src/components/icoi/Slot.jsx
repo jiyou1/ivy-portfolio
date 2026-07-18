@@ -12,8 +12,9 @@ const MIN_H = {
   photo: "min-h-[200px]",
 };
 
-export default function Slot({ src, video, alt = "", label, variant = "default", className = "" }) {
+export default function Slot({ src, video, alt = "", label, variant = "default", className = "", bare = false }) {
   const [failed, setFailed] = useState(!src && !video);
+  const edge = bare ? "" : "border border-stroke";
 
   if (video) {
     return (
@@ -24,7 +25,7 @@ export default function Slot({ src, video, alt = "", label, variant = "default",
         loop
         muted
         playsInline
-        className={`w-full rounded-2xl border border-stroke object-cover ${className}`}
+        className={`w-full rounded-2xl ${edge} object-cover ${className}`}
       />
     );
   }
@@ -37,7 +38,7 @@ export default function Slot({ src, video, alt = "", label, variant = "default",
         loading="lazy"
         decoding="async"
         onError={() => setFailed(true)}
-        className={`w-full rounded-2xl border border-stroke object-cover ${className}`}
+        className={`w-full rounded-2xl ${edge} object-cover ${className}`}
       />
     );
   }
