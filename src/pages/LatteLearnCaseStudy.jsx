@@ -344,10 +344,11 @@ export default function LatteLearnCaseStudy() {
             <H2 ref={shippedHeadingRef} tabIndex={-1}>
               One study session, start to finish
             </H2>
-            <P>
+            {/* uncapped so the intro sits on one line at desktop widths */}
+            <p className="mb-4 text-[17px] leading-[1.65] text-prose">
               Shipped as a packaged Electron app (React frontend, Flask backend). The tour follows{" "}
               <Em>a session, not a feature list</Em>:
-            </P>
+            </p>
 
             <div className="my-10 flex flex-col gap-12">
               {BEATS.map((b, i) => (
