@@ -188,8 +188,8 @@ export default function RoomieTaskCaseStudy() {
             <Slot
               variant="wide"
               src={ASSETS + "hero.png"}
-              alt="RoomieTask mobile screens, three-up phone lineup"
-              className="mt-14 aspect-[1080/420]"
+              alt="RoomieTask mobile screens: Home with chores due and reminders, Chores with rotation, and Expenses with balances"
+              className="mt-14 aspect-[930/537]"
               label={"[ HERO SLOT ] RoomieTask mobile screens · 3-up phone lineup on sage"}
             />
           </header>
