@@ -5,6 +5,7 @@ import Toc from "../components/icoi/Toc";
 import Slot from "../components/icoi/Slot";
 import BylawTrace from "../components/icoi/BylawTrace";
 import CompetitorMatrix from "../components/lattelearn/CompetitorMatrix";
+import ZoomFigure from "../components/icoi/ZoomFigure";
 import SeeNext from "../components/SeeNext";
 import {
   Community,
@@ -296,12 +297,11 @@ export default function LatteLearnCaseStudy() {
               The café metaphor only worked because it was laid over this structure, personality on top
               of logic, never instead of it.
             </P>
-            <Slot
-              variant="wide"
+            <ZoomFigure
               src={ASSETS + "flows.png"}
               alt="The four LatteLearn user-flow diagrams: tasks, timer, customization, music"
-              className="my-8 aspect-[2160/1168]"
-              label={"[ SLOT ] the four user-flow diagrams\ntasks / timer / customization / music"}
+              aspect="2160 / 1168"
+              caption="The four flows — tasks, timer, customization, music. Click to read full-size."
             />
           </section>
 
