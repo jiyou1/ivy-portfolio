@@ -22,7 +22,7 @@ export const HERO = {
   logo: BASE + "logo.png", // optional; hides cleanly if the file is absent
   eyebrow: "CASE STUDY ✳ DESIGN AT UCI · DESIGN-A-THON 2025",
   title: "Six surfaces, one hand-drawn universe.",
-  lede: "For Design at UCI's Design-a-thon, the largest collegiate design hackathon in Southern California, I owned the Judges, Prizes, and Meet the Team pages across web and mobile, inside a site where every cloud, mascot, and coaster segment was illustrated by hand, to my spec, on someone else's timeline.",
+  lede: "For Design at UCI's Design-a-thon, the largest collegiate design hackathon in Southern California, I owned the Judges, Prizes, and Meet the Team pages across web and mobile, inside a site where every cloud, mascot, and coaster segment was illustrated by hand, to my spec.",
   pills: ["UI/UX COMMITTEE", "DESIGN AT UCI", "APR 18–20, 2025"],
   meta: [
     { label: "Role", value: "UI/UX Designer (web + mobile)" },
@@ -44,12 +44,6 @@ export const HERO = {
   },
 };
 
-export const STATS = [
-  { value: "3", label: "pages owned end to end" },
-  { value: "×2", label: "platforms: web + mobile" },
-  { value: "4", label: "generations of the Judges page" },
-  { value: "1", label: "hand-illustrated design system" },
-];
 
 /* Sticky numbered TOC + section anchors, in reading order. */
 export const SECTIONS = [
@@ -66,11 +60,21 @@ export const CONTEXT = {
   body: [
     "Design at UCI's Design-a-thon is the largest collegiate design hackathon in Southern California: 250+ designers, $2,120 in prizes, 48 hours, hybrid across two formats. The 2025 theme was Beyond Our Horizons, and the four-person UI/UX committee's job was the website and companion mobile app that carried the event from first visit to Devpost submission. I owned three of its pages on both platforms.",
   ],
-  figure: {
-    src: BASE + "context-event.jpg",
-    label: "[ FIG ] event + brand image\nDesign-a-thon 2025 · Beyond Our Horizons",
-    caption: "Design-a-thon 2025: Beyond Our Horizons, the largest collegiate design hackathon in Southern California.",
+  // the shipped front door, then the two brand boards behind it
+  lead: {
+    src: BASE + "context-front-door.jpg",
+    caption: "The front door as shipped: the illustrated hero with the date card and Apply Now above the fold.",
   },
+  figures: [
+    {
+      src: BASE + "context-brand-lockup.jpg",
+      caption: "The brand board: Radey display over Satoshi Variable, the candy palette with its gradient ramps, and the pen-nib logo.",
+    },
+    {
+      src: BASE + "context-brand-elements.jpg",
+      caption: "The hand-drawn element library: clouds, stars, coaster track segments, and the five mascots in two poses.",
+    },
+  ],
 };
 
 export const WORLD = {
@@ -155,9 +159,10 @@ export const SHIPPED_SECTION = {
       id: "prizes",
       number: "02",
       label: "Prizes",
-      title: "TODO: Prizes title.",
-      description: "TODO: Prizes description.",
-      images: [SHIPPED + "prizes.webp"],
+      title: "Prizes: the podium before the fine print",
+      description:
+        "Four award tiers on illustrated candy cards, sized by importance instead of reading order. First place lands first; the fine print waits.",
+      images: [SHIPPED + "prizes.png"],
       alt: "Design-a-thon Prizes page, desktop",
     },
     {

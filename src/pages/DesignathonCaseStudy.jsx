@@ -7,7 +7,6 @@ import Toc from "../components/icoi/Toc";
 import Slot from "../components/icoi/Slot";
 import ShippedFeatures from "../components/icoi/ShippedFeatures";
 import CaseHero from "../components/case/CaseHero";
-import StatStrip from "../components/case/StatStrip";
 import CaseSection from "../components/case/CaseSection";
 import SeeNext from "../components/SeeNext";
 import ConstraintPair from "../components/case/ConstraintPair";
@@ -16,7 +15,6 @@ import ReflectionCards from "../components/case/ReflectionCards";
 
 import {
   HERO,
-  STATS,
   SECTIONS,
   CONTEXT,
   WORLD,
@@ -90,11 +88,16 @@ export default function DesignathonCaseStudy() {
         <main className="mx-auto max-w-[1080px] px-8">
           <CaseHero {...HERO} />
 
-          <StatStrip stats={STATS} className="mt-16" />
-
           {/* ================= 01 CONTEXT ================= */}
           <CaseSection id="context" n={CONTEXT.n} icon={Globe} eyebrow="Context" heading={CONTEXT.heading} body={CONTEXT.body}>
-            <Figure {...CONTEXT.figure} className="mt-6 aspect-[16/9]" />
+            {/* the shipped front door full-width, then the two brand boards at
+                natural (portrait) aspect — no crop */}
+            <Figure {...CONTEXT.lead} className="mt-6" />
+            <div className="mt-4 grid grid-cols-1 items-start gap-4 md:grid-cols-2">
+              {CONTEXT.figures.map((f) => (
+                <Figure key={f.src} {...f} />
+              ))}
+            </div>
           </CaseSection>
 
           {/* ================= 02 THE WORLD WE BUILT ================= */}
