@@ -91,6 +91,7 @@ function WorkCard({ p, dimmed }) {
             COVER — {p.title.toUpperCase()}
           </span>
           <Cover src={p.cover} video={p.video} alt={p.title + " cover"} position={p.coverPosition} />
+          <span className="pointer-events-none absolute inset-0 bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-30" />
         </div>
         <p className="mt-5 text-[10.5px] font-medium tracking-[0.12em] text-grayt">{p.label}</p>
         <h3 className="mt-2 text-2xl font-bold tracking-[-0.01em]">{p.title}</h3>
