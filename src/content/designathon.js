@@ -60,19 +60,20 @@ export const CONTEXT = {
   body: [
     "Design at UCI's Design-a-thon is the largest collegiate design hackathon in Southern California: 250+ designers, $2,120 in prizes, 48 hours, hybrid across two formats. The 2025 theme was Beyond Our Horizons, and the four-person UI/UX committee's job was the website and companion mobile app that carried the event from first visit to Devpost submission. I owned three of its pages on both platforms.",
   ],
-  // the shipped front door, then the two brand boards behind it
-  lead: {
-    src: BASE + "context-front-door.jpg",
-    caption: "The front door as shipped: the illustrated hero with the date card and Apply Now above the fold.",
-  },
+  // event-day photos: the event these surfaces served, and my weekend
+  // volunteering as a participant mentor
   figures: [
     {
-      src: BASE + "context-brand-lockup.jpg",
-      caption: "The brand board: Radey display over Satoshi Variable, the candy palette with its gradient ramps, and the pen-nib logo.",
+      src: BASE + "event-courtyard.jpg",
+      caption: "Event day: 200+ participants working across the courtyard.",
     },
     {
-      src: BASE + "context-brand-elements.jpg",
-      caption: "The hand-drawn element library: clouds, stars, coaster track segments, and the five mascots in two poses.",
+      src: BASE + "event-mentoring.jpg",
+      caption: "Between sprints I volunteered as a participant mentor through the weekend.",
+    },
+    {
+      src: BASE + "event-team.jpg",
+      caption: "On shift in the event tee, with a fellow mentor.",
     },
   ],
 };
@@ -85,14 +86,12 @@ export const WORLD = {
   ],
   figures: [
     {
-      src: BASE + "world-logo-type.jpg",
-      label: "[ FIG ] logo lockup + type\nRadey display · Satoshi Variable body",
-      caption: "The logo lockup and the type pairing: Radey for display, Satoshi Variable for body.",
+      src: BASE + "context-brand-lockup.jpg",
+      caption: "The brand board: Radey display over Satoshi Variable, the candy palette with its gradient ramps, and the pen-nib logo.",
     },
     {
-      src: BASE + "world-palette-mascots.jpg",
-      label: "[ FIG ] palette + mascots\ncandy ramps · five illustrated mascots",
-      caption: "The candy palette with gradient ramps and the five hand-drawn mascots.",
+      src: BASE + "context-brand-elements.jpg",
+      caption: "The hand-drawn element library: clouds, stars, coaster track segments, and the five mascots in two poses.",
     },
   ],
   constraint: {
@@ -144,6 +143,11 @@ export const PROCESS = {
 export const SHIPPED_SECTION = {
   n: "04",
   heading: "Three pages, twice: what I shipped for web and mobile.",
+  // the live site's front door, above the six surfaces
+  lead: {
+    src: BASE + "context-front-door.jpg",
+    caption: "The front door as shipped: the illustrated hero with the date card and Apply Now above the fold.",
+  },
   features: [
     {
       id: "judges",
@@ -207,25 +211,6 @@ export const SHIPPED_SECTION = {
   ],
   credit: "The full site was designed by a four-person UI/UX committee; these six surfaces were mine.",
   link: { href: "https://ucidesignathon.com", label: "ucidesignathon.com" },
-  // event-day photos: the shipped surfaces in front of a live event, plus my
-  // weekend on the ground volunteering as a participant mentor
-  photos: [
-    {
-      src: "/work/designathon/event-courtyard.jpg",
-      alt: "Design-a-thon event day: participants at team tables across the courtyard",
-      caption: "Event day — 200+ participants working across the courtyard.",
-    },
-    {
-      src: "/work/designathon/event-mentoring.jpg",
-      alt: "A workshop room of participants at laptops during a mentor session",
-      caption: "Between sprints I volunteered as a participant mentor through the weekend.",
-    },
-    {
-      src: "/work/designathon/event-team.jpg",
-      alt: "Two mentors in Design-a-thon shirts at the event",
-      caption: "On shift in the event tee, with a fellow mentor.",
-    },
-  ],
 };
 
 export const REFLECTION = {

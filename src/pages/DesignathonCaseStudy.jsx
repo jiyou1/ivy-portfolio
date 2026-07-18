@@ -43,12 +43,12 @@ const MESH = [
 
 /* A page figure: the standard dashed placeholder (Slot) with an optional mono
    caption beneath, until the real export lands in public/work/designathon/. */
-function Figure({ src, label, caption, className = "" }) {
+function Figure({ src, label, caption, className = "", contain = false }) {
   return (
     <figure className="m-0">
-      <Slot variant="wide" src={src} label={label} className={`m-0 ${className}`} />
+      <Slot variant="wide" src={src} label={label} bare contain={contain} className={`m-0 ${className}`} />
       {caption && (
-        <figcaption className="mt-2 font-plex text-[11px] leading-[1.5] text-grayt">{caption}</figcaption>
+        <figcaption className="mt-3 max-w-[520px] text-[14px] leading-[1.6] text-grayt">{caption}</figcaption>
       )}
     </figure>
   );
@@ -90,21 +90,22 @@ export default function DesignathonCaseStudy() {
 
           {/* ================= 01 CONTEXT ================= */}
           <CaseSection id="context" n={CONTEXT.n} icon={Globe} eyebrow="Context" heading={CONTEXT.heading} body={CONTEXT.body}>
-            {/* the shipped front door full-width, then the two brand boards at
-                natural (portrait) aspect — no crop */}
-            <Figure {...CONTEXT.lead} className="mt-6" />
-            <div className="mt-4 grid grid-cols-1 items-start gap-4 md:grid-cols-2">
+            {/* event-day / volunteering photos in a uniform 3-up row */}
+            <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
               {CONTEXT.figures.map((f) => (
-                <Figure key={f.src} {...f} />
+                <Figure key={f.src} {...f} className="aspect-[4/3]" />
               ))}
             </div>
           </CaseSection>
 
           {/* ================= 02 THE WORLD WE BUILT ================= */}
           <CaseSection id="world" n={WORLD.n} icon={Book} eyebrow="The world we built" heading={WORLD.heading} body={WORLD.body}>
-            <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+            {/* equal heights by sizing, not cropping: column tracks proportional to
+                each board's aspect ratio (1353/2383 and 1312/1600), so both fill
+                their track and land at the same rendered height */}
+            <div className="mt-6 grid grid-cols-1 gap-4 md:[grid-template-columns:0.568fr_0.82fr]">
               {WORLD.figures.map((f) => (
-                <Figure key={f.src} {...f} className="aspect-[4/3]" />
+                <Figure key={f.src} {...f} />
               ))}
             </div>
             <ConstraintPair {...WORLD.constraint} />
@@ -131,11 +132,15 @@ export default function DesignathonCaseStudy() {
             eyebrow="What shipped"
             heading={SHIPPED_SECTION.heading}
           >
-            <ShippedFeatures
-              features={SHIPPED_SECTION.features}
-              label="Design-a-thon shipped surfaces"
-              tabCols="lg:grid-cols-3"
-            />
+            {/* the live site's front door, above the six surfaces */}
+            <Figure {...SHIPPED_SECTION.lead} className="mt-6" />
+            <div className="mt-10">
+              <ShippedFeatures
+                features={SHIPPED_SECTION.features}
+                label="Design-a-thon shipped surfaces"
+                tabCols="lg:grid-cols-3"
+              />
+            </div>
             <p className="mt-12 font-plex text-[12px] leading-[1.6] text-grayt">
               {SHIPPED_SECTION.credit}{" "}
               <a
@@ -147,14 +152,6 @@ export default function DesignathonCaseStudy() {
                 {SHIPPED_SECTION.link.label}
               </a>
             </p>
-
-            {/* event-day strip: the shipped surfaces serving a live event, and my
-                weekend on the ground as a participant mentor */}
-            <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
-              {SHIPPED_SECTION.photos.map((p) => (
-                <Figure key={p.src} src={p.src} caption={p.caption} className="aspect-[3/2]" />
-              ))}
-            </div>
           </CaseSection>
 
           {/* ================= 05 REFLECTION ================= */}
