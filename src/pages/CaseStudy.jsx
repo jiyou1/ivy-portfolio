@@ -74,7 +74,6 @@ export default function CaseStudy({ slug }) {
           <div className="mt-8 aspect-[16/9] w-full overflow-hidden rounded-2xl bg-imgbg">
             <video
               src="/videos/Prime_New_Website.mp4"
-              poster="/covers/prime-academy.jpg"
               autoPlay
               loop
               muted
@@ -196,7 +195,6 @@ export default function CaseStudy({ slug }) {
               afterContent={
                 <video
                   src="/videos/Prime_New_Website.mp4"
-                  poster="/covers/prime-academy.jpg"
                   autoPlay
                   loop
                   muted
