@@ -52,7 +52,7 @@ const P = ({ children }) => (
 
 const REFLECT = [
   { k: "Read the source", p: "Ask for the governing document before the feature list. The client's words had quietly drifted from their own bylaws." },
-  { k: "Derive, don't enter", p: "Any status a human types goes stale. If a rule can be computed from events, compute it — don't ask." },
+  { k: "Derive, don't enter", p: "Any status a human types goes stale. If a rule can be computed from events, compute it. Don't ask." },
 ];
 
 export default function IcoiCaseStudy() {
@@ -391,8 +391,8 @@ export default function IcoiCaseStudy() {
                 Honest miss
               </span>
               <p className="m-0 text-[14px] text-prose">
-                I let admins hand-edit status to catch the system's misses. Backwards — the bylaws were
-                too complex to memorize, so I made status read-only.
+                I let admins hand-edit status to catch the system's misses. That was backwards: the
+                bylaws were too complex to memorize, so I made status read-only.
               </p>
             </div>
           </div>

@@ -11,17 +11,17 @@ import { motion, useReducedMotion } from "framer-motion";
    view; fully disabled under reduced motion (rendered static). */
 
 const EXCHANGES = [
-  ["I hate when I am (or feel) like I am the only one doing the chores.",
-   "Every contribution is visible now. No one keeps score alone."],
-  ["I dislike texting in a group chat that no one responds in.",
-   "Gentle nudges flag overdue tasks until they're actually done."],
-  ["I feel uncomfortable to remind my friends/roommates to pay.",
-   "Fairness is shown gently. Never a ranking, never a call-out."],
+  ["why is it always me on dish duty 😭 every single time",
+   "everyone can see who's actually pitching in now, so it's not just in your head"],
+  ["asked whose turn for trash in the gc and got left on read lol",
+   "it nudges whoever's up until it's done — you're not the one chasing everyone"],
+  ["i cannot make myself venmo request yall it's too awkward",
+   "splits get handled quietly. no callouts, no rankings, no awkward text to send"],
 ];
 
 // flatten to an ordered bubble list so DOM order === reading order
 const BUBBLES = EXCHANGES.flatMap(([incoming, outgoing]) => [
-  { dir: "in", sender: "A ROOMMATE · VERBATIM", text: incoming },
+  { dir: "in", sender: "A ROOMMATE", text: incoming },
   { dir: "out", sender: "ROOMIETASK", text: outgoing },
 ]);
 
@@ -30,12 +30,8 @@ export default function GroupChat() {
 
   return (
     <div className="w-full rounded-2xl border border-stroke bg-white p-6 sm:p-8">
-      <p className="font-plex text-[11px] tracking-[0.08em] text-grayt">
-        ROOMMATES 🏠 · verbatim pain points from our affinity map, and what RoomieTask says back
-      </p>
-
       <ul
-        className="mt-6 flex flex-col gap-4"
+        className="flex flex-col gap-4"
         aria-label="Roommate pain points and RoomieTask's responses"
       >
         {BUBBLES.map((b, i) => {

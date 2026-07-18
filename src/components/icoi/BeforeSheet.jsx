@@ -100,9 +100,9 @@ function hueStyle(hue) {
 /* The post-it notes, top-to-bottom, each keyed to a hue. Counts come from N. */
 const NOTES = [
   { hue: "dates", tilt: "-1.6deg", title: "which date is it?",
-    body: `One column, ${N.formats} ways to write a date — ISO, US, European, a bare year, even a “?”. Nothing sorts, nothing can compute a renewal.` },
+    body: `One column, ${N.formats} ways to write a date: ISO, US, European, a bare year, even a “?”. Nothing sorts, nothing can compute a renewal.` },
   { hue: "vocab", tilt: "1.4deg", title: "made-up statuses",
-    body: "Typed by hand. “Canceled” and “Eligible Nominee” aren’t statuses the bylaws define — and “Suspended,” the one that matters most, is never here." },
+    body: "Typed by hand. “Canceled” and “Eligible Nominee” aren’t statuses the bylaws define, and “Suspended,” the one that matters most, is never here." },
   { hue: "dues", tilt: "-1.1deg", title: "owes, still counts",
     body: `${N.owe} owe dues; ${N.stillMember} are still Active or Voting. The bylaws suspend voting after 3 months unpaid — a YES in a cell enforces nothing.` },
   { hue: "dup", tilt: "1.7deg", title: "same person, twice",

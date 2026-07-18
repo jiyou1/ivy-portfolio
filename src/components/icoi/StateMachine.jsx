@@ -36,7 +36,7 @@ function Lbl({ x, y, anchor = "middle", fill = "var(--color-grayt)", weight = 40
 }
 
 const DESCRIPTION =
-  "Applicants approved under section 3.1 become Active members. After 12 continuous paid months (section 3.2.B) an Active member becomes Voting — but the bylaws never define whether a suspension breaks that continuous clock, so this edge is undefined. Any paid status that goes 3 months unpaid (section 3.4.A) drops to Suspended; paying in full reinstates them to Active. From Suspended, 6 more months unpaid (section 3.4.B) auto-terminates the membership. Separately, a two-thirds board vote (section 3.4.C) board-terminates, off the money-and-time axis entirely.";
+  "Applicants approved under section 3.1 become Active members. After 12 continuous paid months (section 3.2.B) an Active member becomes Voting. But the bylaws never define whether a suspension breaks that continuous clock, so this edge is undefined. Any paid status that goes 3 months unpaid (section 3.4.A) drops to Suspended; paying in full reinstates them to Active. From Suspended, 6 more months unpaid (section 3.4.B) auto-terminates the membership. Separately, a two-thirds board vote (section 3.4.C) board-terminates, off the money-and-time axis entirely.";
 
 export default function StateMachine() {
   return (

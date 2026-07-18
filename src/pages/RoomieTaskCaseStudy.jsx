@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { ChatLines, Home, Wallet, Notes } from "iconoir-react";
+import CaseVideo from "../components/case/CaseVideo";
 import SageMesh from "../components/roomietask/SageMesh";
 import GroupChat from "../components/roomietask/GroupChat";
 import Toc from "../components/icoi/Toc";
@@ -58,7 +60,7 @@ function Eyebrow({ n, children }) {
   );
 }
 const H2 = ({ children, ...rest }) => (
-  <h2 className="mb-4 mt-4 max-w-[880px] text-[28px] font-extrabold leading-tight tracking-[-0.02em] text-ink" {...rest}>
+  <h2 className="mb-4 mt-4 max-w-[880px] text-balance text-[28px] font-extrabold leading-tight tracking-[-0.02em] text-ink" {...rest}>
     {children}
   </h2>
 );
@@ -66,7 +68,7 @@ const H3 = ({ children }) => (
   <h3 className="mb-1 mt-4 text-[18px] font-semibold text-ink">{children}</h3>
 );
 const P = ({ children }) => (
-  <p className="mb-4 max-w-[760px] text-[16px] leading-[1.65] text-prose">{children}</p>
+  <p className="mb-4 max-w-[760px] text-pretty text-[16px] leading-[1.65] text-prose">{children}</p>
 );
 
 const STATS = [
@@ -77,10 +79,10 @@ const STATS = [
 ];
 
 const RIVALS = [
-  ["GROUP CHATS", `"Whose turn is it?" scrolls away by lunch. Nothing is actually tracked.`],
-  ["FLATASTIC", "Household management, but completed chores are not clearly reflected on the main dashboard."],
-  ["SPLITWISE", "Handles money, but not chores, supplies, or whose turn it is."],
-  ["WHITEBOARDS", "Easy to write, easy to ignore, no reminders when it's missed."],
+  [ChatLines, "GROUP CHATS", `"Whose turn is it?" scrolls away by lunch. Nothing is actually tracked.`],
+  [Home, "FLATASTIC", "Household management, but completed chores are not clearly reflected on the main dashboard."],
+  [Wallet, "SPLITWISE", "Handles money, but not chores, supplies, or whose turn it is."],
+  [Notes, "WHITEBOARDS", "Easy to write, easy to ignore, no reminders when it's missed."],
 ];
 
 const INSIGHTS = [
@@ -165,9 +167,9 @@ export default function RoomieTaskCaseStudy() {
                 </h1>
                 <dl className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-x-8">
                   {[
-                    ["Role", "UI Design Lead"],
+                    ["Role", "UI Design & Usability Testing Lead"],
                     ["Team", "6 · INF 132 (UCI HCI studio)"],
-                    ["Duration", "One quarter · Spring 2026 [ CONFIRM ]"],
+                    ["Duration", "One quarter · Spring 2026"],
                     ["Tools", "Figma, surveys & interviews, usability testing"],
                   ].map(([dt, dd]) => (
                     <div key={dt}>
@@ -179,7 +181,7 @@ export default function RoomieTaskCaseStudy() {
               </div>
 
               <div className="pt-2">
-                <p className="mb-6 text-[17px] leading-[1.55] text-ink">
+                <p className="mb-6 text-pretty text-[17px] leading-[1.55] text-ink">
                   {`Roommates don't fight about chores. They go quiet about them. RoomieTask is a mobile home base for chores, expenses, supplies, and reminders, designed from research into why the frustration stays invisible: 75% of the roommates we studied would rather just do the task themselves than bring it up.`}
                 </p>
                 <div className="mb-6 flex flex-wrap gap-2">
@@ -219,20 +221,23 @@ export default function RoomieTaskCaseStudy() {
           {/* ================= 01 CONTEXT ================= */}
           <section id="context" className="pt-6">
             <Eyebrow n="01">Context</Eyebrow>
-            <H2>Everyone wants a clean apartment. Nobody knows whose job it is.</H2>
+            <H2>When household responsibilities pile up, there's no shared place to land them.</H2>
             <P>
-              {`Jamie is 21, lives with three roommates, and rates five stars in conflict avoidance. Coordination happens in a group chat where reminders get buried, tasks get forgotten, and Jamie quietly does extra work to keep the peace. "We all want a clean apartment, but nobody knows who's responsible for what."`}
+              {`RoomieTask is a mobile home base for shared living: chores, expenses, supplies, and reminders in one place. It exists because coordination between roommates keeps failing in the same predictable ways:`}
             </P>
-            <P>
-              {`The fight is always the same fight. "Did anyone do the dishes?" "I'll do them later." "You were supposed to do them earlier." "I did them last time!" And it ends the way it always ends: Jamie cleaning up, again.`}
-            </P>
-            <Slot
-              variant="wide"
-              src={ASSETS + "persona-chat.png"}
-              alt="Jamie persona card beside the group-chat exchange"
-              className="my-4 aspect-[1080/320]"
-              label={"[ SLOT ] persona card + the group-chat exchange from the deck"}
-            />
+            <ul className="my-4 max-w-[760px] space-y-3 text-[16px] leading-[1.6] text-prose">
+              {[
+                ["No central place to coordinate.", "Chores, money, and supplies live in scattered texts, so nothing is actually tracked."],
+                ["Communication gets lost in the group chat.", "Reminders get buried, tasks get forgotten, and “whose turn is it” scrolls away by lunch."],
+                ["Effort is invisible, so it feels unfair.", "Without a shared record of who did what, the work falls on whoever cares most."],
+                ["Money is awkward.", "Nobody wants to be the one chasing roommates to pay their share."],
+              ].map(([b, d]) => (
+                <li key={b} className="flex gap-3">
+                  <span aria-hidden className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-blue" />
+                  <span><b className="font-semibold text-ink">{b}</b> {d}</span>
+                </li>
+              ))}
+            </ul>
           </section>
 
           {/* ================= 02 THE RESEARCH ================= */}
@@ -244,16 +249,6 @@ export default function RoomieTaskCaseStudy() {
               out [ MISSING: survey N and interview count, in the Milestone 2 folder ]. The frustration
               is real, but it stays invisible to the very people causing it.
             </P>
-
-            {/* ink pull-quote card */}
-            <div className="my-6 rounded-2xl bg-ink px-9 py-8">
-              <p className="max-w-[920px] font-instrument text-[30px] leading-[1.3] text-white">
-                {`"It's not even about the chores anymore. I'm just tired of it."`}
-              </p>
-              <p className="mt-3 max-w-[920px] text-[15px] italic leading-[1.5] text-white/70">
-                {`Behind every messy sink is a roommate who's done asking.`}
-              </p>
-            </div>
 
             {/* 4-stat strip, hairline rules */}
             <div className="my-6 flex flex-wrap gap-6 border-y border-stroke py-6">
@@ -298,8 +293,9 @@ export default function RoomieTaskCaseStudy() {
               fails in its own way, and the failures are the requirements.
             </P>
             <div className="my-6 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
-              {RIVALS.map(([k, body]) => (
+              {RIVALS.map(([Icon, k, body]) => (
                 <div key={k} className="rounded-2xl border border-stroke bg-white px-5 py-6">
+                  <Icon width={22} height={22} strokeWidth={1.8} className="mb-3 text-blue" aria-hidden />
                   <p className="font-plex text-[11px] font-semibold tracking-[0.12em] text-blue-text">{k}</p>
                   <p className="mt-3 text-[13px] leading-[1.6] text-prose">{body}</p>
                 </div>
@@ -351,7 +347,17 @@ export default function RoomieTaskCaseStudy() {
               design: gentle, fair, and never a manager.
             </P>
 
-            <div className="my-8 flex flex-col gap-12">
+            <CaseVideo
+              sources={[
+                { src: ASSETS + "app-demo.webm", type: "video/webm" },
+                { src: ASSETS + "app-demo.mp4", type: "video/mp4" },
+              ]}
+              poster={ASSETS + "app-demo.png"}
+              className="my-8 aspect-[930/537]"
+              label={"[ APP RECORDING ] RoomieTask walkthrough · Chores, Expenses, Supplies, Reminders"}
+            />
+
+            <div className="my-8 flex flex-col gap-8">
               {BEATS.map((b, i) => (
                 <div key={b.t} className="flex gap-5">
                   <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full border-[1.5px] border-stroke-2 bg-white font-plex text-[14px] font-semibold text-blue-text">
@@ -360,13 +366,6 @@ export default function RoomieTaskCaseStudy() {
                   <div className="min-w-0 flex-1">
                     <h3 className="mt-1 text-[18px] font-semibold text-ink">{b.t}</h3>
                     <p className="mb-0 mt-2 max-w-[760px] text-[15px] leading-[1.6] text-prose">{b.d}</p>
-                    <Slot
-                      variant="beat"
-                      src={ASSETS + b.img}
-                      alt={b.t}
-                      className="mt-4 aspect-[1028/300]"
-                      label={`[ SLOT ] ${b.t} · phone screenshot`}
-                    />
                   </div>
                 </div>
               ))}

@@ -16,10 +16,10 @@ import { Expand, Xmark, NavArrowLeft, NavArrowRight } from "iconoir-react";
 const BASE = "/case/icoi/bylaws/";
 
 const PAGES = [
-  { file: "p01.webp", tag: "p. 1", note: "Scanned cover — zero selectable text", rot: -5, lift: 12 },
+  { file: "p01.webp", tag: "p. 1", note: "Scanned cover, zero selectable text", rot: -5, lift: 12 },
   { file: "p03.webp", tag: "p. 3", note: "Contents · 60+ subsections to map", rot: 3, lift: 30 },
-  { file: "p07.webp", tag: "§ 3.4", note: "Suspension & termination — the clause we traced", rot: -3, lift: 0 },
-  { file: "p13.webp", tag: "p. 13", note: "Nominations — one unbroken wall of text", rot: 4, lift: 22 },
+  { file: "p07.webp", tag: "§ 3.4", note: "Suspension & termination, the clause we traced", rot: -3, lift: 0 },
+  { file: "p13.webp", tag: "p. 13", note: "Nominations, one unbroken wall of text", rot: 4, lift: 22 },
   { file: "p27.webp", tag: "att. C", note: "Org-structure chart, hand-drawn boxes", rot: -6, lift: 38 },
 ];
 
@@ -45,7 +45,7 @@ function Lightbox({ index, onClose, onStep }) {
     <motion.div
       role="dialog"
       aria-modal="true"
-      aria-label={`Bylaws ${p.tag} — ${p.note}`}
+      aria-label={`Bylaws ${p.tag}: ${p.note}`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -214,7 +214,7 @@ export default function BylawsTable() {
       </div>
 
       <figcaption className="mt-3 max-w-[760px] text-[13px] leading-[1.5] text-grayt">
-        The bylaws as we received them — a 27-page scanned PDF with no text layer.
+        The bylaws as we received them: a 27-page scanned PDF with no text layer.
         Five of the pages we spent the most time decoding.{" "}
         <span className="text-ink/70">Tap a page to read it.</span>
       </figcaption>

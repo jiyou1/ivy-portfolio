@@ -19,11 +19,14 @@ function Verdict({ kind, children }) {
 
 export default function VerdictTable() {
   return (
-    <div className="my-8 overflow-x-auto">
-      <table className="w-full min-w-[680px] border-collapse overflow-hidden rounded-2xl border border-stroke bg-white text-[14px]">
-        <caption className="pb-3 text-left font-plex text-[11px] uppercase tracking-[0.12em] text-grayt">
-          Spreadsheet vocabulary vs. bylaws vocabulary
-        </caption>
+    <div className="my-8">
+      {/* title lives outside the overflow-hidden table so its left edge is never
+          clipped by the rounded-corner clip; aria-label keeps the table named */}
+      <p className="mb-3 font-plex text-[11px] uppercase tracking-[0.12em] text-grayt">
+        Spreadsheet vocabulary vs. bylaws vocabulary
+      </p>
+      <div className="overflow-x-auto">
+      <table aria-label="Spreadsheet vocabulary vs. bylaws vocabulary" className="w-full min-w-[680px] border-collapse overflow-hidden rounded-2xl border border-stroke bg-white text-[14px]">
         <thead>
           <tr>
             {["Sheet dropdown says", "Bylaws say", "Verdict"].map((h) => (
@@ -56,7 +59,7 @@ export default function VerdictTable() {
           <tr>
             <td className="border-b border-stroke px-5 py-3.5 align-top text-grayt">·</td>
             <td className="border-b border-stroke px-5 py-3.5 align-top">
-              §3.4.A · <StatusChip status="suspended">SUSPENDED</StatusChip> · the pivot state of the whole system
+              §3.4.A · defined · the pivot state of the whole system
             </td>
             <Verdict kind="missing">missing</Verdict>
           </tr>
@@ -72,6 +75,7 @@ export default function VerdictTable() {
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
   );
 }
