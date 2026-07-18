@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ChatLines, Home, Wallet, Notes } from "iconoir-react";
+import { ChatLines, Home, Wallet, Notes, Search, CheckCircle, WarningTriangle } from "iconoir-react";
 import CaseVideo from "../components/case/CaseVideo";
 import SageMesh from "../components/roomietask/SageMesh";
 import GroupChat from "../components/roomietask/GroupChat";
@@ -112,9 +112,9 @@ const BEATS = [
 ];
 
 const REFLECT = [
-  ["RESEARCH FIRST", `Research defines the problem worth solving, and that's more valuable than any pixel-perfect interface.`],
-  ["TEST EARLY", "4 of 5 testers doubted a task they had completed correctly. No amount of visual polish fixes a missing confirmation state; only testing finds it."],
-  ["[ HONEST MISS ]", "[ SLOT: one thing that went wrong and how it was fixed. Milestone folders will have candidates. ]"],
+  [Search, "RESEARCH FIRST", `Research defines the problem worth solving, and that's more valuable than any pixel-perfect interface.`],
+  [CheckCircle, "TEST EARLY", "4 of 5 testers doubted a task they had completed correctly. No amount of visual polish fixes a missing confirmation state; only testing finds it."],
+  [WarningTriangle, "[ HONEST MISS ]", "[ SLOT: one thing that went wrong and how it was fixed. Milestone folders will have candidates. ]"],
 ];
 
 export default function RoomieTaskCaseStudy() {
@@ -378,9 +378,12 @@ export default function RoomieTaskCaseStudy() {
             <Eyebrow n="07">Reflection</Eyebrow>
             <H2>What this quarter left with me</H2>
             <div className="my-6 grid grid-cols-1 gap-6 md:grid-cols-3">
-              {REFLECT.map(([k, body]) => (
+              {REFLECT.map(([Icon, k, body]) => (
                 <div key={k} className="rounded-2xl border border-stroke bg-white px-6 py-7">
-                  <p className="font-plex text-[11px] font-semibold tracking-[0.12em] text-blue-text">{k}</p>
+                  <p className="flex items-center gap-2 font-plex text-[11px] font-semibold tracking-[0.12em] text-blue-text">
+                    <Icon width={13} height={13} strokeWidth={2} aria-hidden />
+                    {k}
+                  </p>
                   <p className="mt-3 text-[13px] leading-[1.6] text-prose">{body}</p>
                 </div>
               ))}
