@@ -115,13 +115,13 @@ const BEATS = [
 
 const STATS = [
   ["9", "people, mixed experience levels"],
-  ["16", "weeks, idea to packaged app"],
+  ["6", "months, idea to packaged app"],
   ["4", "user flows mapped before UI"],
   ["1", "pixel-art café, shipped"],
 ];
 
 const REFLECT = [
-  ["AS PM", TaskList, "Nine people, mixed experience, one academic cycle: shipping meant cutting features early and often. Every scope cut that hurt in week 6 is the reason we had a packaged app in week 16."],
+  ["AS PM", TaskList, "Nine people, mixed experience, one academic cycle: shipping meant cutting features early and often. Every scope cut that hurt in month 2 is the reason we had a packaged app by month 6."],
   ["AS DESIGNER", DesignPencil, "The café metaphor only worked because we mapped flows before drawing screens. Personality came last, on top of structure, never instead of it."],
   ["NEXT", ArrowRight, "Account sync, mobile, and shared study rooms: the café is better with friends at the next table."],
 ];
@@ -192,13 +192,13 @@ export default function LatteLearnCaseStudy() {
               <div>
                 <Eyebrow>Case study</Eyebrow>
                 <h1 className="mt-4 font-instrument text-[clamp(44px,6.5vw,76px)] font-normal leading-[1.04] tracking-[-0.015em] text-ink">
-                  Nine people, sixteen weeks, one pixel-art café.
+                  Nine people, two quarters, one pixel-art café.
                 </h1>
                 <dl className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-x-8">
                   {[
                     ["Role", "Project Manager & Design Lead"],
                     ["Team", "Team Espresso · 9 (LikeLion US 2024-25)"],
-                    ["Duration", "Jan – May 2025 · one academic cycle"],
+                    ["Duration", "Jan – Jun 2025 · two quarters, winter to spring"],
                     ["Tools", "Figma, React + Electron, Flask"],
                   ].map(([dt, dd]) => (
                     <div key={dt}>

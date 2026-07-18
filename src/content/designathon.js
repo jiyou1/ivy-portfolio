@@ -202,6 +202,25 @@ export const SHIPPED_SECTION = {
   ],
   credit: "The full site was designed by a four-person UI/UX committee; these six surfaces were mine.",
   link: { href: "https://ucidesignathon.com", label: "ucidesignathon.com" },
+  // event-day photos: the shipped surfaces in front of a live event, plus my
+  // weekend on the ground volunteering as a participant mentor
+  photos: [
+    {
+      src: "/work/designathon/event-courtyard.jpg",
+      alt: "Design-a-thon event day: participants at team tables across the courtyard",
+      caption: "Event day — 200+ participants working across the courtyard.",
+    },
+    {
+      src: "/work/designathon/event-mentoring.jpg",
+      alt: "A workshop room of participants at laptops during a mentor session",
+      caption: "Between sprints I volunteered as a participant mentor through the weekend.",
+    },
+    {
+      src: "/work/designathon/event-team.jpg",
+      alt: "Two mentors in Design-a-thon shirts at the event",
+      caption: "On shift in the event tee, with a fellow mentor.",
+    },
+  ],
 };
 
 export const REFLECTION = {

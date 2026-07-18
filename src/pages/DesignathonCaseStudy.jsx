@@ -144,6 +144,14 @@ export default function DesignathonCaseStudy() {
                 {SHIPPED_SECTION.link.label}
               </a>
             </p>
+
+            {/* event-day strip: the shipped surfaces serving a live event, and my
+                weekend on the ground as a participant mentor */}
+            <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
+              {SHIPPED_SECTION.photos.map((p) => (
+                <Figure key={p.src} src={p.src} caption={p.caption} className="aspect-[3/2]" />
+              ))}
+            </div>
           </CaseSection>
 
           {/* ================= 05 REFLECTION ================= */}
