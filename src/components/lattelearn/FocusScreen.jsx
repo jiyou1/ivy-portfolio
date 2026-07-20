@@ -134,14 +134,12 @@ export default function FocusScreen() {
         loop
         muted
         playsInline
-        // multiply knocks out the video's baked-in white bg (no alpha in either
-        // export). The bg is ~253 + compression wobble, which left a faint box;
-        // brightness(1.02) clips near-white to pure white BEFORE the blend so
-        // the knockout is total. Swap for a yuva420p webm to drop both hacks.
+        // bg-removed export is flattened to pure white (mp4 can't carry alpha);
+        // multiply knocks it out, brightness(1.02) guards h264 compression
+        // wobble around the white. A yuva420p webm would drop both hacks.
         style={{ ...PIX, mixBlendMode: "multiply", filter: "brightness(1.02)" }}
         className="absolute left-[508px] top-[336px] size-[424.8px] object-cover"
       >
-        <source src="/espresso-brew.webm" type="video/webm" />
         <source src="/espresso-brew.mp4" type="video/mp4" />
       </video>
 
