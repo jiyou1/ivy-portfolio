@@ -44,7 +44,7 @@ const OLIVE_TOKENS = {
 
 const TOC_SECTIONS = [
   ["01", "context", "Context"],
-  ["02", "research", "The research"],
+  ["02", "research", "Listening first"],
   ["03", "tried", "Everyone already tried"],
   ["04", "foundso", "Found → So"],
   ["05", "testing", "Usability testing"],
@@ -74,10 +74,32 @@ const P = ({ children }) => (
 );
 
 const STATS = [
-  ["75%", "would just do the task themselves rather than bring it up"],
-  ["64%", "named cleaning & chores as their #1 source of friction"],
-  ["5", "roommates in moderated usability tests"],
-  ["4", "coping tools already tried, and abandoned"],
+  ["41", "survey responses, fielded April 2026"],
+  ["34", "respondents currently living with roommates"],
+  ["30 of 34", "do the undone task themselves rather than bring it up"],
+  ["40%+", "rely on reminders that get ignored or forgotten"],
+];
+
+/* survey findings, one card each */
+const FINDINGS = [
+  {
+    k: "CONFLICT GETS ABSORBED, NOT RESOLVED",
+    body: "30 of 34 respondents said they do the undone task themselves rather than confront anyone. The problem is often invisible to the people creating it.",
+  },
+  {
+    k: "TALKING WORKS, UNTIL IT DOESN'T",
+    body: "In-person conversation was the most common resolution method, but effectiveness ratings split hard: some rated it 5 of 5, others said talking does nothing. A tool can't assume face-to-face fixes things.",
+  },
+  {
+    k: "REMINDERS WITHOUT FOLLOW-THROUGH JUST BECOME NAGGING",
+    body: "Over 40% rely on reminders, yet respondents reported they're ignored or forgotten. Reminders need confirmation and escalation, not repetition.",
+  },
+];
+
+const TESTING_STATS = [
+  ["5", "moderated sessions, May 2026"],
+  ["23", "of 25 task runs completed"],
+  ["1 or 2", "of 5, difficulty rating for most tasks"],
 ];
 
 /* earthy accents on cream — one per stat, all AA at this size on #EFEDE0 */
@@ -130,22 +152,35 @@ const RIVALS = [
   [Notes, "WHITEBOARDS", "Easy to write, easy to ignore, no reminders when it's missed."],
 ];
 
+/* usability insights: claim, evidence, and (where participants said it best)
+   the verbatim words. Participants are anonymized as P1 to P5. */
 const INSIGHTS = [
   {
-    k: "INSIGHT 1 · RIGHT ACTION, NO CONFIRMATION",
-    body: `4 of 5 completed tasks but doubted themselves: "Did I do it?" One gave up entirely, sure it had failed.`,
-    fix: "Fix: success states, updated task states, clear active and submitted field states.",
+    k: "SUCCESS NEEDS A RECEIPT",
+    body: "4 of 5 participants completed actions correctly, then doubted it. With no confirmation, people assume system failure, not success.",
+    quotes: [
+      ["Did I do it?", "P4"],
+      ["I think I did it.", "P3"],
+    ],
   },
   {
-    k: "INSIGHT 2 · HABITS FROM OTHER APPS",
-    body: "Users expected Todoist-style patterns: which fields are required, the ability to edit a chore after creating it.",
-    fix: "Fix: mark required fields, add edit for chores and expenses, standardize inputs.",
+    k: "IF IT LOOKS EDITABLE, PEOPLE WILL TRY",
+    body: "Every participant attempted to interact with prefilled or inactive fields. Affordances promised interaction the prototype didn't deliver.",
   },
   {
-    k: "INSIGHT 3 · READ BY WEIGHT, NOT LABELS",
-    body: "Users went where the screen looked important, missing the balance, overlooking low-contrast cards.",
-    fix: "Fix: balance above transactions, stronger card contrast, one consistent + button.",
+    k: "HIERARCHY BEATS LABELS",
+    body: "Users navigated by visual weight: one suggested the expenses balance summary belongs above the transaction list because that's what people open the page for; another paused at an inconsistent add button across screens.",
   },
+];
+
+/* insight → design response, one line each */
+const CHANGES = [
+  ["Confirmation states after every action", "toasts, updated task states, button feedback."],
+  ["Explicit affordances", "editable, required, and prefilled fields each look like what they are."],
+  ["Balance summary moved above the transaction list", "the page leads with what people open it for."],
+  ["Stronger card contrast on the dashboard", "important things look important."],
+  ["Consistent add button placement", "one position, every screen."],
+  ["Persistent home navigation", "you can always find your way back."],
 ];
 
 const BEATS = [
@@ -208,13 +243,21 @@ export default function RoomieTaskCaseStudy() {
               <div>
                 <Eyebrow>Case study</Eyebrow>
                 <h1 className="mt-4 font-instrument text-[clamp(44px,6.5vw,72px)] font-normal leading-[1.06] tracking-[-0.015em] text-ink">
-                  Four tools, 75% silence, one calm home base.
+                  Four tools, 30 silent roommates, one calm home base.
                 </h1>
                 <dl className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-x-8">
+                  {/* Role spans both columns: it names the actual scope of work */}
+                  <div className="sm:col-span-2">
+                    <dt className="mb-1.5 font-plex text-[11px] uppercase tracking-[0.12em] text-grayt">Role</dt>
+                    <dd className="max-w-[560px] text-[14px] leading-[1.5] text-ink">
+                      Chores flow design (list, creation, assignment, completion states), research
+                      operations (task plan, session template, milestone structure), and design
+                      system alignment across the three designers.
+                    </dd>
+                  </div>
                   {[
-                    ["Role", "UI Design & Usability Testing Lead"],
-                    ["Team", "6 · INF 132 (UCI HCI studio)"],
-                    ["Duration", "One quarter · Spring 2026"],
+                    ["Team", "Team of six · INF 132 (UCI HCI studio)"],
+                    ["Duration", "10 weeks · Spring 2026"],
                     ["Tools", "Figma, surveys & interviews, usability testing"],
                   ].map(([dt, dd]) => (
                     <div key={dt}>
@@ -227,7 +270,7 @@ export default function RoomieTaskCaseStudy() {
 
               <div className="pt-2">
                 <p className="mb-6 text-pretty text-[17px] leading-[1.55] text-ink">
-                  {`Roommates don't fight about chores. They go quiet about them. RoomieTask is a mobile home base for chores, expenses, supplies, and reminders, designed from research into why the frustration stays invisible: 75% of the roommates we studied would rather just do the task themselves than bring it up.`}
+                  {`Roommates don't fight about chores. They go quiet about them. RoomieTask is a mobile home base for chores, expenses, supplies, and reminders, designed from research into why the frustration stays invisible: 30 of the 34 roommates we surveyed would rather just do the task themselves than bring it up.`}
                 </p>
                 <div className="mb-6 flex flex-wrap gap-2">
                   <span className="inline-flex items-center rounded-full border border-blue-text bg-blue px-4 py-2 font-plex text-[12px] text-white">
@@ -288,11 +331,20 @@ export default function RoomieTaskCaseStudy() {
           {/* ================= 02 THE RESEARCH ================= */}
           <section id="research" className="pt-24">
             <Eyebrow n="02">The research</Eyebrow>
-            <H2>The finding we didn't expect: conflict isn't exploding, it's being absorbed</H2>
+            <H2>Listening first</H2>
+            {/* the problem statement we committed to, verbatim */}
+            <blockquote className="my-6 max-w-[760px] rounded-r-xl border border-l-[3px] border-stroke border-l-blue bg-white px-7 py-6">
+              <p className="m-0 text-[16px] italic leading-[1.65] text-legal">
+                "As a person living with roommates, when household responsibilities pile up, it is
+                frustrating to stay on top of chores, expenses, and shared supplies because there is
+                no central place to coordinate and communication gets lost in group chats."
+              </p>
+              <footer className="mt-3 font-plex text-[12px] text-grayt">The problem statement we committed to.</footer>
+            </blockquote>
             <P>
-              We surveyed and interviewed roommates about how shared-living friction actually plays
-              out [ MISSING: survey N and interview count, in the Milestone 2 folder ]. The frustration
-              is real, but it stays invisible to the very people causing it.
+              We started by asking, not sketching: a survey fielded in April 2026 drew 41 responses,
+              34 of them from people currently living with roommates. Three findings shaped
+              everything that came after.
             </P>
 
             {/* 4-stat strip, hairline rules */}
@@ -306,6 +358,16 @@ export default function RoomieTaskCaseStudy() {
                     <StatNumber value={big} delay={i * 0.15} />
                   </b>
                   <span className="mt-1 block text-[13px] leading-[1.5] text-grayt">{small}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* three findings, one card each */}
+            <div className="my-6 grid grid-cols-1 gap-6 md:grid-cols-3">
+              {FINDINGS.map((f) => (
+                <div key={f.k} className="rounded-2xl border border-stroke bg-white p-6">
+                  <p className="font-plex text-[11px] font-semibold tracking-[0.08em] text-blue-text">{f.k}</p>
+                  <p className="mt-3 text-[13px] leading-[1.6] text-prose">{f.body}</p>
                 </div>
               ))}
             </div>
@@ -331,12 +393,6 @@ export default function RoomieTaskCaseStudy() {
               caption="Nineteen pain points clustered into three walls, sized by count, each answered with a written design response before any UI existed. Click to zoom."
             />
 
-            <P>
-              The problem statement we committed to: as a person living with roommates, when household
-              responsibilities pile up, it is frustrating to stay on top of chores, expenses, and shared
-              supplies, because there is no central place to coordinate and communication gets lost in
-              group chats.
-            </P>
           </section>
 
           {/* ================= 03 EVERYONE ALREADY TRIED ================= */}
@@ -372,16 +428,66 @@ export default function RoomieTaskCaseStudy() {
           {/* ================= 05 USABILITY TESTING ================= */}
           <section id="testing" className="pt-24">
             <Eyebrow n="05">Usability testing</Eyebrow>
-            <H2>We tested with 5 roommates and listened</H2>
+            <H2>Five people, twenty-five tasks</H2>
+            <P>
+              Five moderated sessions in May 2026, each running scenario-based tasks across
+              onboarding, the dashboard, chores, expenses, and shopping. 23 of 25 task runs
+              completed. Most tasks rated 1 or 2 of 5 for difficulty, with times ranging from 7
+              seconds to 2 minutes.
+            </P>
+
+            <div className="my-6 flex flex-wrap gap-6 border-y border-stroke py-6">
+              {TESTING_STATS.map(([big, small], i) => (
+                <div key={small} className="w-[252px]">
+                  <b
+                    className="block text-[26px] font-extrabold tracking-[-0.02em]"
+                    style={{ color: STAT_COLORS[i % STAT_COLORS.length] }}
+                  >
+                    <StatNumber value={big} delay={i * 0.15} />
+                  </b>
+                  <span className="mt-1 block text-[13px] leading-[1.5] text-grayt">{small}</span>
+                </div>
+              ))}
+            </div>
+
             <div className="my-6 grid grid-cols-1 gap-6 md:grid-cols-3">
               {INSIGHTS.map((c) => (
                 <div key={c.k} className="rounded-2xl border border-stroke bg-white p-6">
                   <p className="font-plex text-[11px] font-semibold tracking-[0.08em] text-blue-text">{c.k}</p>
                   <p className="mt-3 text-[13px] leading-[1.6] text-prose">{c.body}</p>
-                  <p className="mt-3 text-[13px] font-semibold leading-[1.55] text-ink">{c.fix}</p>
+                  {c.quotes?.map(([q, who]) => (
+                    <blockquote key={who} className="mt-3 border-l-2 border-stroke-2 pl-3">
+                      <p className="m-0 text-[13px] italic leading-[1.5] text-legal">"{q}"</p>
+                      <footer className="mt-0.5 font-plex text-[11px] text-grayt">
+                        <cite className="not-italic">{who}</cite>
+                      </footer>
+                    </blockquote>
+                  ))}
                 </div>
               ))}
             </div>
+
+            {/* the honest failure, given its own weight */}
+            <div className="my-6 max-w-[760px] rounded-r-xl border border-l-[3px] border-stroke bg-white px-7 py-6" style={{ borderLeftColor: "#A4512E" }}>
+              <p className="m-0 font-plex text-[11px] font-semibold uppercase tracking-[0.12em]" style={{ color: "#A4512E" }}>
+                The honest failure
+              </p>
+              <p className="mb-0 mt-3 text-[15px] leading-[1.65] text-prose">
+                Both incomplete tasks involved the dashboard. One participant couldn't find her way
+                back to it at all and gave up. Navigation back to home was a real gap, not a nitpick.
+              </p>
+            </div>
+
+            <H3>What changed</H3>
+            <ul className="my-4 max-w-[760px] space-y-3 text-[15px] leading-[1.6] text-prose">
+              {CHANGES.map(([b, d]) => (
+                <li key={b} className="flex gap-3">
+                  <span aria-hidden className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-blue" />
+                  <span><b className="font-semibold text-ink">{b}:</b> {d}</span>
+                </li>
+              ))}
+            </ul>
+
             <Slot
               variant="wide"
               src={ASSETS + "testing-before-after.png"}
@@ -389,6 +495,12 @@ export default function RoomieTaskCaseStudy() {
               className="my-4 aspect-[1080/340]"
               label={"[ SLOT ] before/after of one tested screen · the confirmation-state fix"}
             />
+
+            <p className="max-w-[760px] font-plex text-[13px] leading-[1.6] text-grayt">
+              Scope, honestly: this was a 10-week HCI course project tested with 5 users, not a
+              shipped product. The findings above are directional, and they were enough to redesign
+              every flow they touched.
+            </p>
           </section>
 
           {/* ================= 06 THE APP ================= */}
