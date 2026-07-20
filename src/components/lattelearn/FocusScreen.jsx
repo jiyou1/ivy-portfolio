@@ -32,11 +32,47 @@ function Shadow({ x, y, w, h }) {
   );
 }
 
-function TaskRow({ children }) {
+const REDUCE =
+  typeof window !== "undefined" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* chalk typewriter: reveals text char-by-char once `start`, then reports done.
+   The invisible full text holds the line's box, so the board never reflows. */
+function Chalk({ text, start, onDone, speed = 45 }) {
+  const [n, setN] = useState(REDUCE ? text.length : 0);
+
+  useEffect(() => {
+    if (!start) return;
+    if (n >= text.length) {
+      onDone?.();
+      return;
+    }
+    const id = setTimeout(() => setN(n + 1), speed);
+    return () => clearTimeout(id);
+  }, [start, n, text.length, speed, onDone]);
+
+  return (
+    <span className="relative">
+      <span className="invisible">{text}</span>
+      <span className="absolute inset-0 whitespace-nowrap">
+        {text.slice(0, n)}
+        {start && n < text.length && <span className="opacity-80">▍</span>}
+      </span>
+    </span>
+  );
+}
+
+function TaskRow({ children, start, onDone }) {
   return (
     <div className="flex items-center gap-[12px]">
-      <span className="size-[14px] rounded-full border-[2px] border-[#f5f0e6]/80" />
-      <p className="font-['Jersey_25'] text-[16px] text-[#f5f0e6]">{children}</p>
+      {/* bullet pops in as its line starts writing */}
+      <span
+        className="size-[14px] rounded-full border-[2px] border-[#f5f0e6]/80 transition-all duration-300"
+        style={REDUCE ? undefined : { opacity: start ? 1 : 0, transform: start ? "scale(1)" : "scale(0.4)" }}
+      />
+      <p className="font-['Jersey_25'] text-[16px] text-[#f5f0e6]">
+        <Chalk text={children} start={start} onDone={onDone} />
+      </p>
     </div>
   );
 }
@@ -78,6 +114,9 @@ export function FocusEmbed({ className = "", bare = false }) {
 export default function FocusScreen() {
   const [secondsLeft, setSecondsLeft] = useState(SESSION);
   const [running, setRunning] = useState(true);
+  // chalkboard write-in sequence: which line is being chalked (0..5), 6 = done
+  const [step, setStep] = useState(REDUCE ? 9 : 0);
+  const next = (i) => () => setStep((s) => Math.max(s, i + 1));
   const videoRef = useRef(null);
 
   // countdown — stops itself at 0
@@ -158,23 +197,38 @@ export default function FocusScreen() {
       {/* leading-[1.15] ≈ Figma's "normal" for Jersey 25; browser normal is
           looser and pushed the list off the board */}
       <div className="absolute left-[111px] top-[118px] flex w-[409px] flex-col items-start gap-[12px] [&_p]:leading-[1.15]">
-        <p className="font-['Jersey_25'] text-[30px] text-[#f5f0e6]">MY TASKS</p>
+        <p className="font-['Jersey_25'] text-[30px] text-[#f5f0e6]">
+          <Chalk text="MY TASKS" start={step >= 0} onDone={next(0)} />
+        </p>
         <div className="h-[2px] w-[10px]" />
         <div className="flex items-center gap-[10px] text-[#ffb848]">
           <p
             className="font-['Jersey_25'] text-[22px]"
             style={{ textShadow: "0px 0px 14px rgba(255,184,72,0.8)" }}
           >
-            MATH
+            <Chalk text="MATH" start={step >= 1} onDone={next(1)} />
           </p>
-          <p className="font-['Jersey_25'] text-[16px]">· brewing</p>
+          {/* status fades in once the subject is written */}
+          <p
+            className="font-['Jersey_25'] text-[16px] transition-opacity duration-500"
+            style={REDUCE ? undefined : { opacity: step >= 2 ? 1 : 0 }}
+          >
+            · brewing
+          </p>
         </div>
-        <TaskRow>PRACTICE MIDTERM</TaskRow>
-        <TaskRow>FINISH REVIEW FOR EXAM</TaskRow>
+        <TaskRow start={step >= 2} onDone={next(2)}>PRACTICE MIDTERM</TaskRow>
+        <TaskRow start={step >= 3} onDone={next(3)}>FINISH REVIEW FOR EXAM</TaskRow>
         <div className="h-[6px] w-[10px]" />
-        <p className="font-['Jersey_25'] text-[22px] text-[#f5f0e6]">SCIENCE</p>
-        <TaskRow>PRACTICE MIDTERM</TaskRow>
-        <p className="font-['Jersey_25'] text-[16px] text-[#f5f0e6] opacity-55">+ ADD TASK</p>
+        <p className="font-['Jersey_25'] text-[22px] text-[#f5f0e6]">
+          <Chalk text="SCIENCE" start={step >= 4} onDone={next(4)} />
+        </p>
+        <TaskRow start={step >= 5} onDone={next(5)}>PRACTICE MIDTERM</TaskRow>
+        <p
+          className="font-['Jersey_25'] text-[16px] text-[#f5f0e6] opacity-55 transition-opacity duration-500"
+          style={REDUCE ? undefined : { opacity: step >= 6 ? 0.55 : 0 }}
+        >
+          + ADD TASK
+        </p>
       </div>
 
       {/* top-right buttons */}
