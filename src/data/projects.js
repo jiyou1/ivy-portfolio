@@ -8,6 +8,7 @@ export const PROJECTS = [
     // Cover renders `video` as an autoplay/muted/loop/playsInline element; the
     // poster is the video's first frame so there's no flash before it plays.
     cover: "/covers/icoi.png",
+    thumb: "#C1352B", // red placeholder before the cover loads
     href: "/work/icoi",
     external: false,
     skills: ["UI/UX DESIGN", "DESIGN SYSTEMS", "PROTOTYPING", "REACT", "TYPESCRIPT", "HTML/CSS", "TAILWIND CSS", "REST APIS", "GIT"],
@@ -19,6 +20,7 @@ export const PROJECTS = [
     desc: "A focus companion that brings the café study experience home. Led a 9-person team from concept to a packaged desktop app.",
     tags: "UI/UX · ELECTRON · PM",
     cover: "/covers/lattelearn.png",
+    thumb: "#3B2A1E", // dark brown placeholder before the cover loads
     href: "/work/lattelearn",
     external: false,
     skills: ["UI/UX DESIGN", "PROTOTYPING", "MOTION DESIGN", "GIT"],
@@ -30,6 +32,7 @@ export const PROJECTS = [
     desc: "Shared task coordination app designed through surveys, interviews, affinity mapping, prototyping, and moderated usability testing.",
     tags: "RESEARCH · PROTOTYPING · TESTING",
     cover: "/covers/roomietask.png",
+    thumb: "#F6C6D8", // pastel pink placeholder before the cover loads
     href: "/work/roomietask",
     external: false,
     skills: ["UI/UX DESIGN", "USER RESEARCH", "PROTOTYPING", "ACCESSIBILITY"],
@@ -41,6 +44,7 @@ export const PROJECTS = [
     desc: "Website and event experience for UCI's largest student design event, serving 200+ participants with a 4-person design team.",
     tags: "UI/UX · WEB DESIGN · BRANDING",
     cover: "/covers/designathon.png",
+    thumb: "#0047AB", // cobalt blue placeholder before the cover loads
     coverPosition: "center 30%",
     href: "/work/designathon",
     external: false,

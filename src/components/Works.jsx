@@ -86,8 +86,11 @@ function WorkCard({ p, dimmed }) {
         {...wrapperProps}
         className="glass group block rounded-[28px] p-6"
       >
-        <div className="relative aspect-[592/360] overflow-hidden rounded-2xl border border-imgbg bg-white">
-          <span className="absolute inset-0 flex items-center justify-center text-[11px] font-semibold tracking-[0.06em] text-blue-text">
+        <div
+          className="relative aspect-[592/360] overflow-hidden rounded-2xl border border-imgbg bg-white"
+          style={p.thumb ? { backgroundColor: p.thumb } : undefined}
+        >
+          <span className="absolute inset-0 flex items-center justify-center text-[11px] font-semibold tracking-[0.06em] text-white/80 mix-blend-difference">
             COVER — {p.title.toUpperCase()}
           </span>
           <Cover src={p.cover} video={p.video} alt={p.title + " cover"} position={p.coverPosition} />

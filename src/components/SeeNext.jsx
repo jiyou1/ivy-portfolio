@@ -19,7 +19,10 @@ export default function SeeNext({ current }) {
             to={p.href}
             className="group block overflow-hidden rounded-2xl border border-stroke bg-white transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_-20px_rgba(11,14,20,0.35)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue focus-visible:ring-offset-2"
           >
-            <div className="relative aspect-[592/360] overflow-hidden bg-imgbg">
+            <div
+              className="relative aspect-[592/360] overflow-hidden bg-imgbg"
+              style={p.thumb ? { backgroundColor: p.thumb } : undefined}
+            >
               <img
                 src={p.cover}
                 alt={p.title + " cover"}

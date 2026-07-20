@@ -488,14 +488,6 @@ export default function RoomieTaskCaseStudy() {
               ))}
             </ul>
 
-            <Slot
-              variant="wide"
-              src={ASSETS + "testing-before-after.png"}
-              alt="Before and after of one tested screen: the confirmation-state fix"
-              className="my-4 aspect-[1080/340]"
-              label={"[ SLOT ] before/after of one tested screen · the confirmation-state fix"}
-            />
-
             <p className="max-w-[760px] font-plex text-[13px] leading-[1.6] text-grayt">
               Scope, honestly: this was a 10-week HCI course project tested with 5 users, not a
               shipped product. The findings above are directional, and they were enough to redesign
