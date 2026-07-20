@@ -193,17 +193,23 @@ export default function FocusScreen() {
         <img src={A + "icon-settings.svg"} alt="" className="size-[22px]" />
       </button>
 
-      {/* wordmark sign */}
-      <div className="absolute left-[1174px] top-[31px] flex w-[234px] flex-col items-start gap-[6px] rounded-[12px] bg-[#1c1b19] px-[22px] py-[12px]">
-        <div className="flex w-full items-center gap-[8px]">
-          <img src={A + "icon-cup.svg"} alt="" className="size-[24px]" />
-          <p className="font-['Jersey_25'] text-[30px] text-[#f5f0e6]">LATTE LEARN</p>
-        </div>
-        {/* brew underline: 10 amber segments */}
-        <div className="flex h-[7px] w-full gap-[1.7px]">
-          {Array.from({ length: 10 }, (_, i) => (
-            <span key={i} className="h-[7px] w-[13.3px] rounded-[2px] bg-[#ffb848]" />
-          ))}
+      {/* hanging wordmark sign — new logo lockup (Figma 636:464): plaque on two
+          rods, pixel Cup Mark drawn in CSS rects, no image asset */}
+      <div aria-hidden className="absolute left-[1176px] top-0 h-[18.2px] w-[2.1px] bg-[#1c1b19]" />
+      <div aria-hidden className="absolute left-[1344px] top-0 h-[18.2px] w-[2.1px] bg-[#1c1b19]" />
+      <div className="absolute left-[1112px] top-[18px] h-[75px] w-[296px] rounded-[9.8px] bg-[#1c1b19]">
+        <div className="absolute left-[20px] top-[15px] flex items-center gap-[12px]">
+          {/* Cup Mark: ivory cup + saucer + handle, amber coffee, 3 steam wisps */}
+          <div aria-hidden className="relative size-[39.2px]">
+            <span className="absolute left-[5.6px] top-[18.2px] h-[15.4px] w-[25.2px] bg-[#f5f0e6]" />
+            <span className="absolute left-[8.4px] top-[33.6px] h-[2.8px] w-[19.6px] bg-[#f5f0e6]" />
+            <span className="absolute left-[30.8px] top-[21px] h-[8.4px] w-[5.6px] bg-[#f5f0e6]" />
+            <span className="absolute left-[8.4px] top-[18.2px] h-[4.2px] w-[19.6px] bg-[#ffb848]" />
+            <span className="absolute left-[12.6px] top-[4.2px] h-[5.6px] w-[2.8px] bg-[#ffb848]/90" />
+            <span className="absolute left-[18.2px] top-[1.4px] h-[5.6px] w-[2.8px] bg-[#ffb848]/70" />
+            <span className="absolute left-[23.8px] top-[4.2px] h-[5.6px] w-[2.8px] bg-[#ffb848]/50" />
+          </div>
+          <p className="font-['Jersey_25'] text-[40px] leading-none text-[#f5f0e6]">LATTE LEARN</p>
         </div>
       </div>
 
