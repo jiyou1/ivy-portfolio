@@ -93,6 +93,32 @@ const Em = ({ children }) => (
   </b>
 );
 
+/* iPad-style bezel for the shipped walkthrough — same ink-bezel language as
+   ShippedFeatures' LaptopFrame/PhoneFrame (container-query units so it scales
+   with its column). Even bezel all round + camera dot on the landscape edge. */
+function TabletFrame({ children }) {
+  return (
+    <div className="mx-auto w-full" style={{ containerType: "inline-size" }}>
+      <div style={{ filter: "drop-shadow(0 2cqw 3cqw rgba(11,14,20,0.18))" }}>
+        <div className="relative" style={{ background: "#0B0E14", borderRadius: "3.4cqw", padding: "2.4cqw" }}>
+          {/* front camera, centered on the right bezel in landscape */}
+          <span
+            aria-hidden
+            className="absolute right-[1cqw] top-1/2 -translate-y-1/2 rounded-full"
+            style={{ width: "0.6cqw", height: "0.6cqw", background: "#2a3140", boxShadow: "inset 0 0 0.2cqw #000" }}
+          />
+          <div
+            className="relative overflow-hidden"
+            style={{ borderRadius: "1.4cqw", border: "1px solid #E2E9F5", background: "#ECF1FA" }}
+          >
+            {children}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* frosted café card: the one material for matrix / stats / reflection */
 function Glass({ children, className = "" }) {
   return (
@@ -361,7 +387,9 @@ export default function LatteLearnCaseStudy() {
                 stacked below on narrow. Standard figure border, since the
                 ShippedFeatures device frame is not exported as a standalone. */}
             <div className="my-10 grid grid-cols-1 items-start gap-8 lg:grid-cols-[1.6fr_1fr]">
-              <FocusEmbed />
+              <TabletFrame>
+                <FocusEmbed bare />
+              </TabletFrame>
               <ol className="flex flex-col gap-6">
                 {BEATS.map((b, i) => (
                   <li key={b.t} className="flex gap-4">

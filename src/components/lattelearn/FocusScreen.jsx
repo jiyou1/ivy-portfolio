@@ -43,7 +43,7 @@ function TaskRow({ children }) {
 
 /* Scales the fixed 1440x1024 screen to fill any container width (case-study
    hero + shipped centerpiece embeds). Fully interactive — the pomodoro runs. */
-export function FocusEmbed({ className = "" }) {
+export function FocusEmbed({ className = "", bare = false }) {
   const boxRef = useRef(null);
   const [scale, setScale] = useState(0);
 
@@ -58,7 +58,12 @@ export function FocusEmbed({ className = "" }) {
   return (
     <div
       ref={boxRef}
-      className={"relative w-full overflow-hidden rounded-2xl border border-stroke " + className}
+      // bare: no border/rounding of its own — a device bezel supplies the frame
+      className={
+        "relative w-full overflow-hidden " +
+        (bare ? "" : "rounded-2xl border border-stroke ") +
+        className
+      }
       style={{ aspectRatio: "1440 / 1024" }}
     >
       {scale > 0 && (
