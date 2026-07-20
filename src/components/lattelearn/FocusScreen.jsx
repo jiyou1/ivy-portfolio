@@ -250,8 +250,10 @@ export default function FocusScreen() {
       {/* music pill: marquee, pauses on hover */}
       <div className="absolute left-[1126px] top-[956px] h-[36px] w-[282px] rounded-full bg-[#1c1b19]">
         <img src={A + "icon-music.svg"} alt="" className="absolute left-[14px] top-[8px] size-[20px]" />
-        <div className="absolute left-[44px] top-0 h-[36px] w-[226px] overflow-hidden">
-          <p className="ll-marquee absolute top-[9px] whitespace-nowrap font-['Jersey_25'] text-[19px] text-[#f5f0e6]">
+        {/* flex-centered vertically — Figma's top-9 assumed its own font metrics,
+            the browser's Jersey 25 line box is taller and sat the text low */}
+        <div className="absolute left-[44px] top-0 flex h-[36px] w-[226px] items-center overflow-hidden">
+          <p className="ll-marquee whitespace-nowrap font-['Jersey_25'] text-[19px] leading-none text-[#f5f0e6]">
             {"CAFÉ PLAYLIST · NOW PLAYING · CAFÉ PLAYLIST · NOW PLAYING · "}
           </p>
         </div>
