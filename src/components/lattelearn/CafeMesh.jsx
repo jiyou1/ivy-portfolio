@@ -1,26 +1,38 @@
-/* Warm mesh-gradient field for the LatteLearn page — the café-toned counterpart
-   of the home page's holo mesh, using the same `.blob` technique (blur(70px) on
-   saturated caramel/pink blobs) so this page keeps the site's signature gradient
-   DNA instead of reading flat. Distributed down the full scroll and alternating
-   sides for a continuous wash. Decorative and inert; painted behind the content,
-   so it never affects text contrast. */
+/* Warm mesh-gradient field for the LatteLearn page, the café-toned counterpart
+   of ICOI's CaseBlobs. Pre-softened radial gradients that fade to transparent,
+   so there is NO runtime blur filter to repaint. Distributed down the full
+   scroll and alternating sides for a continuous caramel/pink wash. Decorative
+   and inert, painted behind the content so it never affects text contrast. */
+const CARAMEL = "rgba(232,200,143,";
+const PINK = "rgba(255,184,235,";
+
+// [size, position, leadColor, leadAlpha, trailColor, trailAlpha]
 const BLOBS = [
-  "h-[560px] w-[560px] from-[#E8C88F]/80 to-[#FFB8EB]/45 top-[-60px] right-[-110px]",
-  "h-[420px] w-[420px] from-[#FFB8EB]/70 to-[#E8C88F]/45 top-[520px] left-[-150px]",
-  "h-[520px] w-[520px] from-[#E8C88F]/78 to-[#FFB8EB]/42 top-[1400px] right-[-120px]",
-  "h-[440px] w-[440px] from-[#FFB8EB]/68 to-[#E8C88F]/45 top-[2450px] left-[-150px]",
-  "h-[520px] w-[520px] from-[#E8C88F]/76 to-[#FFB8EB]/42 top-[3500px] right-[-120px]",
-  "h-[440px] w-[440px] from-[#FFB8EB]/66 to-[#E8C88F]/44 top-[4600px] left-[-150px]",
-  "h-[500px] w-[500px] from-[#E8C88F]/74 to-[#FFB8EB]/40 top-[5650px] right-[-110px]",
-  "h-[460px] w-[460px] from-[#FFB8EB]/66 to-[#E8C88F]/44 top-[6650px] left-[-140px]",
-  "h-[420px] w-[420px] from-[#E8C88F]/70 to-[#FFB8EB]/40 bottom-[40px] left-[400px]",
+  [560, { top: -60, right: -110 }, CARAMEL, 0.5, PINK, 0.3],
+  [420, { top: 520, left: -150 }, PINK, 0.42, CARAMEL, 0.28],
+  [520, { top: 1400, right: -120 }, CARAMEL, 0.48, PINK, 0.28],
+  [440, { top: 2450, left: -150 }, PINK, 0.4, CARAMEL, 0.28],
+  [520, { top: 3500, right: -120 }, CARAMEL, 0.46, PINK, 0.26],
+  [440, { top: 4600, left: -150 }, PINK, 0.4, CARAMEL, 0.28],
+  [500, { top: 5650, right: -110 }, CARAMEL, 0.44, PINK, 0.26],
+  [460, { top: 6650, left: -140 }, PINK, 0.4, CARAMEL, 0.28],
+  [420, { bottom: 40, left: 400 }, CARAMEL, 0.42, PINK, 0.26],
 ];
 
 export default function CafeMesh() {
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-      {BLOBS.map((c, i) => (
-        <div key={i} className={`blob bg-gradient-to-br ${c}`} />
+      {BLOBS.map(([size, pos, lead, la, trail, ta], i) => (
+        <div
+          key={i}
+          className="absolute rounded-full"
+          style={{
+            width: size,
+            height: size,
+            ...pos,
+            background: `radial-gradient(circle at 40% 40%, ${lead}${la}), ${trail}${ta}) 58%, transparent 76%)`,
+          }}
+        />
       ))}
     </div>
   );

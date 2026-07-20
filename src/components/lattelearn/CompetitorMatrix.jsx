@@ -2,7 +2,7 @@
    image) so it stays readable and scrollable on mobile and legible to screen
    readers. Data is passed in verbatim, never re-derived from the Figma render.
 
-   Accessibility: the ●/— glyphs are decorative (aria-hidden); each cell carries
+   Accessibility: the ●/– glyphs are decorative (aria-hidden); each cell carries
    an sr-only "Yes"/"No" so the meaning survives without color, and the faint
    miss glyph is excluded from the contrast audit. LatteLearn's column gets an
    accent tint + accent marks; misses are a muted café tan, never a red X. */
@@ -29,7 +29,7 @@ function Mark({ hit, isLatte }) {
         className="font-plex text-[15px]"
         style={{ color: hit ? (isLatte ? "var(--color-blue)" : "var(--color-ink)") : MISS }}
       >
-        {hit ? "●" : "—"}
+        {hit ? "●" : "–"}
       </span>
       <span className="sr-only">{hit ? "Yes" : "No"}</span>
     </>

@@ -6,6 +6,8 @@ import Slot from "../components/icoi/Slot";
 import BylawTrace from "../components/icoi/BylawTrace";
 import CompetitorMatrix from "../components/lattelearn/CompetitorMatrix";
 import ZoomFigure from "../components/icoi/ZoomFigure";
+import CaseVideo from "../components/case/CaseVideo";
+import Todo from "../components/case/Todo";
 import SeeNext from "../components/SeeNext";
 import {
   Community,
@@ -24,7 +26,7 @@ import {
   GithubCircle,
 } from "iconoir-react";
 
-/* LatteLearn case study — a sibling of the ICOI page: same architecture (TOC
+/* LatteLearn case study, a sibling of the ICOI page: same architecture (TOC
    scrollspy rail, skip button, Slot placeholders, section scaffolding, the
    excerpt+means trace), different skin. The café palette is applied by
    OVERRIDING the shared CSS tokens on this page's root (CAFE_TOKENS below), so
@@ -35,6 +37,17 @@ import {
 
 const ASSETS = "/case/lattelearn/";
 
+/* Prototype walkthrough clip, shared by the hero and the shipped centerpiece.
+   webm first, mp4 fallback, poster still. Expected but absent until export, so
+   CaseVideo shows the labelled placeholder and upgrades in place once it lands. */
+const WALKTHROUGH = {
+  sources: [
+    { src: "/work/lattelearn/prototype-walkthrough.webm", type: "video/webm" },
+    { src: "/work/lattelearn/prototype-walkthrough.mp4", type: "video/mp4" },
+  ],
+  poster: "/work/lattelearn/prototype-poster.jpg",
+};
+
 /* café tokens layered over the site's shared token names */
 const CAFE_TOKENS = {
   "--color-bg": "#F4EFE6",
@@ -42,12 +55,12 @@ const CAFE_TOKENS = {
   "--color-prose": "#4A4036", // body
   "--color-legal": "#4A4036", // trace quote text
   "--color-grayt": "#6F6350", // "muted" role, darkened to pass AA on the bg
-  "--color-blue": "#8C6D46", // true accent — arrows, fills, marks (large)
-  "--color-blue-text": "#6E5436", // accent-ink — small accent text (contrast-safe)
+  "--color-blue": "#8C6D46", // true accent: arrows, fills, marks (large)
+  "--color-blue-text": "#6E5436", // accent-ink: small accent text (contrast-safe)
   "--color-imgbg": "#EDE5D6",
   "--color-stroke": "#E5DCCC",
   "--color-stroke-2": "#D9CDB8",
-  // NB: no opaque backgroundColor here — the café base is a separate -z-20 layer
+  // NB: no opaque backgroundColor here. The café base is a separate -z-20 layer
   // below the mesh, so the warm blobs (-z-10) aren't painted over.
 };
 
@@ -80,7 +93,7 @@ const P = ({ children }) => (
   <p className="mb-4 max-w-[760px] text-[17px] leading-[1.65] text-prose">{children}</p>
 );
 /* Em: a small caramel bottom-half highlight for the one phrase per paragraph that
-   carries the point — the café-warm sibling of ICOI's pink <Hl>. Text darkens to
+   carries the point, the café-warm sibling of ICOI's pink <Hl>. Text darkens to
    ink so the emphasis reads as hierarchy, not just color. */
 const Em = ({ children }) => (
   <b
@@ -91,7 +104,7 @@ const Em = ({ children }) => (
   </b>
 );
 
-/* frosted café card — the one material for matrix / stats / reflection */
+/* frosted café card: the one material for matrix / stats / reflection */
 function Glass({ children, className = "" }) {
   return (
     <div
@@ -107,10 +120,10 @@ function Glass({ children, className = "" }) {
 }
 
 const BEATS = [
-  { t: "Open the café", d: "The room loads with music already playing: arriving, not launching.", img: "beat-1.png", label: "[ SLOT ] Open the café · screenshot or short loop" },
-  { t: "Chalk up the board", d: "Add today's tasks under their subjects on the menu board.", img: "beat-2.png", label: "[ SLOT ] Chalk up the board · screenshot or short loop" },
-  { t: "Brew a session", d: "Start the pomodoro; the espresso machine brews for 25 minutes while you work.", img: "beat-3.png", label: "[ SLOT ] Brew a session · screenshot or short loop" },
-  { t: "Take the break, keep the streak", d: "The cup is ready: break time, then the next brew. Statistics track your day.", img: "beat-4.png", label: "[ SLOT ] Take the break, keep the streak · screenshot or short loop" },
+  { t: "Open the café", d: "The room loads with music already playing: arriving, not launching." },
+  { t: "Chalk up the board", d: "Add today's tasks under their subjects on the menu board." },
+  { t: "Brew a session", d: "Start the pomodoro; the espresso machine brews for 25 minutes while you work." },
+  { t: "Take the break, keep the streak", d: "The cup is ready: break time, then the next brew. Statistics track your day." },
 ];
 
 const STATS = [
@@ -140,7 +153,7 @@ const LEDGER = [
   {
     cite: "CAFÉ OBJECT · THE ROOM ITSELF",
     quote: "Warm light, plants on the counter, lo-fi in the air.",
-    means: "The music player and ambience layer. The interface is the atmosphere: the reason to stay is the room, not a streak counter.",
+    means: "The music player and ambience layer. We curated royalty-free tracks into a café playlist so the room hums naturally, and legally. The interface is the atmosphere: the reason to stay is the room, not a streak counter.",
   },
 ];
 
@@ -191,8 +204,8 @@ export default function LatteLearnCaseStudy() {
             <div className="grid grid-cols-1 items-start gap-16 min-[880px]:[grid-template-columns:1.2fr_1fr]">
               <div>
                 <Eyebrow>Case study</Eyebrow>
-                <h1 className="mt-4 font-instrument text-[clamp(44px,6.5vw,76px)] font-normal leading-[1.04] tracking-[-0.015em] text-ink">
-                  Nine people, two quarters, one pixel-art café.
+                <h1 className="mt-4 text-balance font-instrument text-[clamp(44px,6.5vw,76px)] font-normal leading-[1.04] tracking-[-0.015em] text-ink">
+                  Nine people, sixteen weeks, one third place on a screen.
                 </h1>
                 <dl className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-x-8">
                   {[
@@ -210,11 +223,11 @@ export default function LatteLearnCaseStudy() {
               </div>
 
               <div className="pt-2">
-                <p className="mb-6 text-[18px] leading-[1.6] text-prose">
-                  A focus companion app that brings the café study experience home: pomodoro timer,
-                  task list, and lo-fi music inside one pixel-art café. I led nine people of mixed
-                  experience through a full academic cycle as PM, and designed every screen as Design
-                  Lead.
+                <p className="mb-6 text-pretty text-[18px] leading-[1.6] text-prose">
+                  Focus lives in third places: not home, not school, not the office. LatteLearn puts
+                  one on your screen: you build your drink, the room hums like a café, and the brew
+                  times your focus. I led nine people through a full academic cycle as PM, and designed
+                  every screen as Design Lead.
                 </p>
                 <div className="mb-6 flex flex-wrap gap-2">
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-transparent bg-blue px-3.5 py-1.5 font-plex text-[12px] text-white">
@@ -243,11 +256,12 @@ export default function LatteLearnCaseStudy() {
               </div>
             </div>
 
-            <Slot
-              variant="wide"
-              src={ASSETS + "hero.png"}
-              alt="LatteLearn café prototype, pomodoro running"
-              className="mt-14 aspect-[1080/420]"
+            <CaseVideo
+              eager
+              sources={WALKTHROUGH.sources}
+              poster={ASSETS + "hero.png"}
+              alt="LatteLearn café prototype with the pomodoro brewing"
+              className="mt-14 aspect-[1894/1368]"
               label={"[ HERO SLOT ]\nthe café prototype full-bleed · pomodoro 24:59 running"}
             />
           </header>
@@ -258,9 +272,9 @@ export default function LatteLearnCaseStudy() {
             <H2>Studying alone is a focus problem and a loneliness problem</H2>
             <P>
               Students study better in cafés: gentle noise, other people working, a reason to stay
-              seated. LatteLearn asks what happens if <Em>the café comes to the desktop</Em>: a focus
-              companion where the timer, the task list, and the music live inside one warm pixel-art
-              room.
+              seated. Sociology has a name for that kind of room, <Em>the third place</Em>, and
+              LatteLearn asks what happens if it comes to the desktop: a focus companion where the
+              timer, the task list, and the music live inside one warm pixel-art room.
             </P>
             <P>
               Team Espresso was nine people of mixed experience in LikeLion US's 2024-25 cohort, with
@@ -283,7 +297,10 @@ export default function LatteLearnCaseStudy() {
             <P>
               Cold Turkey and SelfControl started our research as blockers, but <Em>blocking is not
               accompanying</Em>: the real competitors were the rooms (Virtual Cottage, I Miss The
-              Office, LifeAt) and the timers (Pomofocus). LatteLearn had to be both.
+              Office, LifeAt) and the timers (Pomofocus). LatteLearn had to be both. Our own research
+              notes were harsher still: {"“"}simple, cute design: not enough differentiation.{"”"} The moat
+              that survived our own critique was not the aesthetic. It was ownership: <Em>your café,
+              not a café</Em>.
             </P>
           </section>
 
@@ -297,11 +314,17 @@ export default function LatteLearnCaseStudy() {
               The café metaphor only worked because it was laid over this structure, personality on top
               of logic, never instead of it.
             </P>
+            <P>
+              The hardest flow call was the timer: per-task timers would have shattered the pomodoro
+              rhythm the product is named for. We kept the <Em>25/5 brew sacred</Em> and moved the
+              flexibility into subjects instead: tasks live under a subject, starting one attributes the
+              brew to it, and the statistics tab tallies focus per subject.
+            </P>
             <ZoomFigure
               src={ASSETS + "flows.png"}
               alt="The four LatteLearn user-flow diagrams: tasks, timer, customization, music"
               aspect="2160 / 1168"
-              caption="The four flows — tasks, timer, customization, music. Click to read full-size."
+              caption="The four flows: tasks, timer, customization, music. Click to read full-size."
             />
           </section>
 
@@ -350,25 +373,31 @@ export default function LatteLearnCaseStudy() {
               <Em>a session, not a feature list</Em>:
             </p>
 
-            <div className="my-10 flex flex-col gap-12">
-              {BEATS.map((b, i) => (
-                <div key={b.t} className="flex gap-5">
-                  <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full border-[1.5px] border-stroke-2 bg-white/60 font-plex text-[14px] font-semibold text-blue-text backdrop-blur-xl">
-                    {i + 1}
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <h3 className="mt-1 text-[18px] font-semibold text-ink">{b.t}</h3>
-                    <p className="mb-0 mt-2 max-w-[760px] text-[17px] leading-[1.65] text-prose">{b.d}</p>
-                    <Slot
-                      variant="beat"
-                      src={ASSETS + b.img}
-                      alt={b.t}
-                      className="mt-4 aspect-[1028/560]"
-                      label={b.label}
-                    />
-                  </div>
-                </div>
-              ))}
+            {/* video centerpiece + the four session beats as a static numbered
+                rail (text, not chapter controls): beside the video on desktop,
+                stacked below on narrow. Standard figure border, since the
+                ShippedFeatures device frame is not exported as a standalone. */}
+            <div className="my-10 grid grid-cols-1 items-start gap-8 lg:grid-cols-[1.6fr_1fr]">
+              <CaseVideo
+                sources={WALKTHROUGH.sources}
+                poster={WALKTHROUGH.poster}
+                alt="LatteLearn prototype walkthrough: opening the café, chalking the board, brewing a session, taking the break"
+                className="aspect-[16/10]"
+                label={"[ SHIPPED SLOT ] prototype walkthrough · 16:10\none study session, start to finish"}
+              />
+              <ol className="flex flex-col gap-6">
+                {BEATS.map((b, i) => (
+                  <li key={b.t} className="flex gap-4">
+                    <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full border-[1.5px] border-stroke-2 bg-white/60 font-plex text-[14px] font-semibold text-blue-text backdrop-blur-xl">
+                      {i + 1}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="mt-1 text-[17px] font-semibold text-ink">{b.t}</h3>
+                      <p className="mb-0 mt-1.5 text-[15px] leading-[1.55] text-prose">{b.d}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
             </div>
           </section>
 
@@ -378,9 +407,9 @@ export default function LatteLearnCaseStudy() {
             <H2>Nine people, mixed experience, one academic cycle</H2>
             <P>
               Shipping meant <Em>cutting features early and often</Em>. Every scope cut that hurt in
-              week 6 is the reason we had a packaged app in week 16. [ SLOT: one concrete cut and how
-              the team took it: what was cut, who argued for keeping it, what the app gained ]
+              week 6 is the reason we had a packaged app in week 16.
             </P>
+            <Todo text="TODO: one concrete cut and how the team took it: what was cut, who argued for keeping it, what the app gained." />
             <Glass className="my-8 p-6">
               <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
                 {STATS.map(([big, small]) => (
@@ -416,8 +445,8 @@ export default function LatteLearnCaseStudy() {
         <footer className="mx-auto max-w-[1080px] px-8 pb-16 pt-24">
           <div className="h-px bg-stroke" />
           <div className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-            {/* GitHub elevated to the primary action — an accent button with the
-                logo — since the shipped, packaged code is the headline proof. */}
+            {/* GitHub elevated to the primary action, an accent button with the
+                logo, since the shipped, packaged code is the headline proof. */}
             <div className="flex flex-wrap items-center gap-3">
               <a
                 href="https://github.com/Jaeminp2/LatteLearn"

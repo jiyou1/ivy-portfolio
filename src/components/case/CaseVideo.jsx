@@ -25,6 +25,7 @@ const FEATHER_STYLE = {
 export default function CaseVideo({
   sources = [],
   poster,
+  alt = "",
   label,
   eager = false,
   feather = false,
@@ -34,6 +35,9 @@ export default function CaseVideo({
   const ref = useRef(null);
   const [inView, setInView] = useState(eager);
   const [failed, setFailed] = useState(false);
+  // an absent poster must degrade to the labelled placeholder, not a broken img
+  const [posterFailed, setPosterFailed] = useState(false);
+  const hasPoster = poster && !posterFailed;
 
   useEffect(() => {
     if (eager || inView) return;
@@ -62,8 +66,8 @@ export default function CaseVideo({
 
   // reduced motion, or every source failed: show the poster still, or the slot
   if (reduce || failed) {
-    if (poster) {
-      return <img src={poster} alt="" loading="lazy" decoding="async" style={maskStyle} className={`${frame} object-cover`} />;
+    if (hasPoster) {
+      return <img src={poster} alt={alt} loading="lazy" decoding="async" onError={() => setPosterFailed(true)} style={maskStyle} className={`${frame} object-cover`} />;
     }
     return (
       <div className={`flex min-h-[320px] items-center justify-center border-[1.5px] border-dashed border-stroke-2 bg-imgbg ${className}`}>
@@ -89,13 +93,11 @@ export default function CaseVideo({
             <source key={s.src} src={s.src} type={s.type} />
           ))}
         </video>
-      ) : (
+      ) : hasPoster ? (
         // placeholder frame before the video mounts: poster if we have one
-        poster ? (
-          <img src={poster} alt="" className="block h-full w-full object-cover" />
-        ) : (
-          <div className="flex min-h-[320px] items-center justify-center bg-imgbg" />
-        )
+        <img src={poster} alt={alt} loading="lazy" decoding="async" onError={() => setPosterFailed(true)} className="block h-full w-full object-cover" />
+      ) : (
+        <div className="flex min-h-[320px] items-center justify-center whitespace-pre-line px-6 text-center font-plex text-[12px] leading-[1.8] text-grayt">{label}</div>
       )}
     </div>
   );

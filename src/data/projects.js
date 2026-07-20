@@ -46,21 +46,6 @@ export const PROJECTS = [
     external: false,
     skills: ["UI/UX DESIGN", "DESIGN SYSTEMS", "HTML/CSS"],
   },
-  {
-    // Prime Academy has its own case-study route but is NOT shown on the home
-    // grid (spec §5.1). Kept here so the /work/prime-academy route still resolves.
-    slug: "prime-academy",
-    label: "BRAND SYSTEM · WEB · PRINT · SIGNAGE",
-    title: "Prime Academy",
-    desc: "Redesigned the website, unified the print and in-center signage, and shipped one brand across every surface for an Irvine test-prep academy.",
-    tags: "WEB · BRANDING · SIGNAGE",
-    cover: "/covers/prime-academy.jpg",
-    video: "/videos/Prime_New_Website.mp4",
-    href: "/work/prime-academy",
-    external: false,
-    home: false,
-    skills: [],
-  },
 ];
 
 export const HOME_PROJECTS = PROJECTS.filter((p) => p.home !== false);
