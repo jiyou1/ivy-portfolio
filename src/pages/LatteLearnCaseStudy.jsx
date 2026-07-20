@@ -6,7 +6,7 @@ import Slot from "../components/icoi/Slot";
 import BylawTrace from "../components/icoi/BylawTrace";
 import CompetitorMatrix from "../components/lattelearn/CompetitorMatrix";
 import ZoomFigure from "../components/icoi/ZoomFigure";
-import CaseVideo from "../components/case/CaseVideo";
+import { FocusEmbed } from "../components/lattelearn/FocusScreen";
 import Todo from "../components/case/Todo";
 import SeeNext from "../components/SeeNext";
 import {
@@ -36,17 +36,6 @@ import {
    accent-ink (#6E5436) for small text, which keeps contrast >= 4.5:1 on the bg. */
 
 const ASSETS = "/case/lattelearn/";
-
-/* Prototype walkthrough clip, shared by the hero and the shipped centerpiece.
-   webm first, mp4 fallback, poster still. Expected but absent until export, so
-   CaseVideo shows the labelled placeholder and upgrades in place once it lands. */
-const WALKTHROUGH = {
-  sources: [
-    { src: "/work/lattelearn/prototype-walkthrough.webm", type: "video/webm" },
-    { src: "/work/lattelearn/prototype-walkthrough.mp4", type: "video/mp4" },
-  ],
-  poster: "/work/lattelearn/prototype-poster.jpg",
-};
 
 /* café tokens layered over the site's shared token names */
 const CAFE_TOKENS = {
@@ -256,14 +245,8 @@ export default function LatteLearnCaseStudy() {
               </div>
             </div>
 
-            <CaseVideo
-              eager
-              sources={WALKTHROUGH.sources}
-              poster={ASSETS + "hero.png"}
-              alt="LatteLearn café prototype with the pomodoro brewing"
-              className="mt-14 aspect-[1894/1368]"
-              label={"[ HERO SLOT ]\nthe café prototype full-bleed · pomodoro 24:59 running"}
-            />
+            {/* the Focus screen itself, live: real pomodoro, brew bar, machine loop */}
+            <FocusEmbed className="mt-14" />
           </header>
 
           {/* ================= 01 CONTEXT ================= */}
@@ -378,13 +361,7 @@ export default function LatteLearnCaseStudy() {
                 stacked below on narrow. Standard figure border, since the
                 ShippedFeatures device frame is not exported as a standalone. */}
             <div className="my-10 grid grid-cols-1 items-start gap-8 lg:grid-cols-[1.6fr_1fr]">
-              <CaseVideo
-                sources={WALKTHROUGH.sources}
-                poster={WALKTHROUGH.poster}
-                alt="LatteLearn prototype walkthrough: opening the café, chalking the board, brewing a session, taking the break"
-                className="aspect-[16/10]"
-                label={"[ SHIPPED SLOT ] prototype walkthrough · 16:10\none study session, start to finish"}
-              />
+              <FocusEmbed />
               <ol className="flex flex-col gap-6">
                 {BEATS.map((b, i) => (
                   <li key={b.t} className="flex gap-4">
