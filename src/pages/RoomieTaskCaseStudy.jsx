@@ -192,7 +192,7 @@ const BEATS = [
 const REFLECT = [
   [Search, "RESEARCH FIRST", `Research defines the problem worth solving, and that's more valuable than any pixel-perfect interface.`],
   [CheckCircle, "TEST EARLY", "4 of 5 testers doubted a task they had completed correctly. No amount of visual polish fixes a missing confirmation state; only testing finds it."],
-  [WarningTriangle, "HONEST MISS", "We designed every screen and forgot the way back to them. Both failed test tasks were navigation, not features: one participant gave up trying to return home. The fix was persistent home navigation on every screen."],
+  [WarningTriangle, "HONEST MISS", "We designed every screen and forgot the way back. Both failed test tasks were navigation, so home is now one tap from everywhere."],
 ];
 
 export default function RoomieTaskCaseStudy() {
