@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { animate, useInView, useReducedMotion } from "framer-motion";
 import { ChatLines, Home, Wallet, Notes, Search, CheckCircle, WarningTriangle } from "iconoir-react";
-import CaseVideo from "../components/case/CaseVideo";
 import SageMesh from "../components/roomietask/SageMesh";
 import GroupChat from "../components/roomietask/GroupChat";
 import Toc from "../components/icoi/Toc";
@@ -506,12 +505,12 @@ export default function RoomieTaskCaseStudy() {
               design: gentle, fair, and never a manager.
             </P>
 
-            <CaseVideo
-              sources={[
-                { src: ASSETS + "app-demo.webm", type: "video/webm" },
-                { src: ASSETS + "app-demo.mp4", type: "video/mp4" },
-              ]}
-              poster={ASSETS + "app-demo.png"}
+            {/* hero 3-up stands in until the app recording is exported */}
+            <Slot
+              variant="wide"
+              bare
+              src={ASSETS + "hero.png"}
+              alt="RoomieTask mobile screens: Home with chores due and reminders, Chores with rotation, and Expenses with balances"
               className="my-8 aspect-[930/537]"
               label={"[ APP RECORDING ] RoomieTask walkthrough · Chores, Expenses, Supplies, Reminders"}
             />
