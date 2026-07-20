@@ -5,6 +5,7 @@ import LatteLearnCaseStudy from "./pages/LatteLearnCaseStudy";
 import RoomieTaskCaseStudy from "./pages/RoomieTaskCaseStudy";
 import DesignathonCaseStudy from "./pages/DesignathonCaseStudy";
 import Playground from "./pages/Playground";
+import FocusScreen from "./components/lattelearn/FocusScreen";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       <Route path="/work/roomietask" element={<RoomieTaskCaseStudy />} />
       <Route path="/work/designathon" element={<DesignathonCaseStudy />} />
       <Route path="/playground" element={<Playground />} />
+      <Route path="/playground/lattelearn-focus" element={<FocusScreen />} />
     </Routes>
   );
 }
