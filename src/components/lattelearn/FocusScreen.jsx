@@ -180,11 +180,11 @@ export default function FocusScreen() {
       {/* top-right buttons */}
       <button type="button" className="absolute left-[965px] top-[119px] flex items-center gap-[8px] rounded-[10px] bg-[#1c1b19] px-[20px] py-[8px]">
         <img src={A + "icon-customize.svg"} alt="" className="size-[24px]" />
-        <span className="font-['Jersey_25'] text-[22px] text-[#ffb848]">CUSTOMIZE</span>
+        <span className="font-['Jersey_25'] text-[22px] leading-none text-[#ffb848]">CUSTOMIZE</span>
       </button>
       <button type="button" className="absolute left-[1143px] top-[119px] flex items-center gap-[8px] rounded-[10px] bg-[#1c1b19] px-[20px] py-[8px]">
         <img src={A + "icon-statistics.svg"} alt="" className="size-[24px]" />
-        <span className="font-['Jersey_25'] text-[22px] text-[#f5f0e6]">STATISTICS</span>
+        <span className="font-['Jersey_25'] text-[22px] leading-none text-[#f5f0e6]">STATISTICS</span>
       </button>
       <button type="button" aria-label="Sound" className="absolute left-[1320px] top-[119px] flex items-center rounded-[10px] bg-[#1c1b19] p-[9px]">
         <img src={A + "icon-sound.svg"} alt="" className="size-[22px]" />
