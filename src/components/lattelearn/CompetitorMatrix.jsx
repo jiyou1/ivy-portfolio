@@ -15,6 +15,10 @@ const MATRIX = [
   ["Visual elements", [1, 0, 1, 1, 1, 1]],
   ["Audio elements", [1, 0, 1, 1, 1, 1]],
   ["Analytics", [1, 0, 0, 0, 0, 1]],
+  // Cold Turkey's only capability — without this row its column read as all
+  // misses with no explanation. LatteLearn skips it on purpose: accompany,
+  // don't lock out.
+  ["Distraction blocking", [0, 1, 0, 0, 0, 0]],
 ];
 const PLATFORM = ["Web", "Win, Mac", "Win, Mac", "Web", "Win, Mac, Web", "Web"];
 
@@ -104,6 +108,10 @@ export default function CompetitorMatrix() {
           </tbody>
         </table>
       </div>
+      <figcaption className="mt-3 max-w-[760px] text-[13px] leading-[1.5] text-grayt">
+        Cold Turkey's dot lives on the one row LatteLearn deliberately skips: blocking locks
+        distractions out, it doesn't give you a place to be. That difference is the gap.
+      </figcaption>
     </figure>
   );
 }
