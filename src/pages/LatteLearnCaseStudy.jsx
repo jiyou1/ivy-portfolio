@@ -7,7 +7,6 @@ import BylawTrace from "../components/icoi/BylawTrace";
 import CompetitorMatrix from "../components/lattelearn/CompetitorMatrix";
 import ZoomFigure from "../components/icoi/ZoomFigure";
 import { FocusEmbed } from "../components/lattelearn/FocusScreen";
-import Todo from "../components/case/Todo";
 import SeeNext from "../components/SeeNext";
 import {
   Community,
@@ -414,7 +413,13 @@ export default function LatteLearnCaseStudy() {
               Shipping meant <Em>cutting features early and often</Em>. Every scope cut that hurt in
               week 6 is the reason we had a packaged app in week 16.
             </P>
-            <Todo text="TODO: one concrete cut and how the team took it: what was cut, who argued for keeping it, what the app gained." />
+            <P>
+              The concrete one: platforms. The early pitch had LatteLearn as native builds for
+              desktop and mobile, and the case for keeping mobile was real — students live on their
+              phones. We cut it anyway and scoped to a single React web app packaged with Electron,
+              so <Em>one codebase still delivered an installable desktop app</Em>. Mobile moved to
+              the roadmap; the café shipped.
+            </P>
             <Glass className="my-8 p-6">
               <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
                 {STATS.map(([big, small]) => (
