@@ -487,11 +487,6 @@ export default function RoomieTaskCaseStudy() {
               ))}
             </ul>
 
-            <p className="max-w-[760px] font-plex text-[13px] leading-[1.6] text-grayt">
-              Scope, honestly: this was a 10-week HCI course project tested with 5 users, not a
-              shipped product. The findings above are directional, and they were enough to redesign
-              every flow they touched.
-            </p>
           </section>
 
           {/* ================= 06 THE APP ================= */}
