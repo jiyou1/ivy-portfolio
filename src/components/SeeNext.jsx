@@ -33,6 +33,11 @@ export default function SeeNext({ current }) {
               />
               {/* same 30% white hover wash as the home Works cards */}
               <span className="pointer-events-none absolute inset-0 bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-30" />
+              {p.brewing && (
+                <span className="absolute right-3 top-3 rounded-full bg-ink/80 px-3 py-1 font-plex text-[10px] font-semibold tracking-[0.08em] text-white">
+                  STILL BREWING
+                </span>
+              )}
             </div>
             <div className="p-5">
               <h3 className="text-[17px] font-bold leading-snug tracking-[-0.01em]">{p.title}</h3>

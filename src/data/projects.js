@@ -48,6 +48,9 @@ export const PROJECTS = [
     coverPosition: "center 30%",
     href: "/work/designathon",
     external: false,
+    // Case study still in progress: the route serves the Brewing stub and the
+    // cards badge "STILL BREWING". Delete this line to publish.
+    brewing: true,
     skills: ["UI/UX DESIGN", "DESIGN SYSTEMS", "HTML/CSS"],
   },
 ];

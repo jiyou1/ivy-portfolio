@@ -102,7 +102,7 @@ function WorkCard({ p, dimmed }) {
         <div className="mt-5 flex items-center justify-between">
           <span className="text-[11px] font-semibold tracking-[0.08em] text-blue-text">{p.tags}</span>
           <span className="rounded-full bg-blue px-4 py-2 text-[10.5px] font-semibold tracking-[0.06em] text-white transition-transform group-hover:-translate-y-0.5">
-            VIEW ↗
+            {p.brewing ? "STILL BREWING ✦" : "VIEW ↗"}
           </span>
         </div>
       </Wrapper>
@@ -120,7 +120,7 @@ function WorkCard({ p, dimmed }) {
                 className="pointer-events-none fixed z-[60] inline-flex items-center gap-1.5 rounded-full bg-ink px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.08em] text-white shadow-[0_8px_24px_rgba(11,14,20,0.35)]"
               >
                 <Eye width={13} height={13} strokeWidth={2.2} aria-hidden />
-                View Case Study
+                {p.brewing ? "Still Brewing" : "View Case Study"}
               </motion.div>
             )}
           </AnimatePresence>,
