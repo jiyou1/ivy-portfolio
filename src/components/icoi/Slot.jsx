@@ -12,7 +12,7 @@ const MIN_H = {
   photo: "min-h-[200px]",
 };
 
-export default function Slot({ src, video, alt = "", label, variant = "default", className = "", bare = false, contain = false }) {
+export default function Slot({ src, video, alt = "", label, variant = "default", className = "", bare = false, contain = false, width, height }) {
   const [failed, setFailed] = useState(!src && !video);
   const edge = bare ? "" : "border border-stroke";
   const fit = contain ? "object-contain" : "object-cover";
@@ -36,6 +36,8 @@ export default function Slot({ src, video, alt = "", label, variant = "default",
       <img
         src={src}
         alt={alt}
+        width={width}
+        height={height}
         loading="lazy"
         decoding="async"
         onError={() => setFailed(true)}

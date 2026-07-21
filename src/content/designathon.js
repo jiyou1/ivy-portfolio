@@ -9,11 +9,10 @@
    only in dev (behind a dashed amber outline via <Todo>), never as final copy, so
    nothing placeholder can ship looking finished. Fill these before publishing.
 
-   Media: the coaster loop maps to the real file public/REVISED ROLLERCOASTER3.mp4
-   (referenced url-encoded). The optimized webm path is the upgrade target and
-   404s harmlessly to the mp4 until it lands. Everything under
-   public/work/designathon/ is expected-but-absent, so it renders as a labelled
-   placeholder until the export drops in. */
+   Media: every referenced file exists under public/work/designathon/ (Figma
+   webp exports plus event photos and the coaster derivatives). width/height on
+   each entry are the file's real pixel dimensions, forwarded to the <img> so
+   unconstrained figures reserve their space before the file arrives. */
 
 const BASE = "/work/designathon/";
 const SHIPPED = BASE + "shipped/";
@@ -65,14 +64,17 @@ export const CONTEXT = {
   figures: [
     {
       src: BASE + "event-courtyard.jpg",
+      alt: "Participants working at tables across the UCI courtyard on event day",
       caption: "Event day: 200+ participants working across the courtyard.",
     },
     {
       src: BASE + "event-mentoring.jpg",
+      alt: "Ivy mentoring a participant team during the event weekend",
       caption: "Between sprints I volunteered as a participant mentor through the weekend.",
     },
     {
       src: BASE + "event-team.jpg",
+      alt: "Ivy in the event tee alongside a fellow mentor",
       caption: "On shift in the event tee, with a fellow mentor.",
     },
   ],
@@ -86,11 +88,17 @@ export const WORLD = {
   ],
   figures: [
     {
-      src: BASE + "context-brand-lockup.jpg",
+      src: BASE + "brand-board.webp",
+      width: 535,
+      height: 877,
+      alt: "Design-a-thon brand board: Radey and Satoshi Variable type samples, primary colors, gradient ramps, and the pen-nib logo",
       caption: "The brand board: Radey display over Satoshi Variable, the candy palette with its gradient ramps, and the pen-nib logo.",
     },
     {
-      src: BASE + "context-brand-elements.jpg",
+      src: BASE + "brand-elements.webp",
+      width: 1600,
+      height: 1951,
+      alt: "Hand-drawn element library: clouds, stars, coaster track segments, and the illustrated mascots",
       caption: "The hand-drawn element library: clouds, stars, coaster track segments, and the five mascots in two poses.",
     },
   ],
@@ -106,11 +114,36 @@ export const PROCESS = {
   body: [
     "The committee ran on weekly task lists, and I turned mine into shipped screens: Judges, Prizes, and Meet the Team moved through lo-fi, mid-fi, and hi-fi under my ownership, for the website and the mobile app in parallel. Along the way I wrote illustration requests for the graphics team, handed finished screens to the developers, and carried all-hands critique back into the next revision.",
   ],
+  // the Judges page across four generations, in a 2x2 grid
   figures: [
-    { src: BASE + "process-01-branding.jpg", label: "[ FIG 01 ] branding foundation" },
-    { src: BASE + "process-02-lofi.jpg", label: "[ FIG 02 ] lo-fi: Judges, Prizes, Meet the Team, web and mobile" },
-    { src: BASE + "process-03-judges.jpg", label: "[ FIG 03 ] Judges: 4 generations, density broke mobile, I rebuilt the layout for 390px" },
-    { src: BASE + "process-04-hifi.jpg", label: "[ FIG 04 ] hi-fi inside the star field + my illustration requests" },
+    {
+      src: BASE + "judges-lofi.webp",
+      width: 1440,
+      height: 1007,
+      alt: "Judges page lo-fi wireframe with placeholder cards, role chips, and LinkedIn icons",
+      caption: "Lo-fi",
+    },
+    {
+      src: BASE + "judges-midfi.webp",
+      width: 1600,
+      height: 1149,
+      alt: "Judges page mid-fi iteration",
+      caption: "Mid-fi",
+    },
+    {
+      src: BASE + "judges-popup-exploration.webp",
+      width: 1600,
+      height: 1149,
+      alt: "Judge detail pop-up exploration: a modal with photo, role, links, and a full bio over the star field",
+      caption: "Pop-up exploration",
+    },
+    {
+      src: BASE + "judges-hifi.webp",
+      width: 1600,
+      height: 1305,
+      alt: "Judges page hi-fi in the star field, with the hand-drawn coaster and mascot over the carousel",
+      caption: "Shipped",
+    },
   ],
   constraints: [
     {
@@ -143,73 +176,66 @@ export const PROCESS = {
 export const SHIPPED_SECTION = {
   n: "04",
   heading: "Three pages, twice: what I shipped for web and mobile.",
-  // the live site's front door, above the six surfaces
+  // mockup overview of the whole system, above the surface selector
   lead: {
-    src: BASE + "context-front-door.jpg",
-    caption: "The front door as shipped: the illustrated hero with the date card and Apply Now above the fold.",
+    src: BASE + "mockups-overview.webp",
+    width: 1600,
+    height: 2193,
+    alt: "Overview collage of Design-a-thon 2025 mockups across web and mobile",
+    caption:
+      "The full 2025 site, a four-person UI/UX committee effort. Judges, Prizes, and Meet the Team, on web and mobile, were mine.",
   },
+  /* Tall page captures carry fit: "top" so the aspect-locked device frames crop
+     from the top of the page instead of the middle; the lightbox still opens the
+     full capture. */
   features: [
     {
-      id: "judges",
-      number: "01",
-      label: "Judges",
-      title: "Judges: ten people, one glance",
-      description:
-        "Judge cards with role and affiliation, readable in a scroll, honest at 390px. Fourth generation of the layout.",
-      images: [SHIPPED + "judges.webp"],
-      alt: "Design-a-thon Judges page, desktop",
-    },
-    {
       id: "prizes",
-      number: "02",
+      number: "01",
       label: "Prizes",
       title: "Prizes: the podium before the fine print",
       description:
-        "Four award tiers on illustrated candy cards, sized by importance instead of reading order. First place lands first; the fine print waits.",
-      images: [SHIPPED + "prizes.png"],
-      alt: "Design-a-thon Prizes page, desktop",
+        "Five award tiers on illustrated candy cards, sized by importance instead of reading order. First place lands first; the fine print waits.",
+      images: [SHIPPED + "prizes-hifi.webp"],
+      alt: "Design-a-thon Prizes page, desktop: candy cards for first place, People's Choice, second, third, and honorable mentions over sunset clouds",
     },
     {
       id: "team",
-      number: "03",
+      number: "02",
       label: "Team",
-      title: "TODO: Meet the Team title.",
-      description: "TODO: Meet the Team description.",
-      images: [SHIPPED + "team.webp"],
-      alt: "Design-a-thon Meet the Team page, desktop",
-    },
-    {
-      id: "judges-mobile",
-      number: "04",
-      label: "Judges · Mobile",
-      frame: "phone",
-      title: "TODO: Judges mobile title.",
-      description: "TODO: Judges mobile description.",
-      images: [SHIPPED + "judges-mobile.webp"],
-      alt: "Design-a-thon Judges page, mobile",
+      fit: "top",
+      title: "Meet the Team: buttons that stopped lying",
+      description:
+        "The full committee riding illustrated train cars, grouped by team, with LinkedIn buttons whose hover finally matched their click. That affordance fix took three weekly critiques to land.",
+      images: [SHIPPED + "meet-the-team.webp"],
+      alt: "Design-a-thon Meet the Team page, desktop: committee members in illustrated train cars, grouped by team",
     },
     {
       id: "prizes-mobile",
-      number: "05",
+      number: "03",
       label: "Prizes · Mobile",
       frame: "phone",
-      title: "TODO: Prizes mobile title.",
-      description: "TODO: Prizes mobile description.",
-      images: [SHIPPED + "prizes-mobile.webp"],
-      alt: "Design-a-thon Prizes page, mobile",
+      fit: "top",
+      title: "Prizes, mobile: the podium holds",
+      description:
+        "The podium restacks for a phone: first place full width on top, 2nd and 3rd sharing a row, the fine print last.",
+      images: [SHIPPED + "mobile-prizes.webp"],
+      alt: "Design-a-thon Prizes page, my mobile adaptation: award cards restacked for a phone",
     },
     {
       id: "team-mobile",
-      number: "06",
+      number: "04",
       label: "Team · Mobile",
       frame: "phone",
-      title: "TODO: Meet the Team mobile title.",
-      description: "TODO: Meet the Team mobile description.",
-      images: [SHIPPED + "team-mobile.webp"],
-      alt: "Design-a-thon Meet the Team page, mobile",
+      fit: "top",
+      title: "Meet the Team, mobile: filter first",
+      description:
+        "Committee chips up top, the roster in a compact grid below, every LinkedIn button one thumb tap away.",
+      images: [SHIPPED + "mobile-team.webp"],
+      alt: "Design-a-thon Meet the Team page, my mobile adaptation: committee filter chips over a grid of member cards with LinkedIn buttons",
     },
   ],
-  credit: "The full site was designed by a four-person UI/UX committee; these six surfaces were mine.",
+  credit: "The full site was designed by a four-person UI/UX committee; Judges, Prizes, and Meet the Team were mine on web and mobile.",
   link: { href: "https://ucidesignathon.com", label: "ucidesignathon.com" },
 };
 

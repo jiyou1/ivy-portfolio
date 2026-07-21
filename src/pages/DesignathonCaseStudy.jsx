@@ -41,12 +41,23 @@ const MESH = [
   },
 ];
 
-/* A page figure: the standard dashed placeholder (Slot) with an optional mono
-   caption beneath, until the real export lands in public/work/designathon/. */
-function Figure({ src, label, caption, className = "", contain = false }) {
+/* A page figure: the image (or Slot's dashed placeholder while missing) with an
+   optional mono caption beneath. width/height are the file's natural pixels so
+   unconstrained figures reserve their space before the file loads. */
+function Figure({ src, label, caption, alt, width, height, className = "", contain = false }) {
   return (
     <figure className="m-0">
-      <Slot variant="wide" src={src} label={label} bare contain={contain} className={`m-0 ${className}`} />
+      <Slot
+        variant="wide"
+        src={src}
+        label={label}
+        alt={alt}
+        width={width}
+        height={height}
+        bare
+        contain={contain}
+        className={`m-0 ${className}`}
+      />
       {caption && (
         <figcaption className="mt-3 max-w-[520px] text-[14px] leading-[1.6] text-grayt">{caption}</figcaption>
       )}
@@ -101,9 +112,9 @@ export default function DesignathonCaseStudy() {
           {/* ================= 02 THE WORLD WE BUILT ================= */}
           <CaseSection id="world" n={WORLD.n} icon={Book} eyebrow="The world we built" heading={WORLD.heading} body={WORLD.body}>
             {/* equal heights by sizing, not cropping: column tracks proportional to
-                each board's aspect ratio (1353/2383 and 1312/1600), so both fill
+                each board's aspect ratio (535/877 and 1600/1951), so both fill
                 their track and land at the same rendered height */}
-            <div className="mt-6 grid grid-cols-1 gap-4 md:[grid-template-columns:0.568fr_0.82fr]">
+            <div className="mt-6 grid grid-cols-1 gap-4 md:[grid-template-columns:0.61fr_0.82fr]">
               {WORLD.figures.map((f) => (
                 <Figure key={f.src} {...f} />
               ))}
@@ -132,13 +143,13 @@ export default function DesignathonCaseStudy() {
             eyebrow="What shipped"
             heading={SHIPPED_SECTION.heading}
           >
-            {/* the live site's front door, above the six surfaces */}
+            {/* mockup overview of the whole system, above the surface selector */}
             <Figure {...SHIPPED_SECTION.lead} className="mt-6" />
             <div className="mt-10">
               <ShippedFeatures
                 features={SHIPPED_SECTION.features}
                 label="Design-a-thon shipped surfaces"
-                tabCols="lg:grid-cols-3"
+                tabCols="lg:grid-cols-4"
               />
             </div>
             <p className="mt-12 font-plex text-[12px] leading-[1.6] text-grayt">

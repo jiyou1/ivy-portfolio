@@ -373,7 +373,7 @@ export default function ShippedFeatures({
                     alt={altFor}
                     loading="lazy"
                     decoding="async"
-                    className="h-full w-full object-cover"
+                    className={`h-full w-full object-cover ${cur.fit === "top" ? "object-top" : ""}`}
                     onError={() => markFailed(src)}
                   />
                 </button>
