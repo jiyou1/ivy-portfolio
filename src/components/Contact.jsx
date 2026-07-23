@@ -1,5 +1,5 @@
 import { Envelope } from "@phosphor-icons/react";
-import { Mail, Linkedin, Download } from "iconoir-react";
+import { Mail, Linkedin, Instagram, Download } from "iconoir-react";
 import SectionLabel from "./SectionLabel";
 import { LINKS } from "../data/site";
 
@@ -7,6 +7,7 @@ export default function Contact() {
   const buttons = [
     { label: "EMAIL", href: LINKS.email, primary: true, Icon: Mail },
     { label: "LINKEDIN", href: LINKS.linkedin, primary: false, Icon: Linkedin },
+    { label: "INSTAGRAM", href: LINKS.instagram, primary: false, Icon: Instagram, ariaLabel: "Instagram" },
     { label: "RESUME", href: LINKS.resume, primary: false, Icon: Download },
   ];
   return (
@@ -23,10 +24,11 @@ export default function Contact() {
         tackling challenges and adapting to changes as they come.
       </p>
       <div className="mt-9 flex flex-wrap items-center justify-center gap-3.5">
-        {buttons.map(({ label, href, primary, Icon }) => (
+        {buttons.map(({ label, href, primary, Icon, ariaLabel }) => (
           <a
             key={label}
             href={href}
+            aria-label={ariaLabel}
             target={href.startsWith("/") || href.startsWith("mailto") ? undefined : "_blank"}
             rel="noreferrer"
             className={

@@ -149,6 +149,7 @@ export default function About({ onSkill }) {
           <p className="mt-8 text-[11px] font-semibold tracking-[0.12em] text-grayt">FIND ME</p>
           <ul className="mt-3 space-y-2 text-sm">
             <li><span className="mr-3 font-semibold text-blue-text">LinkedIn</span><a className="hover:text-blue-text" href={LINKS.linkedin} target="_blank" rel="noreferrer">linkedin.com/in/jiyouivylee</a></li>
+            <li><span className="mr-3 font-semibold text-blue-text">Instagram</span><a className="hover:text-blue-text" href={LINKS.instagram} target="_blank" rel="noreferrer" aria-label="Instagram">instagram.com/ee.jyoo</a></li>
             <li><span className="mr-3 font-semibold text-blue-text">Email</span><a className="hover:text-blue-text" href={LINKS.email}>jiyoul@uci.edu</a></li>
             <li><span className="mr-3 font-semibold text-blue-text">Resume</span><a className="hover:text-blue-text" href={LINKS.resume} target="_blank" rel="noreferrer">PDF download ↓</a></li>
             <li><span className="mr-3 font-semibold text-blue-text">Design Documentation</span><a className="hover:text-blue-text" href={LINKS.notion} target="_blank" rel="noreferrer">Notion ↗</a></li>

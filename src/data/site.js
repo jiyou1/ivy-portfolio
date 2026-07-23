@@ -7,6 +7,7 @@ export const BIO = [
 export const LINKS = {
   email: "mailto:jiyoul@uci.edu",
   linkedin: "https://www.linkedin.com/in/jiyouivylee",
+  instagram: "https://www.instagram.com/ee.jyoo/",
   resume: "/resume.pdf",
   notion: "https://app.notion.com/p/18ac7710ed0f81a1880dee4d051d8265?v=18ac7710ed0f813f9a47000cd1a66a75&source=copy_link",
 };
