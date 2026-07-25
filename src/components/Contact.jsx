@@ -32,7 +32,7 @@ export default function Contact() {
             target={href.startsWith("/") || href.startsWith("mailto") ? undefined : "_blank"}
             rel="noreferrer"
             className={
-              "inline-flex items-center gap-2 rounded-full px-6 py-3 text-[11px] font-semibold tracking-[0.08em] transition-transform hover:-translate-y-0.5 " +
+              "inline-flex items-center gap-2 rounded-full px-6 py-3 text-[11px] font-semibold tracking-[0.08em] transition-transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] " +
               (primary ? "bg-blue text-white" : "glass text-ink")
             }
           >

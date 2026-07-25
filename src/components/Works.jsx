@@ -131,6 +131,7 @@ function WorkCard({ p, dimmed }) {
 }
 
 export default function Works({ filter, onClear, headingRef }) {
+  const reduce = useReducedMotion();
   return (
     <section id="projects" className="relative px-5 py-20 sm:px-10 lg:px-16">
       <SectionLabel>
@@ -147,22 +148,30 @@ export default function Works({ filter, onClear, headingRef }) {
         Designed, built, and shipped.
       </h2>
 
-      {filter && (
-        <div className="mt-6 flex items-center gap-2 text-[12px] font-semibold tracking-[0.06em]">
-          <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-2">
-            <span className="text-grayt">Filtering by:</span>
-            <span className="text-blue-text">{filter}</span>
-            <span aria-hidden="true" className="text-grayt">·</span>
-            <button
-              type="button"
-              onClick={onClear}
-              className="cursor-pointer text-ink underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue focus-visible:ring-offset-2"
-            >
-              Clear
-            </button>
-          </span>
-        </div>
-      )}
+      <AnimatePresence initial={false}>
+        {filter && (
+          <motion.div
+            initial={reduce ? false : { opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            className="mt-6 flex items-center gap-2 text-[12px] font-semibold tracking-[0.06em]"
+          >
+            <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-2">
+              <span className="text-grayt">Filtering by:</span>
+              <span className="text-blue-text">{filter}</span>
+              <span aria-hidden="true" className="text-grayt">·</span>
+              <button
+                type="button"
+                onClick={onClear}
+                className="cursor-pointer text-ink underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue focus-visible:ring-offset-2"
+              >
+                Clear
+              </button>
+            </span>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="mt-9 grid grid-cols-1 gap-8 md:grid-cols-2">
         {HOME_PROJECTS.map((p) => (

@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
+import { motion, useReducedMotion } from "framer-motion";
 
 /* Placeholder for a case study that isn't ready to show yet. Gated by the
    project's `brewing` flag in data/projects.js; remove the flag to publish.
    Same starfield idiom as Playground. */
 export default function Brewing() {
+  const reduce = useReducedMotion();
   return (
     <div
       className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 text-center text-white"
@@ -12,7 +14,17 @@ export default function Brewing() {
           "radial-gradient(1.6px 1.6px at 12% 18%, #fff, transparent), radial-gradient(1.4px 1.4px at 78% 28%, #fff, transparent), radial-gradient(1.2px 1.2px at 32% 72%, rgba(255,255,255,0.85), transparent), radial-gradient(1.2px 1.2px at 64% 82%, rgba(255,255,255,0.7), transparent), radial-gradient(1.5px 1.5px at 88% 60%, #fff, transparent), linear-gradient(160deg, #060a1f 0%, #140b34 55%, #2a1550 100%)",
       }}
     >
-      <p className="text-[12px] font-semibold tracking-[0.22em] text-white/70">✦ CASE STUDY</p>
+      <p className="text-[12px] font-semibold tracking-[0.22em] text-white/70">
+        <motion.span
+          aria-hidden="true"
+          className="inline-block"
+          animate={reduce ? {} : { opacity: [1, 0.5, 1] }}
+          transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          ✦
+        </motion.span>{" "}
+        CASE STUDY
+      </p>
       <h1 className="mt-4 font-display text-[clamp(2.5rem,8vw,5rem)] italic leading-[1.05]">
         still brewing
       </h1>

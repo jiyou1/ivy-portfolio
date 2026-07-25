@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import CaseVideo from "./CaseVideo";
 
 /* Generic split case-study hero. Left column carries the optional logo (small,
@@ -9,9 +10,15 @@ import CaseVideo from "./CaseVideo";
    already uses, so no existing component needs to bend to fit. */
 export default function CaseHero({ logo, eyebrow, title, lede, pills = [], meta = [], media }) {
   const [logoOk, setLogoOk] = useState(true);
+  const reduce = useReducedMotion();
   return (
     <header className="pt-16">
-      <div className="grid grid-cols-1 items-start gap-16 min-[880px]:[grid-template-columns:1.2fr_1fr]">
+      <motion.div
+        initial={reduce ? false : { opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="grid grid-cols-1 items-start gap-16 min-[880px]:[grid-template-columns:1.2fr_1fr]"
+      >
         <div>
           {logo && logoOk && (
             <img
@@ -48,7 +55,7 @@ export default function CaseHero({ logo, eyebrow, title, lede, pills = [], meta 
             </div>
           ))}
         </dl>
-      </div>
+      </motion.div>
 
       {media && (
         <CaseVideo

@@ -104,7 +104,7 @@ function SkillChip({ label, onSelect }) {
     <button
       type="button"
       onClick={() => onSelect(label)}
-      className="glass inline-flex cursor-pointer items-center gap-1.5 rounded-full px-4 py-2 text-[10px] font-semibold tracking-[0.08em] text-ink transition-colors duration-150 hover:text-blue focus-visible:text-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue focus-visible:ring-offset-2"
+      className="glass inline-flex cursor-pointer items-center gap-1.5 rounded-full px-4 py-2 text-[10px] font-semibold tracking-[0.08em] text-ink transition-[color,transform] duration-150 hover:text-blue active:scale-[0.97] focus-visible:text-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue focus-visible:ring-offset-2"
     >
       {Icon && <Icon width={13} height={13} strokeWidth={2} aria-hidden />}
       {label}
