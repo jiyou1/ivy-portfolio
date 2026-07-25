@@ -91,7 +91,7 @@ function WorkCard({ p, dimmed }) {
           style={p.thumb ? { backgroundColor: p.thumb } : undefined}
         >
           <span className="absolute inset-0 flex items-center justify-center text-[11px] font-semibold tracking-[0.06em] text-white/80 mix-blend-difference">
-            COVER — {p.title.toUpperCase()}
+            COVER - {p.title.toUpperCase()}
           </span>
           <Cover src={p.cover} video={p.video} alt={p.title + " cover"} position={p.coverPosition} />
           <span className="pointer-events-none absolute inset-0 bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-30" />
@@ -136,7 +136,7 @@ export default function Works({ filter, onClear, headingRef }) {
     <section id="projects" className="relative px-5 py-20 sm:px-10 lg:px-16">
       <SectionLabel>
         <span className="inline-flex items-center gap-2">
-          02 — SELECTED WORKS
+          SELECTED WORKS
           <Page width={14} height={14} strokeWidth={2} aria-hidden />
         </span>
       </SectionLabel>

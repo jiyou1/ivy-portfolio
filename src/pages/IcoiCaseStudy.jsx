@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { forwardRef, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import CaseBlobs from "../components/icoi/CaseBlobs";
 import Toc from "../components/icoi/Toc";
@@ -32,18 +32,21 @@ const ASSETS = "/case/icoi/";
 /* ---------- small prose helpers (prose caps at 760px; media spans 1080) ---------- */
 function Eyebrow({ n, icon: Icon, children }) {
   return (
-    <span className="inline-flex items-center gap-2 font-plex text-[12px] uppercase tracking-[0.14em] text-blue-text">
+    <span className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.14em] text-blue-text">
       {Icon && <Icon width={14} height={14} strokeWidth={2} aria-hidden />}
       {n && <span>{n}</span>}
       {children}
     </span>
   );
 }
-const H2 = ({ children, ...rest }) => (
-  <h2 className="mb-4 mt-4 max-w-[760px] text-balance text-[28px] font-extrabold leading-tight tracking-[-0.02em]" {...rest}>
-    {children}
-  </h2>
-);
+// forwardRef so the skip link can move focus to the "What shipped" heading
+const H2 = forwardRef(function H2({ children, ...rest }, ref) {
+  return (
+    <h2 ref={ref} className="mb-4 mt-4 max-w-[760px] text-balance text-[28px] font-extrabold leading-tight tracking-[-0.02em]" {...rest}>
+      {children}
+    </h2>
+  );
+});
 const H3 = ({ children }) => (
   <h3 className="mb-2 mt-8 max-w-[760px] text-balance text-[18px] font-semibold">{children}</h3>
 );
@@ -92,7 +95,7 @@ export default function IcoiCaseStudy() {
           under the numerals. Content re-centers within the remaining band. */}
       <div className="min-[880px]:pl-[256px]">
       <nav className="mx-auto max-w-[1080px] px-8 pt-8">
-        <Link to="/" className="font-plex text-[13px] text-grayt transition-colors hover:text-ink">
+        <Link to="/" className="font-mono text-[13px] text-grayt transition-colors hover:text-ink">
           ← ivy jiyou lee
         </Link>
       </nav>
@@ -100,43 +103,37 @@ export default function IcoiCaseStudy() {
       <main className="mx-auto max-w-[1080px] px-8">
         {/* ================= HERO ================= */}
         <header className="pt-16">
-          <div className="grid grid-cols-1 items-start gap-16 min-[880px]:[grid-template-columns:1.2fr_1fr]">
-            <div>
+          {/* Mobile stacks by importance (headline, lede, proof, then metadata);
+              at 880px+ the grid areas restore headline + metadata left, lede right. */}
+          <div className="grid grid-cols-1 gap-y-10 min-[880px]:items-start min-[880px]:gap-x-16 min-[880px]:[grid-template-areas:'head_side'_'meta_side'] min-[880px]:[grid-template-columns:1.2fr_1fr] min-[880px]:[grid-template-rows:auto_1fr]">
+            <div className="min-[880px]:[grid-area:head]">
               <Eyebrow>Case study</Eyebrow>
               <h1 className="mt-4 text-balance font-instrument text-[clamp(44px,6.5vw,76px)] font-normal leading-[1.04] tracking-[-0.015em]">
                 500 members, 17 pages of bylaws, one source of truth.
               </h1>
-              <dl className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-x-8">
-                {[
-                  ["Role", "Frontend Lead & UI Designer"],
-                  ["Sponsor", <Sponsor key="sp" />],
-                  ["Duration", "Jan – Jun 2026, 2-week sprints"],
-                  ["Tools", <ToolChips key="tc" />],
-                ].map(([dt, dd]) => (
-                  <div key={dt}>
-                    <dt className="mb-2 font-plex text-[11px] uppercase tracking-[0.12em] text-grayt">{dt}</dt>
-                    <dd className="text-[14px] leading-[1.5]">{dd}</dd>
-                  </div>
-                ))}
-              </dl>
             </div>
 
-            <div className="pt-2">
+            <div className="pt-2 min-[880px]:[grid-area:side]">
               <p className="mb-6 text-pretty text-[18px] leading-[1.6] text-prose">
                 A 500+ member nonprofit ran on Google Forms and a spreadsheet that contradicted its
-                own legal bylaws. As frontend lead and sole designer on a team of five, I designed the
-                entire system in Figma and led the React frontend that now runs ICOI's daily operations.
+                own legal bylaws. As the team's sole designer and frontend lead, I designed the system
+                in Figma and led the React build that now runs ICOI's daily operations.
               </p>
               <div className="mb-6 flex flex-wrap gap-2">
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-text bg-blue px-3.5 py-1.5 font-plex text-[12px] text-white">
+                <a
+                  href="https://icoi.net"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-blue-text bg-blue px-3.5 py-1.5 font-mono text-[12px] text-white transition-transform hover:-translate-y-0.5"
+                >
                   <Globe width={13} height={13} strokeWidth={2} aria-hidden />
                   In production · icoi.net
-                </span>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-stroke bg-white px-3.5 py-1.5 font-plex text-[12px] text-ink">
+                </a>
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-stroke bg-white px-3.5 py-1.5 font-mono text-[12px] text-ink">
                   <Group width={13} height={13} strokeWidth={2} aria-hidden />
                   500+ members
                 </span>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-stroke bg-white px-3.5 py-1.5 font-plex text-[12px] text-ink">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-stroke bg-white px-3.5 py-1.5 font-mono text-[12px] text-ink">
                   <Presentation width={13} height={13} strokeWidth={2} aria-hidden />
                   UCI ICS Expo '26
                 </span>
@@ -144,7 +141,7 @@ export default function IcoiCaseStudy() {
               <a
                 href="#shipped"
                 onClick={onSkip}
-                className="inline-flex items-center gap-3.5 rounded-full border-[1.5px] border-dashed border-stroke-2 bg-white/50 py-2.5 pl-2.5 pr-6 font-plex text-[12px] font-semibold tracking-[0.1em] text-ink transition-colors hover:border-solid hover:border-blue"
+                className="inline-flex items-center gap-3.5 rounded-full border-[1.5px] border-dashed border-stroke-2 bg-white/50 py-2.5 pl-2.5 pr-6 font-mono text-[12px] font-semibold tracking-[0.1em] text-ink transition-colors hover:border-solid hover:border-blue"
               >
                 <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-blue text-[14px] text-white">
                   ↓
@@ -152,6 +149,20 @@ export default function IcoiCaseStudy() {
                 SKIP TO WHAT SHIPPED
               </a>
             </div>
+
+            <dl className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-x-8 min-[880px]:[grid-area:meta]">
+              {[
+                ["Role", "Frontend Lead & UI Designer"],
+                ["Sponsor", <Sponsor key="sp" />],
+                ["Duration", "Jan - Jun 2026, 2-week sprints"],
+                ["Tools", <ToolChips key="tc" />],
+              ].map(([dt, dd]) => (
+                <div key={dt}>
+                  <dt className="mb-2 font-mono text-[11px] uppercase tracking-[0.12em] text-grayt">{dt}</dt>
+                  <dd className="text-[14px] leading-[1.5]">{dd}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
 
           <Slot
@@ -196,18 +207,12 @@ export default function IcoiCaseStudy() {
           </P>
           <BeforeSheet />
           <VerdictTable />
-          <P>
-            The sheet also tracked outstanding balance as a manually typed YES/NO. In the bylaws,
-            balance timing is what changes a member's status automatically. A
-            cell someone forgot to update is how a member <Hl>stays "Voting" a year after they legally
-            stopped being one</Hl>.
-          </P>
         </section>
 
         {/* ================= 03 RULES -> INTERFACE ================= */}
         <section id="rules" className="pt-24">
           <Eyebrow n="03" icon={GitFork}>Rules → interface</Eyebrow>
-          <H2>One clause, traced from legal text to shipped UI</H2>
+          <H2>One section, traced from legal text to shipped UI</H2>
           <P>The hardest translation problem lived in Section 3.4. Here is the trace, exactly as I worked it.</P>
 
           <BylawTrace
@@ -274,11 +279,11 @@ export default function IcoiCaseStudy() {
           <Eyebrow n="04" icon={MultiWindow}>The family model</Eyebrow>
           <H2>One rule, two different modals</H2>
           <P>
-            That family wrinkle hides the hardest design problem in the project.
-            Adding a family member sounds like one feature. The bylaws make it two: a spouse holds their
-            own membership, so linking an existing member must exist. A child under 18 holds no
-            individual membership at all, so there is nothing to link. Below is the working file where
-            that rule got untangled, notes included.
+            The bylaws also define family memberships, and they hide the hardest design problem in
+            the project. Adding a family member sounds like one feature. The bylaws make it two: a
+            spouse holds their own membership, so linking an existing member must exist. A child
+            under 18 holds no membership at all, so there is nothing to link. Below is the working
+            file where that rule got untangled, notes included.
           </P>
 
           <ZoomFigure
@@ -288,9 +293,8 @@ export default function IcoiCaseStudy() {
           />
 
           <P>
-            The relation field ended up controlling what the modal is allowed to do. That decision came
-            from the bylaws' family model, not from a UI pattern, and the notes on this board are where
-            it happened.
+            The relation field ended up controlling what the modal is allowed to do. That decision
+            came from the bylaws, not from a UI pattern.
           </P>
         </section>
 
@@ -319,7 +323,7 @@ export default function IcoiCaseStudy() {
             }
           />
           <P>
-            The frontend problem: one feed has to hold heterogeneous events (payments, status
+            The frontend problem: one feed has to hold every kind of event (payments, status
             transitions, edits, approvals, board actions), attribute each to an admin, and stay scannable
             for a volunteer who checks it monthly.
           </P>
@@ -347,8 +351,7 @@ export default function IcoiCaseStudy() {
           <div className="mt-16 border-t border-stroke pt-8">
             <H3>Presented at the UCI ICS Expo</H3>
             <P>
-              We closed the project presenting the system as the Data Solutions Architecture Group at UCI's
-              ICS capstone expo.
+              We presented the finished system at UCI's ICS capstone expo.
             </P>
             <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
             {[
@@ -363,7 +366,7 @@ export default function IcoiCaseStudy() {
                   className="m-0 aspect-[3/2]"
                   label={`[ SLOT ] ${img}`}
                 />
-                <figcaption className="mt-2 font-plex text-[11px] leading-[1.5] text-grayt">
+                <figcaption className="mt-2 text-pretty font-mono text-[11px] leading-[1.5] text-grayt">
                   {alt}
                 </figcaption>
               </figure>
@@ -379,7 +382,7 @@ export default function IcoiCaseStudy() {
           <div className="my-10 grid grid-cols-1 items-stretch gap-4 md:grid-cols-3">
             {REFLECT.map((c) => (
               <div key={c.k} className="rounded-2xl border border-stroke bg-white p-7">
-                <span className="mb-3 block font-plex text-[11px] uppercase tracking-[0.12em] text-blue-text">
+                <span className="mb-3 block font-mono text-[11px] uppercase tracking-[0.12em] text-blue-text">
                   {c.k}
                 </span>
                 <p className="m-0 text-pretty text-[14px] text-prose">{c.p}</p>
@@ -389,13 +392,14 @@ export default function IcoiCaseStudy() {
             {/* honest miss: the candid third beat — red alert ramp + left rule so it
                 reads as deliberate self-critique, not another win card */}
             <div className="rounded-2xl border border-red-200 border-l-[3px] border-l-red-500 bg-red-50 p-7">
-              <span className="mb-3 flex items-center gap-2 font-plex text-[11px] uppercase tracking-[0.12em] text-red-600">
+              <span className="mb-3 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] text-red-600">
                 <WarningTriangle width={13} height={13} strokeWidth={2} aria-hidden />
                 Honest miss
               </span>
               <p className="m-0 text-pretty text-[14px] text-prose">
-                I let admins hand-edit status to catch the system's misses. That was backwards: the
-                bylaws were too complex to memorize, so I made status read-only.
+                I originally let admins hand-edit status to catch the system's misses. That was
+                backwards: the humans were the unreliable part. Nobody memorizes 17 pages of rules.
+                So status became read-only, and we fixed the rules instead.
               </p>
             </div>
           </div>
@@ -405,7 +409,7 @@ export default function IcoiCaseStudy() {
       <footer className="mx-auto max-w-[1080px] px-8 pb-16 pt-24">
         <div className="h-px bg-stroke" />
         <SeeNext current="icoi" />
-        <p className="pt-10 font-plex text-[12px] text-grayt">
+        <p className="pt-10 font-mono text-[12px] text-grayt">
           <a href="/#projects" className="text-blue-text">← back to all work</a>
         </p>
       </footer>

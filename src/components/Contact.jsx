@@ -1,4 +1,3 @@
-import { Envelope } from "@phosphor-icons/react";
 import { Mail, Linkedin, Instagram, Download } from "iconoir-react";
 import SectionLabel from "./SectionLabel";
 import { LINKS } from "../data/site";
@@ -13,8 +12,8 @@ export default function Contact() {
   return (
     <section id="contact" className="relative px-5 py-28 text-center sm:px-10">
       <div className="flex items-center justify-center gap-2.5">
-        <SectionLabel>03 — GET IN TOUCH</SectionLabel>
-        <Envelope size={20} weight="duotone" className="text-blue" aria-hidden />
+        <SectionLabel>GET IN TOUCH</SectionLabel>
+        <Mail width={18} height={18} strokeWidth={2} className="text-blue" aria-hidden />
       </div>
       <h2 className="mx-auto mt-4 max-w-3xl text-[2rem] font-bold tracking-[-0.02em] sm:text-[2.75rem]">
         I'm looking for new opportunities.

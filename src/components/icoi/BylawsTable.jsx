@@ -89,7 +89,7 @@ function Lightbox({ index, onClose, onStep }) {
           alt={`Bylaws ${p.tag}: ${p.note}`}
           className="max-h-[82vh] w-auto rounded-2xl border border-white/70 bg-white shadow-[0_30px_80px_rgba(11,14,20,0.4)]"
         />
-        <figcaption className="glass mx-auto mt-4 w-fit rounded-full px-4 py-1.5 font-plex text-[12px] text-ink">
+        <figcaption className="glass mx-auto mt-4 w-fit rounded-full px-4 py-1.5 font-mono text-[12px] text-ink">
           <span className="font-semibold text-blue-text">{p.tag}</span>
           <span className="mx-2 text-stroke-2">·</span>
           {p.note}
@@ -151,7 +151,7 @@ function Sheet({ page, i, reduce, hovered, setHovered, onOpen }) {
       </div>
 
       {/* mono tag tab, glass — matches the site's chip language */}
-      <span className="glass absolute bottom-2.5 left-2.5 inline-flex items-center gap-1 rounded-full px-2.5 py-1 font-plex text-[10px] font-semibold tracking-[0.02em] text-ink">
+      <span className="glass absolute bottom-2.5 left-2.5 inline-flex items-center gap-1 rounded-full px-2.5 py-1 font-mono text-[10px] font-semibold tracking-[0.02em] text-ink">
         {page.tag}
       </span>
 
@@ -213,9 +213,9 @@ export default function BylawsTable() {
         </div>
       </div>
 
-      <figcaption className="mt-3 max-w-[760px] text-[13px] leading-[1.5] text-grayt">
-        The bylaws as we received them: a 27-page scanned PDF with no text layer.
-        Five of the pages we spent the most time decoding.{" "}
+      <figcaption className="mt-3 max-w-[760px] text-pretty text-[13px] leading-[1.5] text-grayt">
+        The bylaws as we received them: 17 pages plus attachments, a 27-page scan with no text
+        layer. The five pages we spent the most time decoding.{" "}
         <span className="text-ink/70">Tap a page to read it.</span>
       </figcaption>
 

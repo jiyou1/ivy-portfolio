@@ -125,11 +125,11 @@ function PostIt({ hue, tilt, title, body }) {
       {/* little arrow tab pointing back toward the sheet, in the note's hue */}
       <span
         aria-hidden="true"
-        className="absolute right-full top-4 hidden border-y-[6px] border-r-[7px] border-y-transparent md:block"
+        className="absolute right-full top-4 hidden border-y-[6px] border-r-[7px] border-y-transparent min-[1340px]:block"
         style={{ borderRightColor: `var(${border})` }}
       />
       <span
-        className="mb-1 block font-plex text-[10px] font-semibold uppercase tracking-[0.1em]"
+        className="mb-1 block font-mono text-[10px] font-semibold uppercase tracking-[0.1em]"
         style={{ color: `var(${text})` }}
       >
         {title}
@@ -142,18 +142,20 @@ function PostIt({ hue, tilt, title, body }) {
 export default function BeforeSheet() {
   return (
     <figure className="my-8">
-      <div className="flex flex-col gap-5 md:flex-row md:items-start md:gap-6">
+      {/* post-its sit beside the sheet only when the sheet still fits its full
+          width (>=1340px with the TOC gutter); below that they stack under it */}
+      <div className="flex flex-col gap-5 min-[1340px]:flex-row min-[1340px]:items-start min-[1340px]:gap-6">
         {/* the sheet */}
         <div className="min-w-0 flex-1 overflow-hidden rounded-2xl border border-stroke bg-white">
           <div className="flex items-center justify-between gap-3 border-b border-stroke bg-imgbg px-4 py-3">
-            <span className="font-plex text-[11px] uppercase tracking-[0.12em] text-grayt">
+            <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-grayt">
               Membership tracker, as received
             </span>
-            <span className="font-plex text-[11px] text-grayt">500+ rows · slice shown</span>
+            <span className="font-mono text-[11px] text-grayt">500+ rows · slice shown</span>
           </div>
 
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[560px] border-collapse font-plex text-[12px]">
+            <table className="w-full min-w-[560px] border-collapse font-mono text-[12px]">
               <caption className="sr-only">
                 A recreated slice of the ICOI membership tracker, with problem cells tinted to match
                 the notes beside it.
@@ -165,7 +167,7 @@ export default function BeforeSheet() {
                       key={c.k}
                       scope="col"
                       className={
-                        "border-b border-stroke bg-white px-3 py-2.5 text-left text-[10px] uppercase tracking-[0.1em] text-grayt " +
+                        "border-b border-stroke bg-white px-2.5 py-2.5 text-left text-[10px] uppercase tracking-[0.1em] text-grayt " +
                         (c.k === "row" ? "text-center" : "")
                       }
                     >
@@ -185,8 +187,8 @@ export default function BeforeSheet() {
                           key={c.k}
                           style={hueStyle(hue)}
                           className={
-                            "px-3 py-2 align-top " +
-                            (c.wrap ? "min-w-[190px] whitespace-normal " : "whitespace-nowrap ") +
+                            "px-2.5 py-2 align-top " +
+                            (c.wrap ? "min-w-[180px] whitespace-normal " : "whitespace-nowrap ") +
                             (c.k === "row" ? "text-center text-grayt " : "") +
                             (c.k === "name" && !hue ? "font-medium text-ink " : "") +
                             (!hue ? "text-prose " : "")
@@ -204,7 +206,7 @@ export default function BeforeSheet() {
         </div>
 
         {/* post-it callouts */}
-        <ul className="flex list-none flex-col gap-3 md:w-[260px] md:flex-none">
+        <ul className="flex list-none flex-col gap-3 min-[1340px]:w-[260px] min-[1340px]:flex-none">
           {NOTES.map((n) => (
             <PostIt key={n.hue} {...n} />
           ))}

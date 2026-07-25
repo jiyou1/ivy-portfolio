@@ -28,7 +28,7 @@ export default function CaseHero({ logo, eyebrow, title, lede, pills = [], meta 
               className="mb-5 h-10 w-auto"
             />
           )}
-          <span className="font-plex text-[12px] uppercase tracking-[0.14em] text-blue-text">{eyebrow}</span>
+          <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-blue-text">{eyebrow}</span>
           <h1 className="mt-4 font-instrument text-[clamp(44px,6.5vw,76px)] font-normal leading-[1.04] tracking-[-0.015em]">
             {title}
           </h1>
@@ -38,7 +38,7 @@ export default function CaseHero({ logo, eyebrow, title, lede, pills = [], meta 
               {pills.map((label) => (
                 <span
                   key={label}
-                  className="inline-flex items-center rounded-full border border-stroke bg-white px-3.5 py-1.5 font-plex text-[12px] text-ink"
+                  className="inline-flex items-center rounded-full border border-stroke bg-white px-3.5 py-1.5 font-mono text-[12px] text-ink"
                 >
                   {label}
                 </span>
@@ -50,7 +50,7 @@ export default function CaseHero({ logo, eyebrow, title, lede, pills = [], meta 
         <dl className="grid grid-cols-1 gap-6 pt-2 sm:grid-cols-2 sm:gap-x-8">
           {meta.map(({ label, value }) => (
             <div key={label}>
-              <dt className="mb-1.5 font-plex text-[11px] uppercase tracking-[0.12em] text-grayt">{label}</dt>
+              <dt className="mb-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-grayt">{label}</dt>
               <dd className="max-w-[260px] text-[14px] leading-[1.5]">{value}</dd>
             </div>
           ))}

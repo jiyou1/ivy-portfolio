@@ -71,7 +71,7 @@ export default function CaseVideo({
     }
     return (
       <div className={`flex min-h-[320px] items-center justify-center border-[1.5px] border-dashed border-stroke-2 bg-imgbg ${className}`}>
-        <span className="whitespace-pre-line px-6 text-center font-plex text-[12px] leading-[1.8] text-grayt">{label}</span>
+        <span className="whitespace-pre-line px-6 text-center font-mono text-[12px] leading-[1.8] text-grayt">{label}</span>
       </div>
     );
   }
@@ -97,7 +97,7 @@ export default function CaseVideo({
         // placeholder frame before the video mounts: poster if we have one
         <img src={poster} alt={alt} loading="lazy" decoding="async" onError={() => setPosterFailed(true)} className="block h-full w-full object-cover" />
       ) : (
-        <div className="flex min-h-[320px] items-center justify-center whitespace-pre-line px-6 text-center font-plex text-[12px] leading-[1.8] text-grayt">{label}</div>
+        <div className="flex min-h-[320px] items-center justify-center whitespace-pre-line px-6 text-center font-mono text-[12px] leading-[1.8] text-grayt">{label}</div>
       )}
     </div>
   );

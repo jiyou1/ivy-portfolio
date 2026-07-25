@@ -23,7 +23,44 @@
       "Bash(node -e \"console.log\\(require\\('./node_modules/react/package.json'\\).version\\)\")",
       "Bash(node -e \"const p=require\\('./package.json'\\); console.log\\(JSON.stringify\\(p.scripts\\)\\)\")",
       "Bash(git commit -q -m 'RoomieTask stats: make count-up visible — slower easeOut, per-stat stagger, fire at full visibility, rise-in *)",
-      "Bash(git commit -q -m 'Swap in bg-removed espresso video \\(pure-white bg\\), regen poster, drop stale webm *)"
+      "Bash(git commit -q -m 'Swap in bg-removed espresso video \\(pure-white bg\\), regen poster, drop stale webm *)",
+      "Bash(cp wayback-jul15.png slice-team2.png)",
+      "Bash(sips --cropOffset 11700 0 -c 2250 1440 slice-team2.png)",
+      "Bash(sips -Z 780 slice-team2.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight slice-team2.png)",
+      "Bash(git commit -m 'Add five motion fixes from animation audit *)",
+      "Bash(echo \"exit:$?\")",
+      "Bash(node -e ' *)",
+      "Bash(mkdir -p /Users/ivylee_1/Desktop/ivy-portfolio/public/fonts)",
+      "Bash(python3 -)"
     ]
-  }
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ ! -f \"/Users/ivylee_1/.claude/skills/impeccable/scripts/hook.mjs\" ] || node \"/Users/ivylee_1/.claude/skills/impeccable/scripts/hook.mjs\"",
+            "timeout": 5,
+            "statusMessage": "Checking UI changes"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ ! -f \"/Users/ivylee_1/.claude/skills/impeccable/scripts/hook.mjs\" ] || node \"/Users/ivylee_1/.claude/skills/impeccable/scripts/hook.mjs\"",
+            "timeout": 30,
+            "statusMessage": "Design deep pass"
+          }
+        ]
+      }
+    ]
+  },
+  "description": "Impeccable design detector: immediate-tier checks after Edit/Write/MultiEdit on UI files, full-rule deep pass on Stop."
 }

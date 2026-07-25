@@ -5,7 +5,7 @@
    Suspended yellow, terminated red — because the admin interface IS this diagram,
    computed. The one edge the bylaws never define (Active → Voting across a
    suspension) is drawn broken: dashed, red, with the open question on it. The
-   repair paragraph below is the SLOT Ivy fills.
+   caption below names the question; its resolution para can be added when written.
 
    Wrapped in <figure role="img"> with a visually-hidden text description of every
    transition; the SVG itself is aria-hidden since the prose covers it. */
@@ -20,7 +20,7 @@ function Chip({ cx, cy, w, label, c }) {
   return (
     <g>
       <rect x={cx - w / 2} y={cy - h / 2} width={w} height={h} rx="10" fill={c.fill} stroke={c.stroke} strokeWidth="1.5" />
-      <text x={cx} y={cy} textAnchor="middle" dominantBaseline="central" className="font-plex" fontSize="12.5" fontWeight="600" letterSpacing="0.06em" fill={c.text}>
+      <text x={cx} y={cy} textAnchor="middle" dominantBaseline="central" className="font-mono" fontSize="12.5" fontWeight="600" letterSpacing="0.06em" fill={c.text}>
         {label}
       </text>
     </g>
@@ -29,7 +29,7 @@ function Chip({ cx, cy, w, label, c }) {
 
 function Lbl({ x, y, anchor = "middle", fill = "var(--color-grayt)", weight = 400, children }) {
   return (
-    <text x={x} y={y} textAnchor={anchor} className="font-plex" fontSize="11" fontWeight={weight} fill={fill}>
+    <text x={x} y={y} textAnchor={anchor} className="font-mono" fontSize="11" fontWeight={weight} fill={fill}>
       {children}
     </text>
   );
@@ -76,9 +76,9 @@ export default function StateMachine() {
         {/* badge sitting on the broken edge — the loudest thing on the figure */}
         <line x1="690" y1="122" x2="668" y2="150" stroke="var(--color-st-bad)" strokeWidth="1.5" strokeDasharray="4 4" />
         <rect x="524" y="24" width="356" height="98" rx="12" fill="var(--color-st-bad-fill)" stroke="var(--color-st-bad-border)" strokeWidth="1.5" />
-        <text x="546" y="52" className="font-plex" fontSize="12" fontWeight="700" fill="var(--color-st-bad)">§3.2.B says “continuous.”</text>
-        <text x="546" y="76" className="font-plex" fontSize="12" fill="var(--color-grayt)">Continuous across a suspension?</text>
-        <text x="546" y="100" className="font-plex" fontSize="12" fontWeight="700" fill="var(--color-st-bad)">The document doesn’t say.</text>
+        <text x="546" y="52" className="font-mono" fontSize="12" fontWeight="700" fill="var(--color-st-bad)">§3.2.B says “continuous.”</text>
+        <text x="546" y="76" className="font-mono" fontSize="12" fill="var(--color-grayt)">Continuous across a suspension?</text>
+        <text x="546" y="100" className="font-mono" fontSize="12" fontWeight="700" fill="var(--color-st-bad)">The document doesn’t say.</text>
 
         {/* ---- the drop from the ladder into the slide ---- */}
         <line x1="470" y1="172" x2="528" y2="338" stroke="var(--color-ink)" strokeWidth="1.5" markerEnd="url(#ah-ink)" />
@@ -108,14 +108,11 @@ export default function StateMachine() {
         <Chip cx={330} cy={470} w={182} label="BOARD-TERMINATED" c={tok("st-bad")} />
       </svg>
 
-      {/* caption = the repair. The broken edge above states the problem; this is
-          where the team had to decide what the document wouldn't. */}
       <figcaption className="mt-6 border-t border-stroke pt-5">
-        <p className="font-plex text-[11px] leading-[1.8] text-grayt">
+        <p className="text-pretty font-mono text-[11px] leading-[1.8] text-grayt">
           <span className="font-semibold text-st-bad">One edge the bylaws never define.</span>{" "}
           §3.2.B calls the voting clock "continuous" but never says whether a suspension resets it. The
-          document couldn't answer, so the team had to.{" "}
-          <span className="italic">[ SLOT: 1 short para on how the team/board resolved the continuous-clock question ]</span>
+          document couldn't answer, so the team had to.
         </p>
       </figcaption>
     </figure>

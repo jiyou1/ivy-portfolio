@@ -30,7 +30,7 @@ function Mark({ hit, isLatte }) {
     <>
       <span
         aria-hidden="true"
-        className="font-plex text-[15px]"
+        className="font-mono text-[15px]"
         style={{ color: hit ? (isLatte ? "var(--color-blue)" : "var(--color-ink)") : MISS }}
       >
         {hit ? "●" : "–"}
@@ -45,12 +45,12 @@ export default function CompetitorMatrix() {
     <figure className="my-8">
       <div className="overflow-x-auto rounded-2xl border border-white/70 bg-white/60 shadow-[0_12px_36px_-16px_rgba(139,109,70,0.4)] backdrop-blur-xl">
         <table className="w-full min-w-[720px] border-collapse text-[14px]">
-          <caption className="px-6 pt-5 text-left font-plex text-[11px] uppercase tracking-[0.12em] text-grayt">
+          <caption className="px-6 pt-5 text-left font-mono text-[11px] uppercase tracking-[0.12em] text-grayt">
             Competitive research, LikeLion US 2024-25.
           </caption>
           <thead>
             <tr>
-              <th scope="col" className="w-[190px] px-5 py-4 text-left font-plex text-[11px] uppercase tracking-[0.08em] text-grayt">
+              <th scope="col" className="w-[190px] px-5 py-4 text-left font-mono text-[11px] uppercase tracking-[0.08em] text-grayt">
                 <span className="sr-only">Capability</span>
               </th>
               {APPS.map((app, i) => {
@@ -60,7 +60,7 @@ export default function CompetitorMatrix() {
                     key={app}
                     scope="col"
                     className={
-                      "px-3 py-4 text-center font-plex text-[11px] uppercase tracking-[0.06em] " +
+                      "px-3 py-4 text-center font-mono text-[11px] uppercase tracking-[0.06em] " +
                       (isLatte ? "font-semibold text-blue-text" : "text-grayt")
                     }
                     style={isLatte ? { background: LATTE_TINT } : undefined}

@@ -357,7 +357,7 @@ export default function ShippedFeatures({
             >
               {isFailed ? (
                 <div className="flex h-full w-full items-center justify-center border-[1.5px] border-dashed border-stroke-2 bg-imgbg">
-                  <span className="px-6 text-center font-plex text-[12px] leading-[1.7] text-grayt">
+                  <span className="px-6 text-center font-mono text-[12px] leading-[1.7] text-grayt">
                     {fileName(src)}
                   </span>
                 </div>
@@ -452,7 +452,7 @@ export default function ShippedFeatures({
                   className={on ? "text-blue" : "text-grayt"}
                 />
               )}
-              <span className={"font-plex text-[11px] " + (on ? "text-blue" : "text-stroke-2")}>{f.number}</span>
+              <span className={"font-mono text-[11px] " + (on ? "text-blue" : "text-stroke-2")}>{f.number}</span>
               <span className="text-[13px] font-semibold uppercase tracking-[0.04em]">{f.label}</span>
             </button>
           );

@@ -76,7 +76,7 @@ export function Sponsor() {
   return (
     <div className="flex items-start gap-3">
       {failed ? (
-        <span className="glass flex h-11 w-11 flex-none items-center justify-center rounded-xl font-plex text-[11px] font-semibold text-blue-text">
+        <span className="glass flex h-11 w-11 flex-none items-center justify-center rounded-xl font-mono text-[11px] font-semibold text-blue-text">
           ICOI
         </span>
       ) : (

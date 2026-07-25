@@ -16,7 +16,7 @@ export default function ReflectionCards({ cards = [] }) {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {plain.map((c) => (
             <div key={c.k} className="rounded-2xl border border-stroke bg-white p-7">
-              <span className="mb-3 block font-plex text-[11px] uppercase tracking-[0.12em] text-blue-text">
+              <span className="mb-3 block font-mono text-[11px] uppercase tracking-[0.12em] text-blue-text">
                 {c.k}
               </span>
               {c.p ? (
@@ -33,7 +33,7 @@ export default function ReflectionCards({ cards = [] }) {
           key={c.k}
           className="mt-4 rounded-2xl border border-stroke border-l-[3px] border-l-st-warn bg-white p-7"
         >
-          <span className="mb-3 flex items-center gap-2 font-plex text-[11px] uppercase tracking-[0.12em] text-st-warn">
+          <span className="mb-3 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] text-st-warn">
             <WarningTriangle width={13} height={13} strokeWidth={2} aria-hidden />
             {c.k}
           </span>

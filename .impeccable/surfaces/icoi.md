@@ -51,7 +51,7 @@ hero. The case study earns seriousness by withholding the toy palette.
 ## 2. Typography
 
 **Primary: Inter** (unchanged roles from the portfolio doc).
-**Evidence voice: IBM Plex Mono.** New on this page. Mono is the sound of
+**Evidence voice: Spline Sans Mono.** New on this page. Mono is the sound of
 citations, data, and machinery. If a string is evidence (a § reference, a
 status token, a date rule, a TOC number), it is mono. If it is narrative, it
 is Inter. Never blur this line.
@@ -60,9 +60,9 @@ is Inter. Never blur this line.
 - Section H2: Inter 800, 28px, -2% tracking.
 - Body: Inter 400, 17px, lh 1.65, color `#2A3140`, max-width 640px.
 - Lede: Inter 400, 20px, lh 1.55, Ink.
-- Eyebrow: Plex Mono, 12px, +14% tracking, UPPERCASE, Accent text.
-- Citation (§): Plex Mono 600, 12px, +6% tracking, Ink.
-- Chip / machine node: Plex Mono 600, 11 to 12px, +6 to 8% tracking.
+- Eyebrow: Spline Sans Mono, 12px, +14% tracking, UPPERCASE, Accent text.
+- Citation (§): Spline Sans Mono 600, 12px, +6% tracking, Ink.
+- Chip / machine node: Spline Sans Mono 600, 11 to 12px, +6 to 8% tracking.
 - Bylaws quote body: Inter 400 italic, 15px, `#3A4252`. Legal text is the
   only italic on the page.
 

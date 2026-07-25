@@ -24,21 +24,11 @@ import {
 } from "../content/designathon";
 
 /* Pink-dominant mesh fingerprint: #FFB8EB leading, #8CDEFF and #B89EFF
-   supporting. Pure radial-gradients that fade to transparent, the same
-   pre-blurred blob technique CaseBlobs uses, never a runtime blur filter. */
+   supporting, on CaseBlobs' fixed-viewport aurora technique (no runtime blur). */
 const MESH = [
-  {
-    width: 620, height: 620, top: -140, right: -180,
-    background: "radial-gradient(circle at 30% 30%, rgba(255,184,235,.60), rgba(184,158,255,.35) 60%, transparent 75%)",
-  },
-  {
-    width: 520, height: 520, top: "34%", left: -240,
-    background: "radial-gradient(circle at 60% 40%, rgba(255,184,235,.50), rgba(140,222,255,.32) 65%, transparent 78%)",
-  },
-  {
-    width: 560, height: 560, bottom: -160, right: -140,
-    background: "radial-gradient(circle at 40% 60%, rgba(255,184,235,.48), rgba(184,158,255,.38) 60%, transparent 76%)",
-  },
+  "radial-gradient(46rem 46rem at 90% -8%, rgba(255,184,235,.5), rgba(184,158,255,.3) 55%, transparent 72%)",
+  "radial-gradient(40rem 40rem at -10% 44%, rgba(255,184,235,.42), rgba(140,222,255,.26) 58%, transparent 74%)",
+  "radial-gradient(42rem 42rem at 94% 104%, rgba(255,184,235,.4), rgba(184,158,255,.32) 55%, transparent 72%)",
 ];
 
 /* A page figure: the image (or Slot's dashed placeholder while missing) with an
@@ -84,14 +74,14 @@ export default function DesignathonCaseStudy() {
 
   return (
     <div className="relative overflow-x-hidden">
-      <CaseBlobs blobs={MESH} />
+      <CaseBlobs layers={MESH} />
       <Toc sections={SECTIONS} />
 
       {/* Reserve the fixed TOC rail's column where it shows, so centered content
           never slides under the numerals. */}
       <div className="min-[880px]:pl-[256px]">
         <nav className="mx-auto max-w-[1080px] px-8 pt-8">
-          <Link to="/" className="font-plex text-[13px] text-grayt transition-colors hover:text-ink">
+          <Link to="/" className="font-mono text-[13px] text-grayt transition-colors hover:text-ink">
             ← ivy jiyou lee
           </Link>
         </nav>
@@ -152,7 +142,7 @@ export default function DesignathonCaseStudy() {
                 tabCols="lg:grid-cols-4"
               />
             </div>
-            <p className="mt-12 font-plex text-[12px] leading-[1.6] text-grayt">
+            <p className="mt-12 font-mono text-[12px] leading-[1.6] text-grayt">
               {SHIPPED_SECTION.credit}{" "}
               <a
                 href={SHIPPED_SECTION.link.href}
@@ -174,7 +164,7 @@ export default function DesignathonCaseStudy() {
         <footer className="mx-auto max-w-[1080px] px-8 pb-16 pt-24">
           <div className="h-px bg-stroke" />
           <SeeNext current="designathon" />
-          <p className="pt-10 font-plex text-[12px] text-grayt">
+          <p className="pt-10 font-mono text-[12px] text-grayt">
             <a href="/#projects" className="text-blue-text">← back to all work</a>
           </p>
         </footer>

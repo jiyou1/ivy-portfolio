@@ -6,7 +6,7 @@
 
 export function Eyebrow({ n, icon: Icon, children }) {
   return (
-    <span className="inline-flex items-center gap-2 font-plex text-[12px] uppercase tracking-[0.14em] text-blue-text">
+    <span className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.14em] text-blue-text">
       {Icon && <Icon width={14} height={14} strokeWidth={2} aria-hidden />}
       {n && <span>{n}</span>}
       {children}

@@ -156,7 +156,7 @@ function Keycap({ label, variant, Icon }) {
 export default function Hero() {
   const reduce = useReducedMotion();
   return (
-    <header id="home" className="relative px-5 pb-20 pt-36 sm:px-10 lg:px-16 lg:pt-44">
+    <header id="home" className="relative px-5 pb-20 pt-24 sm:px-10 lg:px-16 lg:pt-28">
       <Floaties />
       <div className="flex flex-col gap-6">
         <div className="flex items-center gap-2">

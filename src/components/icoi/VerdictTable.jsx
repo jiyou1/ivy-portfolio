@@ -9,7 +9,7 @@ function Verdict({ kind, children }) {
   const color = { match: "st-good", missing: "st-bad", odd: "st-warn" }[kind];
   return (
     <td
-      className="border-b border-stroke px-5 py-3.5 align-top font-plex text-[12px]"
+      className="border-b border-stroke px-5 py-3.5 align-top font-mono text-[12px]"
       style={{ color: `var(--color-${color})`, fontWeight: kind === "match" ? 400 : 600 }}
     >
       {children}
@@ -22,7 +22,7 @@ export default function VerdictTable() {
     <div className="my-8">
       {/* title lives outside the overflow-hidden table so its left edge is never
           clipped by the rounded-corner clip; aria-label keeps the table named */}
-      <p className="mb-3 font-plex text-[11px] uppercase tracking-[0.12em] text-grayt">
+      <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.12em] text-grayt">
         Spreadsheet vocabulary vs. bylaws vocabulary
       </p>
       <div className="overflow-x-auto">
@@ -33,7 +33,7 @@ export default function VerdictTable() {
               <th
                 key={h}
                 scope="col"
-                className="border-b border-stroke bg-imgbg px-5 py-3.5 text-left font-plex text-[11px] uppercase tracking-[0.1em] text-grayt"
+                className="border-b border-stroke bg-imgbg px-5 py-3.5 text-left font-mono text-[11px] uppercase tracking-[0.1em] text-grayt"
               >
                 {h}
               </th>

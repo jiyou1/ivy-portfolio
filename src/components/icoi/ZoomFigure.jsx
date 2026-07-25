@@ -72,7 +72,7 @@ export default function ZoomFigure({ src, alt, caption, aspect = "4 / 3", classN
           className="flex w-full items-center justify-center rounded-2xl border-[1.5px] border-dashed border-stroke-2 bg-imgbg"
           style={{ aspectRatio: aspect }}
         >
-          <span className="px-6 text-center font-plex text-[12px] leading-[1.7] text-grayt">
+          <span className="px-6 text-center font-mono text-[12px] leading-[1.7] text-grayt">
             {fileName(src)}
           </span>
         </div>
@@ -88,7 +88,7 @@ export default function ZoomFigure({ src, alt, caption, aspect = "4 / 3", classN
       )}
 
       {caption && (
-        <figcaption className="mt-3 font-plex text-[12px] leading-[1.5] text-grayt">{caption}</figcaption>
+        <figcaption className="mt-3 font-mono text-[12px] leading-[1.5] text-grayt">{caption}</figcaption>
       )}
 
       <AnimatePresence>

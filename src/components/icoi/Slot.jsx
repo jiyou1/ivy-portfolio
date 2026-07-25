@@ -50,7 +50,7 @@ export default function Slot({ src, video, alt = "", label, variant = "default",
     <div
       className={`flex items-center justify-center rounded-2xl border-[1.5px] border-dashed border-stroke-2 bg-imgbg ${MIN_H[variant]} ${className}`}
     >
-      <span className="whitespace-pre-line px-6 text-center font-plex text-[12px] leading-[1.8] text-grayt">
+      <span className="whitespace-pre-line px-6 text-center font-mono text-[12px] leading-[1.8] text-grayt">
         {label}
       </span>
     </div>

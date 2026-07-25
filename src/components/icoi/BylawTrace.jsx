@@ -40,12 +40,12 @@ function Excerpt({ cite, children, glass, wide, mono, grid }) {
       className={"rounded-r-xl border border-l-[3px] px-7 py-6 " + box + surface}
     >
       {cite && (
-        <span className="mb-3 block font-plex text-[12px] font-semibold tracking-[0.06em] text-ink">
+        <span className="mb-3 block font-mono text-[12px] font-semibold tracking-[0.06em] text-ink">
           {cite}
         </span>
       )}
       {mono ? (
-        <p className="m-0 font-plex text-[13px] leading-[1.6] not-italic text-ink">{children}</p>
+        <p className="m-0 font-mono text-[13px] leading-[1.6] not-italic text-ink">{children}</p>
       ) : (
         <p className="m-0 text-[15px] italic text-legal">{children}</p>
       )}
@@ -69,7 +69,7 @@ export default function BylawTrace({ excerpts, means, glass = false, wide = fals
         <div className="mt-6 space-y-3">
           {meansList.map((m, i) => (
             <div key={i} className="flex items-baseline gap-3 pl-1">
-              <span className="shrink-0 font-plex font-semibold text-blue">→</span>
+              <span className="shrink-0 font-mono font-semibold text-blue">→</span>
               <p className="m-0 text-[15px] text-ink">{m}</p>
             </div>
           ))}
@@ -87,7 +87,7 @@ export default function BylawTrace({ excerpts, means, glass = false, wide = fals
       ))}
       {/* means-arrow: pulled up under the excerpt, indented to align with its text */}
       <div className={"mb-8 -mt-4 flex items-baseline gap-3 pl-8 " + (wide ? "max-w-[1056px]" : "max-w-[640px]")}>
-        <span className="shrink-0 font-plex font-semibold text-blue">→</span>
+        <span className="shrink-0 font-mono font-semibold text-blue">→</span>
         <p className="m-0 text-[15px] text-ink">{means}</p>
       </div>
     </>

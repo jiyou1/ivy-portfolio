@@ -16,29 +16,36 @@ export default function Nav() {
     const sections = items
       .map(([, , id]) => document.getElementById(id))
       .filter(Boolean);
-    // Active section = the last one whose top has scrolled above a line just
-    // below the fixed nav. Measuring near the top (not the viewport center)
-    // keeps "home" active at scrollY 0 even though the hero is shorter than
-    // half the viewport, and it updates on every scroll tick.
-    const onScroll = () => {
-      const line = 120; // px below the top, roughly under the fixed nav bar
-      let current = sections[0]?.id ?? "home";
-      for (const s of sections) {
-        if (s.getBoundingClientRect().top <= line) current = s.id;
-      }
-      // At the very bottom the last section may be too short to reach the line.
-      const doc = document.documentElement;
-      if (window.innerHeight + window.scrollY >= doc.scrollHeight - 2) {
-        current = sections[sections.length - 1]?.id ?? current;
-      }
-      setActive(current);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    if (!sections.length) return;
+    // Scrollspy via IntersectionObserver (no per-frame scroll work). A section
+    // is active while it spans the band just under the fixed nav; sections are
+    // contiguous, so at most two ever intersect it - take the later one.
+    const inBand = new Set();
+    const band = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) inBand.add(e.target.id);
+          else inBand.delete(e.target.id);
+        }
+        const current = sections.filter((s) => inBand.has(s.id)).pop();
+        if (current) setActive(current.id);
+      },
+      { rootMargin: "-120px 0px -75% 0px" }
+    );
+    sections.forEach((s) => band.observe(s));
+    // The last section can be too short to reach the band at max scroll;
+    // treat "almost fully in view" as active (the old bottom-of-page snap).
+    const last = sections[sections.length - 1];
+    const bottom = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) setActive(last.id);
+      },
+      { threshold: 0.98 }
+    );
+    bottom.observe(last);
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      band.disconnect();
+      bottom.disconnect();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

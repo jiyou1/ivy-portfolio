@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* self-hosted Google Fonts (latin + latin-ext), downloaded from fonts.gstatic.com */
+@import "./fonts.css";
 
 @theme {
   --color-bg: #f8fafe;
@@ -35,12 +37,10 @@
 
   --font-sans: "Inter", system-ui, sans-serif;
   --font-instrument: "Instrument Serif", Georgia, serif;
-  --font-plex: "IBM Plex Mono", ui-monospace, monospace;
-  --font-serif: "Fraunces", Georgia, serif;
+  --font-bricolage: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-mono: "Spline Sans Mono", ui-monospace, monospace;
   --font-display: "DM Serif Display", Georgia, serif;
-  --font-korean: "Noto Serif KR", "Fraunces", serif;
   --font-hand: "Caveat", cursive;
-  --font-mono: "Roboto Mono", monospace;
 }
 
 html { scroll-behavior: smooth; }
@@ -53,6 +53,15 @@ body {
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Headings set in Bricolage Grotesque; body stays Inter. In @layer base so
+   headings carrying their own font-* utility (font-instrument, font-display,
+   etc.) still override this. */
+@layer base {
+  h1, h2, h3, h4 {
+    font-family: var(--font-bricolage);
+  }
 }
 
 .glass {

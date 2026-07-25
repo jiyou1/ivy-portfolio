@@ -12,7 +12,7 @@ export default function StatusChip({ status, children }) {
   const c = RAMP[status] ?? "st-info";
   return (
     <span
-      className="inline-block rounded-md border font-plex text-[11px] font-semibold uppercase tracking-[0.08em]"
+      className="inline-block rounded-md border font-mono text-[11px] font-semibold uppercase tracking-[0.08em]"
       style={{
         color: `var(--color-${c})`,
         borderColor: `var(--color-${c}-border)`,

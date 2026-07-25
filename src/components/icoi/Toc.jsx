@@ -56,7 +56,7 @@ export default function Toc({ sections = ICOI_SECTIONS }) {
                 <span
                   aria-hidden="true"
                   className={
-                    "font-plex text-[11px] transition-colors " +
+                    "font-mono text-[11px] transition-colors " +
                     (isActive ? "text-blue-text" : "text-stroke-2 group-hover:text-blue")
                   }
                 >

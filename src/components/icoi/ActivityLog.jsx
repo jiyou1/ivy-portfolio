@@ -110,11 +110,11 @@ function TypeRow({ type, open, onToggle, reduce }) {
         <span className={`h-2.5 w-2.5 flex-none rounded-full ${t.dot}`} aria-hidden />
         <span className="font-semibold text-ink">{type.label}</span>
         {type.badge && (
-          <span className="rounded-full border border-stroke bg-imgbg px-2 py-0.5 font-plex text-[10px] uppercase tracking-[0.08em] text-grayt">
+          <span className="rounded-full border border-stroke bg-imgbg px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.08em] text-grayt">
             {type.badge}
           </span>
         )}
-        <span className="ml-auto font-plex text-[11px] text-grayt">
+        <span className="ml-auto font-mono text-[11px] text-grayt">
           {count} {count === 1 ? "action" : "actions"}
         </span>
         <NavArrowDown
@@ -146,7 +146,7 @@ function TypeRow({ type, open, onToggle, reduce }) {
                       {a.detail && <span className="font-normal text-grayt"> = {a.detail}</span>}
                     </p>
                     {a.record && (
-                      <p className="mt-1 font-plex text-[11px] leading-[1.5] text-grayt">
+                      <p className="mt-1 font-mono text-[11px] leading-[1.5] text-grayt">
                         Records: {a.record}
                       </p>
                     )}

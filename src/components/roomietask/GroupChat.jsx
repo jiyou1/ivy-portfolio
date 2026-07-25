@@ -14,7 +14,7 @@ const EXCHANGES = [
   ["why is it always me on dish duty 😭 every single time",
    "everyone can see who's actually pitching in now, so it's not just in your head"],
   ["asked whose turn for trash in the gc and got left on read lol",
-   "it nudges whoever's up until it's done — you're not the one chasing everyone"],
+   "it nudges whoever's up until it's done, so you're not the one chasing everyone"],
   ["i cannot make myself venmo request yall it's too awkward",
    "splits get handled quietly. no callouts, no rankings, no awkward text to send"],
 ];
@@ -47,7 +47,7 @@ export default function GroupChat() {
             >
               <span
                 className={
-                  "font-plex text-[10px] tracking-[0.1em] " +
+                  "font-mono text-[10px] tracking-[0.1em] " +
                   (isOut ? "text-blue-text" : "text-grayt")
                 }
               >
@@ -68,7 +68,7 @@ export default function GroupChat() {
         })}
       </ul>
 
-      <p className="mt-5 text-right font-plex text-[10px] tracking-[0.06em] text-grayt">
+      <p className="mt-5 text-right font-mono text-[10px] tracking-[0.06em] text-grayt">
         Delivered
       </p>
     </div>

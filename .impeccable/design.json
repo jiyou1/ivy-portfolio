@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-25T00:00:00Z",
+  "title": "Design System: Ivy Jiyou Lee — Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "sky-signal": { "role": "primary", "displayName": "Sky Signal", "canonical": "#0A85FF", "tonalRamp": ["#032547", "#05407F", "#0759B2", "#0A6FE0", "#0A85FF", "#4DA6FF", "#8FC7FF", "#D6EAFF"] },
+      "sky-signal-text": { "role": "primary", "displayName": "Sky Signal Text", "canonical": "#0A6FE0", "tonalRamp": ["#041F40", "#063672", "#084EA3", "#0A6FE0", "#3B8AE8", "#6FA9F0", "#A6C9F7", "#DCEBFC"] },
+      "cool-paper": { "role": "neutral", "displayName": "Cool Paper", "canonical": "#F8FAFE", "tonalRamp": ["#23272E", "#3F4650", "#6B7380", "#9AA3B0", "#C3CBD8", "#E1E7F0", "#F0F4FA", "#F8FAFE"] },
+      "night-ink": { "role": "neutral", "displayName": "Night Ink", "canonical": "#0B0E14", "tonalRamp": ["#0B0E14", "#1C222C", "#303845", "#4A5464", "#6B7587", "#939CAC", "#C0C6D1", "#E8EAEF"] },
+      "slate-muted": { "role": "neutral", "displayName": "Slate Muted", "canonical": "#5E687A", "tonalRamp": ["#171A20", "#2B303A", "#404757", "#5E687A", "#7C8698", "#9AA3B2", "#BCC2CD", "#DFE2E8"] },
+      "soft-panel": { "role": "neutral", "displayName": "Soft Panel", "canonical": "#ECF1FA", "tonalRamp": ["#1F2530", "#3A4356", "#5A6680", "#8290A8", "#A9B5C9", "#CBD5E4", "#DFE7F2", "#ECF1FA"] },
+      "holo-cyan": { "role": "tertiary", "displayName": "Holo Cyan", "canonical": "#8CDEFF", "tonalRamp": ["#063749", "#0A5A77", "#1080A8", "#2BA5D4", "#55C2EC", "#8CDEFF", "#B6EAFF", "#DFF6FF"] },
+      "holo-violet": { "role": "tertiary", "displayName": "Holo Violet", "canonical": "#B89EFF", "tonalRamp": ["#241154", "#3D2287", "#5A3DBA", "#7D5FE0", "#9A7EF2", "#B89EFF", "#D2C2FF", "#ECE5FF"] },
+      "holo-pink": { "role": "tertiary", "displayName": "Holo Pink", "canonical": "#FFB8EB", "tonalRamp": ["#56123F", "#8A2168", "#BC3A93", "#E362B9", "#F58DD3", "#FFB8EB", "#FFD3F2", "#FFECF9"] },
+      "keycap-pink": { "role": "tertiary", "displayName": "Keycap Pink", "canonical": "#FF4FA3", "tonalRamp": ["#4A0A2B", "#7A1147", "#AB1C65", "#D62D84", "#FF4FA3", "#FF7DBB", "#FFABD4", "#FFD9EC"] },
+      "keycap-yellow": { "role": "tertiary", "displayName": "Keycap Yellow", "canonical": "#FFCE2E", "tonalRamp": ["#4D3A02", "#7D5F05", "#AD8508", "#DEAB0F", "#FFCE2E", "#FFDB63", "#FFE898", "#FFF4CC"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display (Instrument Serif)", "purpose": "The typed name in the hero headline only; appears nowhere else." },
+      "headline": { "displayName": "Headline", "purpose": "Section headings (About, Get in touch)." },
+      "title": { "displayName": "Title", "purpose": "Card titles." },
+      "body": { "displayName": "Body", "purpose": "Paragraphs at 17px/1.6; card body drops to 14px/1.55." },
+      "label": { "displayName": "Label", "purpose": "Uppercase tracked labels: cards, tags, pills, nav items." },
+      "eyebrow": { "displayName": "Eyebrow", "purpose": "Section markers in Sky Signal Text or Slate Muted." },
+      "hand": { "displayName": "Handwriting (Caveat)", "purpose": "Polaroid captions only." },
+      "pixel": { "displayName": "Pixel (Silkscreen)", "purpose": "Hero keycap toys only." },
+      "mono": { "displayName": "Evidence (Spline Sans Mono)", "purpose": "Citations, data, labels, and machinery on case-study pages; never running prose." }
+    },
+    "shadows": [
+      { "name": "glass-ambient", "value": "0 14px 36px rgba(46, 97, 217, 0.10)", "purpose": "Default float under every glass surface." },
+      { "name": "ink-pop", "value": "0 8px 24px rgba(11, 14, 20, 0.35)", "purpose": "Under the dark cursor-follow label only." },
+      { "name": "polaroid-lift", "value": "0 16px 30px rgba(26, 46, 102, 0.22)", "purpose": "Under draggable polaroids." },
+      { "name": "keycap-edge", "value": "0 4px 0 <darker solid per cap color>", "purpose": "Hard 3D bottom edge on keycaps; collapses to 0 1px 0 on press." }
+    ],
+    "motion": [
+      { "name": "spring-card-hover", "value": "spring(stiffness 260, damping 20)", "purpose": "Work card lift (-8px) on hover." },
+      { "name": "spring-cursor-follow", "value": "spring(stiffness 350, damping 30, mass 0.4)", "purpose": "Cursor-following VIEW pill trailing the pointer." },
+      { "name": "spring-nav-pill", "value": "spring(stiffness 400, damping 32)", "purpose": "Active nav pill sliding between items (shared layout)." },
+      { "name": "spring-keycap", "value": "spring(stiffness 600, damping 22)", "purpose": "Keycap press travel." },
+      { "name": "cover-zoom", "value": "transform 500ms ease", "purpose": "Cover image scaling to 1.04 on card hover." },
+      { "name": "pill-fade", "value": "180ms ease-out", "purpose": "Cursor pill fade/scale in and out." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary CTA Pill",
+      "kind": "button",
+      "refersTo": "pill-cta",
+      "description": "The one 'act here' affordance: Sky Signal fill, uppercase tracked label.",
+      "html": "<button class=\"ds-pill-cta\">VIEW ↗</button>",
+      "css": ".ds-pill-cta { background: var(--color-blue, #0A85FF); color: #fff; border: none; border-radius: 999px; padding: 8px 16px; font-family: Inter, system-ui, sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: 0.06em; cursor: pointer; transition: transform 0.2s; } .ds-pill-cta:hover { transform: translateY(-2px); } .ds-pill-cta:focus-visible { outline: 2px solid var(--color-blue, #0A85FF); outline-offset: 3px; }"
+    },
+    {
+      "name": "Dark Pill",
+      "kind": "button",
+      "refersTo": "pill-nav-active",
+      "description": "Night Ink variant used by the active nav item and the cursor-follow label.",
+      "html": "<span class=\"ds-pill-dark\">VIEW PROJECT</span>",
+      "css": ".ds-pill-dark { display: inline-flex; align-items: center; gap: 6px; background: var(--color-ink, #0B0E14); color: #fff; border-radius: 999px; padding: 6px 14px; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; box-shadow: 0 8px 24px rgba(11, 14, 20, 0.35); }"
+    },
+    {
+      "name": "Frosted Nav Bar",
+      "kind": "nav",
+      "description": "A glass pill holding uppercase items; the active one sits on a Night Ink pill.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-item ds-nav-item-active\" href=\"#\">HOME</a><a class=\"ds-nav-item\" href=\"#\">ABOUT ME</a><a class=\"ds-nav-item\" href=\"#\">PROJECTS</a><a class=\"ds-nav-item\" href=\"#\">GET IN TOUCH</a></nav>",
+      "css": ".ds-nav { display: inline-flex; align-items: center; gap: 20px; background: rgba(255,255,255,0.7); border: 1.5px solid rgba(255,255,255,0.95); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px); box-shadow: 0 14px 36px rgba(46, 97, 217, 0.10); border-radius: 999px; padding: 12px 20px; } .ds-nav-item { position: relative; border-radius: 999px; padding: 6px 16px; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: var(--color-ink, #0B0E14); text-decoration: none; transition: color 0.2s; } .ds-nav-item:hover { color: var(--color-blue-text, #0A6FE0); } .ds-nav-item-active { background: var(--color-ink, #0B0E14); color: #fff; } .ds-nav-item-active:hover { color: #fff; }"
+    },
+    {
+      "name": "Keycap Toy",
+      "kind": "chip",
+      "refersTo": "keycap-pink",
+      "description": "Candy keycap with a solid 3D bottom edge; presses down 3px on tap.",
+      "html": "<ul class=\"ds-keycaps\"><li class=\"ds-keycap ds-keycap-pink\">ICONIC</li><li class=\"ds-keycap ds-keycap-yellow\">INTERACTIVE</li><li class=\"ds-keycap ds-keycap-blue\">SHIPPED</li></ul>",
+      "css": ".ds-keycaps { display: inline-flex; gap: 10px; list-style: none; padding: 0; margin: 0; } .ds-keycap { display: inline-flex; align-items: center; gap: 7px; height: 42px; border-radius: 12px; padding: 0 16px; font-family: Silkscreen, monospace; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; user-select: none; cursor: pointer; transition: transform 0.12s, box-shadow 0.12s; } .ds-keycap:hover { transform: translateY(-1px); } .ds-keycap:active { transform: translateY(3px); } .ds-keycap-pink { background: #FF4FA3; border: 1px solid #F02E8A; box-shadow: 0 4px 0 #C21D6B; color: #fff; } .ds-keycap-pink:active { box-shadow: 0 1px 0 #C21D6B; } .ds-keycap-yellow { background: #FFCE2E; border: 1px solid #F5B800; box-shadow: 0 4px 0 #C7900A; color: var(--color-ink, #0B0E14); } .ds-keycap-yellow:active { box-shadow: 0 1px 0 #C7900A; } .ds-keycap-blue { background: var(--color-blue, #0A85FF); border: 1px solid #0A6FE0; box-shadow: 0 4px 0 #0554B8; color: #fff; } .ds-keycap-blue:active { box-shadow: 0 1px 0 #0554B8; }"
+    },
+    {
+      "name": "Work Card",
+      "kind": "card",
+      "description": "The signature glass project card: media well, tracked label, title, body, tag + CTA.",
+      "html": "<a class=\"ds-work-card\" href=\"#\"><span class=\"ds-work-media\"></span><span class=\"ds-work-label\">OPERATIONAL PORTAL · CLIENT PROJECT</span><span class=\"ds-work-title\">ICOI Membership Portal</span><span class=\"ds-work-desc\">End-to-end design and React build of a membership management system.</span><span class=\"ds-work-foot\"><span class=\"ds-work-tags\">UI/UX · REACT</span><span class=\"ds-work-cta\">VIEW ↗</span></span></a>",
+      "css": ".ds-work-card { display: block; width: 320px; background: rgba(255,255,255,0.55); border: 1.5px solid rgba(255,255,255,0.95); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px); box-shadow: 0 14px 36px rgba(46, 97, 217, 0.10); border-radius: 28px; padding: 24px; font-family: Inter, system-ui, sans-serif; text-decoration: none; color: var(--color-ink, #0B0E14); transition: transform 0.3s; } .ds-work-card:hover { transform: translateY(-8px); } .ds-work-media { display: block; aspect-ratio: 592/360; border-radius: 16px; border: 1px solid var(--color-imgbg, #ECF1FA); background: linear-gradient(135deg, #8CDEFF33, #B89EFF33); } .ds-work-label { display: block; margin-top: 20px; font-size: 10.5px; font-weight: 500; letter-spacing: 0.12em; color: var(--color-grayt, #5E687A); } .ds-work-title { display: block; margin-top: 8px; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; } .ds-work-desc { display: block; margin-top: 12px; font-size: 14px; line-height: 1.55; color: rgba(11, 14, 20, 0.9); } .ds-work-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 20px; } .ds-work-tags { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: var(--color-blue-text, #0A6FE0); } .ds-work-cta { background: var(--color-blue, #0A85FF); color: #fff; border-radius: 999px; padding: 8px 16px; font-size: 10.5px; font-weight: 600; letter-spacing: 0.06em; transition: transform 0.2s; } .ds-work-card:hover .ds-work-cta { transform: translateY(-2px); }"
+    },
+    {
+      "name": "Section Label",
+      "kind": "custom",
+      "description": "The smallest wayfinding element: a tracked uppercase eyebrow in Sky Signal Text.",
+      "html": "<p class=\"ds-section-label\">SELECTED WORKS</p>",
+      "css": ".ds-section-label { font-family: Inter, system-ui, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; color: var(--color-blue-text, #0A6FE0); margin: 0; }"
+    },
+    {
+      "name": "Polaroid",
+      "kind": "custom",
+      "description": "Draggable white-framed photo with a handwritten Caveat caption.",
+      "html": "<figure class=\"ds-polaroid\"><span class=\"ds-polaroid-photo\"></span><figcaption class=\"ds-polaroid-caption\">grad day!</figcaption></figure>",
+      "css": ".ds-polaroid { width: 200px; margin: 0; background: #fff; border-radius: 6px; padding: 12px 12px 8px; box-shadow: 0 16px 30px rgba(26, 46, 102, 0.22); transform: rotate(-3deg); transition: transform 0.25s; cursor: grab; } .ds-polaroid:hover { transform: rotate(0deg) translateY(-4px); } .ds-polaroid-photo { display: block; aspect-ratio: 1; border-radius: 3px; background: var(--color-imgbg, #ECF1FA); } .ds-polaroid-caption { padding: 8px 0 4px; text-align: center; font-family: Caveat, cursive; font-size: 1.25rem; color: var(--color-ink, #0B0E14); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Holographic Desk",
+    "overview": "A sunlit designer's desk under iridescent light: frosted glass panels float over cool blue paper, polaroids fan out and drag, keycaps press with a real bottom edge, and holographic washes of cyan, violet, and pink drift behind everything. It reads personal and collected, like objects someone actually owns, not a template someone bought. The mood is airy, playful, precise. Every toy has tolerances: drift amplitudes are tuned per shape so clusters never separate, springs have exact stiffness and damping, and every animation carries a reduced-motion fallback. The playfulness is the surface; the engineering rigor underneath is the argument (this portfolio belongs to someone who designs in Figma and ships in React). Anti-references: dark brutalist developer portfolios, and template-grade Dribbble gloss.",
+    "keyCharacteristics": [
+      "Frosted glass surfaces over pale blue paper, lit by holographic blob washes",
+      "One working accent (Sky Signal blue); candy colors reserved for physical toys",
+      "Inter carries the voice; specialty fonts appear only as physical objects (pixel keycaps, handwritten captions, serif signature)",
+      "Springy, tactile motion with exact values and universal reduced-motion support",
+      "Case-study pages may shift quieter (see .impeccable/surfaces/icoi.md), the shell stays playful"
+    ],
+    "rules": [
+      { "name": "The Light-Not-Ink Rule", "body": "Holo colors are atmosphere: blurred, background, decorative. The moment a holo hue becomes text, a border, or a control fill, it has broken the system.", "section": "colors" },
+      { "name": "The One Working Blue Rule", "body": "Sky Signal is the only color that means 'act here.' Candy keycap colors are toys, not affordances.", "section": "colors" },
+      { "name": "The Objects-Only Rule", "body": "Silkscreen, Caveat, and Instrument Serif never set running text. Each is bound to its object: keycaps, polaroid captions, the name.", "section": "typography" },
+      { "name": "The Tinted-Shadow Rule", "body": "Soft shadows are always blue- or ink-tinted, never neutral gray. Gray shadows read as stock; blue shadows belong to this desk.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do put every new surface on Cool Paper with glass panels; the material pairing is the identity.",
+      "Do give every animation exact spring values and a useReducedMotion fallback; motion without a fallback is below the floor here.",
+      "Do use Sky Signal Text (#0A6FE0), not Sky Signal (#0A85FF), for any blue text under ~24px.",
+      "Do keep specialty fonts bound to their objects (Silkscreen to keycaps, Caveat to polaroids, Instrument Serif to the name).",
+      "Do let case-study pages lower the volume (fewer blobs, stiller motion) while keeping the same tokens; .impeccable/surfaces/icoi.md is the model."
+    ],
+    "donts": [
+      "Don't use em-dashes anywhere, in copy or labels; use colons, commas, or a middot (·).",
+      "Don't use holo colors as text, borders, or control fills; they are blurred light only.",
+      "Don't introduce neutral gray shadows; every soft shadow is blue- or ink-tinted.",
+      "Don't invent new accent colors for affordances; Sky Signal is the only 'act here' color.",
+      "Don't fabricate content to fill layouts; this portfolio's voice is evidence-first and honestly imperfect (see PRODUCT.md)."
+    ]
+  }
+}

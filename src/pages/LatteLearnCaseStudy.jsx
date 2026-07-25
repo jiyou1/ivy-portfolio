@@ -65,7 +65,7 @@ const TOC_SECTIONS = [
 /* ---------- prose scaffolding (prose caps at 760px; media spans 1080) ---------- */
 function Eyebrow({ n, icon: Icon, children }) {
   return (
-    <span className="inline-flex items-center gap-2 font-plex text-[12px] uppercase tracking-[0.14em] text-blue-text">
+    <span className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.14em] text-blue-text">
       {Icon && <Icon width={14} height={14} strokeWidth={2} aria-hidden />}
       {n && <span>{n}</span>}
       {children}
@@ -207,7 +207,7 @@ export default function LatteLearnCaseStudy() {
           centered content never slides under the numerals */}
       <div className="min-[880px]:pl-[256px]">
         <nav className="mx-auto max-w-[1080px] px-8 pt-8">
-          <Link to="/" className="font-plex text-[13px] text-grayt transition-colors hover:text-ink">
+          <Link to="/" className="font-mono text-[13px] text-grayt transition-colors hover:text-ink">
             ← ivy jiyou lee
           </Link>
         </nav>
@@ -225,11 +225,11 @@ export default function LatteLearnCaseStudy() {
                   {[
                     ["Role", "Project Manager & Design Lead"],
                     ["Team", "Team Espresso · 9 (LikeLion US 2024-25)"],
-                    ["Duration", "Jan – Jun 2025 · two quarters, winter to spring"],
+                    ["Duration", "Jan - Jun 2025 · two quarters, winter to spring"],
                     ["Tools", "Figma, React + Electron, Flask"],
                   ].map(([dt, dd]) => (
                     <div key={dt}>
-                      <dt className="mb-1.5 font-plex text-[11px] uppercase tracking-[0.12em] text-grayt">{dt}</dt>
+                      <dt className="mb-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-grayt">{dt}</dt>
                       <dd className="max-w-[240px] text-[14px] leading-[1.5] text-ink">{dd}</dd>
                     </div>
                   ))}
@@ -244,15 +244,15 @@ export default function LatteLearnCaseStudy() {
                   every screen as Design Lead.
                 </p>
                 <div className="mb-6 flex flex-wrap gap-2">
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-transparent bg-blue px-3.5 py-1.5 font-plex text-[12px] text-white">
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-transparent bg-blue px-3.5 py-1.5 font-mono text-[12px] text-white">
                     <AppWindow width={13} height={13} strokeWidth={2} aria-hidden />
                     Packaged Electron app
                   </span>
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-stroke bg-white/60 px-3.5 py-1.5 font-plex text-[12px] text-ink backdrop-blur-xl">
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-stroke bg-white/60 px-3.5 py-1.5 font-mono text-[12px] text-ink backdrop-blur-xl">
                     <Group width={13} height={13} strokeWidth={2} aria-hidden />
                     Team of 9
                   </span>
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-stroke bg-white/60 px-3.5 py-1.5 font-plex text-[12px] text-ink backdrop-blur-xl">
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-stroke bg-white/60 px-3.5 py-1.5 font-mono text-[12px] text-ink backdrop-blur-xl">
                     <GraduationCap width={13} height={13} strokeWidth={2} aria-hidden />
                     LikeLion US 2024-25
                   </span>
@@ -260,7 +260,7 @@ export default function LatteLearnCaseStudy() {
                 <a
                   href="#shipped"
                   onClick={onSkip}
-                  className="inline-flex items-center gap-3.5 rounded-full border-[1.5px] border-dashed border-stroke-2 bg-white/50 py-2.5 pl-2.5 pr-6 font-plex text-[12px] font-semibold tracking-[0.1em] text-ink transition-colors hover:border-solid hover:border-blue"
+                  className="inline-flex items-center gap-3.5 rounded-full border-[1.5px] border-dashed border-stroke-2 bg-white/50 py-2.5 pl-2.5 pr-6 font-mono text-[12px] font-semibold tracking-[0.1em] text-ink transition-colors hover:border-solid hover:border-blue"
                 >
                   <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-blue text-[14px] text-white">
                     ↓
@@ -392,7 +392,7 @@ export default function LatteLearnCaseStudy() {
               <ol className="flex flex-col gap-6">
                 {BEATS.map((b, i) => (
                   <li key={b.t} className="flex gap-4">
-                    <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full border-[1.5px] border-stroke-2 bg-white/60 font-plex text-[14px] font-semibold text-blue-text backdrop-blur-xl">
+                    <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full border-[1.5px] border-stroke-2 bg-white/60 font-mono text-[14px] font-semibold text-blue-text backdrop-blur-xl">
                       {i + 1}
                     </span>
                     <div className="min-w-0 flex-1">
@@ -439,7 +439,7 @@ export default function LatteLearnCaseStudy() {
             <div className="my-8 grid grid-cols-1 gap-4 md:grid-cols-3">
               {REFLECT.map(([k, Icon, body]) => (
                 <Glass key={k} className="p-7">
-                  <span className="mb-3 flex items-center gap-2 font-plex text-[11px] uppercase tracking-[0.12em] text-blue-text">
+                  <span className="mb-3 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] text-blue-text">
                     <span className="flex h-7 w-7 flex-none items-center justify-center rounded-full border border-stroke bg-white/70 text-blue-text">
                       <Icon width={15} height={15} strokeWidth={2} aria-hidden />
                     </span>
@@ -467,16 +467,8 @@ export default function LatteLearnCaseStudy() {
                 <GithubCircle width={18} height={18} strokeWidth={2} aria-hidden />
                 View the code on GitHub
               </a>
-              <a
-                href="https://github.com/Jaeminp2/LatteLearn"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-full border border-stroke bg-white/60 px-4 py-2.5 font-plex text-[12px] text-ink backdrop-blur-xl transition-colors hover:border-blue"
-              >
-                interactive prototype ↗
-              </a>
             </div>
-            <a href="/#projects" className="m-0 font-plex text-[12px] text-blue-text underline underline-offset-2">
+            <a href="/#projects" className="m-0 font-mono text-[12px] text-blue-text underline underline-offset-2">
               ← back to all work
             </a>
           </div>

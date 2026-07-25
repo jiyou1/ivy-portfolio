@@ -10,13 +10,13 @@ import { BIO, LINKS } from "../data/site";
    the OUTER layer owns the hover-fan (x/y from the `fan` variant), the INNER
    layer owns `drag`. Grabbing a card lifts it to the front. */
 const PHOTOS = [
-  { src: "/polaroid3.jpg", caption: "coffee dates ☕", rotate: -9, x: 0, y: 60, fan: { rotate: -16, x: -56, y: 36 } },
-  { src: "/polaroid2.jpg", caption: "graduation @ uci 2026", rotate: 8, x: 120, y: 40, fan: { rotate: 16, x: 186, y: 16 } },
-  { src: "/polaroid1.jpg", caption: "me ☺ in 2026", rotate: -2, x: 60, y: 100, fan: { rotate: 0, x: 64, y: 120 } },
+  { src: "/polaroid3.jpg", rotate: -9, x: 0, y: 60, fan: { rotate: -16, x: -56, y: 36 } },
+  { src: "/polaroid2.jpg", rotate: 8, x: 120, y: 40, fan: { rotate: 16, x: 186, y: 16 } },
+  { src: "/polaroid1.jpg", rotate: -2, x: 60, y: 100, fan: { rotate: 0, x: 64, y: 120 } },
 ];
 
 function Polaroid({ photo, z, reduce, onLift }) {
-  const { src, caption, rotate, x, y, fan } = photo;
+  const { src, rotate, x, y, fan } = photo;
   return (
     <motion.div
       // fan layer: spreads on group hover, never dragged
@@ -37,7 +37,7 @@ function Polaroid({ photo, z, reduce, onLift }) {
         whileHover={reduce ? undefined : { scale: 1.03 }}
         whileDrag={{ scale: 1.05 }}
         style={{ cursor: "grab" }}
-        className="w-[200px] touch-none rounded-md bg-white p-3 pb-2 shadow-[0_16px_30px_rgba(26,46,102,0.22)] active:cursor-grabbing sm:w-[230px]"
+        className="w-[200px] touch-none rounded-md bg-white p-3 pb-14 shadow-[0_16px_30px_rgba(26,46,102,0.22)] active:cursor-grabbing sm:w-[230px]"
       >
         <div className="aspect-square w-full overflow-hidden rounded-[3px] bg-imgbg">
           <img
@@ -50,7 +50,6 @@ function Polaroid({ photo, z, reduce, onLift }) {
             className="pointer-events-none h-full w-full select-none object-cover"
           />
         </div>
-        <p className="select-none py-2 text-center font-hand text-xl text-ink">{caption}</p>
       </motion.div>
     </motion.div>
   );
@@ -120,7 +119,7 @@ export default function About({ onSkill }) {
 
         {/* 8pt rhythm: eyebrow hugs the heading (8px); larger gaps break groups */}
         <div className="max-w-2xl">
-          <SectionLabel>01 — ABOUT ME <span className="align-middle text-[18px]">☺</span></SectionLabel>
+          <SectionLabel>ABOUT ME <span className="align-middle text-[18px]">☺</span></SectionLabel>
           <h2 className="mt-2 text-[2rem] font-bold tracking-[-0.02em] sm:text-[2.75rem]">
             Designer who ships.
           </h2>

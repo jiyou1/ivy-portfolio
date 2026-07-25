@@ -13,7 +13,7 @@ export default function JudgmentBeats({ beats = [] }) {
             (i > 0 ? "border-t border-stroke" : "")
           }
         >
-          <span className="pt-0.5 font-plex text-[11px] uppercase tracking-[0.08em] text-blue-text">
+          <span className="pt-0.5 font-mono text-[11px] uppercase tracking-[0.08em] text-blue-text">
             {b.k}
           </span>
           <p className="m-0 text-[15px] leading-[1.65] text-prose">{b.p}</p>

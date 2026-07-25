@@ -5,7 +5,7 @@
 export default function Todo({ text, inline = false, className = "" }) {
   if (!import.meta.env.DEV) return null;
   const base =
-    "border border-dashed border-st-warn bg-st-warn-fill font-plex text-[12px] leading-[1.5] text-st-warn";
+    "border border-dashed border-st-warn bg-st-warn-fill font-mono text-[12px] leading-[1.5] text-st-warn";
   if (inline) {
     return <span className={`${base} rounded px-1.5 py-0.5 ${className}`}>{text}</span>;
   }

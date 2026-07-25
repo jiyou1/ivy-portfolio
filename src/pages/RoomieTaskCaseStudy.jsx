@@ -54,7 +54,7 @@ const TOC_SECTIONS = [
 /* ---------- prose scaffolding (prose caps at 760px; media spans 1080) ---------- */
 function Eyebrow({ n, children }) {
   return (
-    <span className="inline-flex items-center gap-2 font-plex text-[12px] uppercase tracking-[0.14em]">
+    <span className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.14em]">
       {n && <span className="text-stroke-2">{n}</span>}
       <span className="font-semibold text-blue-text">{children}</span>
     </span>
@@ -230,7 +230,7 @@ export default function RoomieTaskCaseStudy() {
           centered content never slides under the numerals */}
       <div className="min-[880px]:pl-[256px]">
         <nav className="mx-auto max-w-[1080px] px-8 pt-8">
-          <Link to="/" className="font-plex text-[13px] text-grayt transition-colors hover:text-ink">
+          <Link to="/" className="font-mono text-[13px] text-grayt transition-colors hover:text-ink">
             ← ivy jiyou lee
           </Link>
         </nav>
@@ -247,7 +247,7 @@ export default function RoomieTaskCaseStudy() {
                 <dl className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-x-8">
                   {/* Role spans both columns: it names the actual scope of work */}
                   <div className="sm:col-span-2">
-                    <dt className="mb-1.5 font-plex text-[11px] uppercase tracking-[0.12em] text-grayt">Role</dt>
+                    <dt className="mb-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-grayt">Role</dt>
                     <dd className="max-w-[560px] text-[14px] leading-[1.5] text-ink">
                       Chores flow design (list, creation, assignment, completion states), research
                       operations (task plan, session template, milestone structure), and design
@@ -260,7 +260,7 @@ export default function RoomieTaskCaseStudy() {
                     ["Tools", "Figma, surveys & interviews, usability testing"],
                   ].map(([dt, dd]) => (
                     <div key={dt}>
-                      <dt className="mb-1.5 font-plex text-[11px] uppercase tracking-[0.12em] text-grayt">{dt}</dt>
+                      <dt className="mb-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-grayt">{dt}</dt>
                       <dd className="max-w-[260px] text-[14px] leading-[1.5] text-ink">{dd}</dd>
                     </div>
                   ))}
@@ -272,20 +272,20 @@ export default function RoomieTaskCaseStudy() {
                   {`Roommates don't fight about chores. They go quiet about them. RoomieTask is a mobile home base for chores, expenses, supplies, and reminders, designed from research into why the frustration stays invisible: 30 of the 34 roommates we surveyed would rather just do the task themselves than bring it up.`}
                 </p>
                 <div className="mb-6 flex flex-wrap gap-2">
-                  <span className="inline-flex items-center rounded-full border border-blue-text bg-blue px-4 py-2 font-plex text-[12px] text-white">
+                  <span className="inline-flex items-center rounded-full border border-blue-text bg-blue px-4 py-2 font-mono text-[12px] text-white">
                     Research-led
                   </span>
-                  <span className="inline-flex items-center rounded-full border border-stroke bg-white px-4 py-2 font-plex text-[12px] text-ink">
+                  <span className="inline-flex items-center rounded-full border border-stroke bg-white px-4 py-2 font-mono text-[12px] text-ink">
                     Tested with 5 roommates
                   </span>
-                  <span className="inline-flex items-center rounded-full border border-stroke bg-white px-4 py-2 font-plex text-[12px] text-ink">
+                  <span className="inline-flex items-center rounded-full border border-stroke bg-white px-4 py-2 font-mono text-[12px] text-ink">
                     INF 132 · UCI
                   </span>
                 </div>
                 <a
                   href="#app"
                   onClick={onSkip}
-                  className="inline-flex items-center gap-3.5 rounded-full border-[1.5px] border-dashed border-stroke-2 bg-white/50 py-2.5 pl-2.5 pr-6 font-plex text-[12px] font-semibold tracking-[0.1em] text-ink transition-colors hover:border-solid hover:border-blue"
+                  className="inline-flex items-center gap-3.5 rounded-full border-[1.5px] border-dashed border-stroke-2 bg-white/50 py-2.5 pl-2.5 pr-6 font-mono text-[12px] font-semibold tracking-[0.1em] text-ink transition-colors hover:border-solid hover:border-blue"
                 >
                   <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-blue text-[14px] text-white">
                     ↓
@@ -338,7 +338,7 @@ export default function RoomieTaskCaseStudy() {
                 frustrating to stay on top of chores, expenses, and shared supplies because there is
                 no central place to coordinate and communication gets lost in group chats."
               </p>
-              <footer className="mt-3 font-plex text-[12px] text-grayt">The problem statement we committed to.</footer>
+              <footer className="mt-3 font-mono text-[12px] text-grayt">The problem statement we committed to.</footer>
             </blockquote>
             <P>
               We started by asking, not sketching: a survey fielded in April 2026 drew 41 responses,
@@ -365,7 +365,7 @@ export default function RoomieTaskCaseStudy() {
             <div className="my-6 grid grid-cols-1 gap-6 md:grid-cols-3">
               {FINDINGS.map((f) => (
                 <div key={f.k} className="rounded-2xl border border-stroke bg-white p-6">
-                  <p className="font-plex text-[11px] font-semibold tracking-[0.08em] text-blue-text">{f.k}</p>
+                  <p className="font-mono text-[11px] font-semibold tracking-[0.08em] text-blue-text">{f.k}</p>
                   <p className="mt-3 text-[13px] leading-[1.6] text-prose">{f.body}</p>
                 </div>
               ))}
@@ -406,7 +406,7 @@ export default function RoomieTaskCaseStudy() {
               {RIVALS.map(([Icon, k, body]) => (
                 <div key={k} className="rounded-2xl border border-stroke bg-white px-5 py-6">
                   <Icon width={22} height={22} strokeWidth={1.8} className="mb-3 text-blue" aria-hidden />
-                  <p className="font-plex text-[11px] font-semibold tracking-[0.12em] text-blue-text">{k}</p>
+                  <p className="font-mono text-[11px] font-semibold tracking-[0.12em] text-blue-text">{k}</p>
                   <p className="mt-3 text-[13px] leading-[1.6] text-prose">{body}</p>
                 </div>
               ))}
@@ -452,12 +452,12 @@ export default function RoomieTaskCaseStudy() {
             <div className="my-6 grid grid-cols-1 gap-6 md:grid-cols-3">
               {INSIGHTS.map((c) => (
                 <div key={c.k} className="rounded-2xl border border-stroke bg-white p-6">
-                  <p className="font-plex text-[11px] font-semibold tracking-[0.08em] text-blue-text">{c.k}</p>
+                  <p className="font-mono text-[11px] font-semibold tracking-[0.08em] text-blue-text">{c.k}</p>
                   <p className="mt-3 text-[13px] leading-[1.6] text-prose">{c.body}</p>
                   {c.quotes?.map(([q, who]) => (
                     <blockquote key={who} className="mt-3 border-l-2 border-stroke-2 pl-3">
                       <p className="m-0 text-[13px] italic leading-[1.5] text-legal">"{q}"</p>
-                      <footer className="mt-0.5 font-plex text-[11px] text-grayt">
+                      <footer className="mt-0.5 font-mono text-[11px] text-grayt">
                         <cite className="not-italic">{who}</cite>
                       </footer>
                     </blockquote>
@@ -468,7 +468,7 @@ export default function RoomieTaskCaseStudy() {
 
             {/* the honest failure, given its own weight */}
             <div className="my-6 max-w-[760px] rounded-r-xl border border-l-[3px] border-stroke bg-white px-7 py-6" style={{ borderLeftColor: "#A4512E" }}>
-              <p className="m-0 font-plex text-[11px] font-semibold uppercase tracking-[0.12em]" style={{ color: "#A4512E" }}>
+              <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.12em]" style={{ color: "#A4512E" }}>
                 The honest failure
               </p>
               <p className="mb-0 mt-3 text-[15px] leading-[1.65] text-prose">
@@ -513,7 +513,7 @@ export default function RoomieTaskCaseStudy() {
             <div className="my-8 flex flex-col gap-8">
               {BEATS.map((b, i) => (
                 <div key={b.t} className="flex gap-5">
-                  <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full border-[1.5px] border-stroke-2 bg-white font-plex text-[14px] font-semibold text-blue-text">
+                  <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full border-[1.5px] border-stroke-2 bg-white font-mono text-[14px] font-semibold text-blue-text">
                     {i + 1}
                   </span>
                   <div className="min-w-0 flex-1">
@@ -532,7 +532,7 @@ export default function RoomieTaskCaseStudy() {
             <div className="my-6 grid grid-cols-1 gap-6 md:grid-cols-3">
               {REFLECT.map(([Icon, k, body]) => (
                 <div key={k} className="rounded-2xl border border-stroke bg-white px-6 py-7">
-                  <p className="flex items-center gap-2 font-plex text-[11px] font-semibold tracking-[0.12em] text-blue-text">
+                  <p className="flex items-center gap-2 font-mono text-[11px] font-semibold tracking-[0.12em] text-blue-text">
                     <Icon width={13} height={13} strokeWidth={2} aria-hidden />
                     {k}
                   </p>
@@ -546,7 +546,7 @@ export default function RoomieTaskCaseStudy() {
         <footer className="mx-auto max-w-[1080px] px-8 pb-16 pt-24">
           <div className="h-px bg-stroke" />
           <SeeNext current="roomietask" />
-          <p className="pt-10 font-plex text-[12px] text-grayt">
+          <p className="pt-10 font-mono text-[12px] text-grayt">
             <a href="/#projects" className="text-blue-text hover:underline">
               ← back to all work
             </a>

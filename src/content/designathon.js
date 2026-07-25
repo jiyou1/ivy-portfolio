@@ -22,7 +22,7 @@ export const HERO = {
   eyebrow: "CASE STUDY ✳ DESIGN AT UCI · DESIGN-A-THON 2025",
   title: "Six surfaces, one hand-drawn universe.",
   lede: "For Design at UCI's Design-a-thon, the largest collegiate design hackathon in Southern California, I owned the Judges, Prizes, and Meet the Team pages across web and mobile, inside a site where every cloud, mascot, and coaster segment was illustrated by hand, to my spec.",
-  pills: ["UI/UX COMMITTEE", "DESIGN AT UCI", "APR 18–20, 2025"],
+  pills: ["UI/UX COMMITTEE", "DESIGN AT UCI", "APR 18-20, 2025"],
   meta: [
     { label: "Role", value: "UI/UX Designer (web + mobile)" },
     { label: "Team", value: "4 designers" },
