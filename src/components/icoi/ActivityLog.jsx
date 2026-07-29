@@ -404,19 +404,9 @@ const TABS = ["All Activity", "Edit Detail", "Application Approval", "Status Tra
 export function ActivityLogScreen() {
   const reduce = useReducedMotion();
   const [open, setOpen] = useState({ e1: true, e5: true }); // matches the Activity Log-u frame
-  const [scale, setScale] = useState(0);
-  const boxRef = useRef(null);
+  const [boxRef, scale] = useAppScale();
   const toggle = (id) => setOpen((o) => ({ ...o, [id]: !o[id] }));
   const setAll = (v) => setOpen(Object.fromEntries(EXPANDABLE.map((id) => [id, v])));
-
-  // scale the fixed 1440x1024 design space to the aspect-locked screen box
-  useEffect(() => {
-    const el = boxRef.current;
-    if (!el) return;
-    const ro = new ResizeObserver(([entry]) => setScale(entry.contentRect.width / 1440));
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
 
   return (
     <div ref={boxRef} className="absolute inset-0 overflow-hidden">
