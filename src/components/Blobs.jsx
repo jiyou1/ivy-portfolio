@@ -37,11 +37,20 @@ const BUBBLES = [
   [340, { bottom: 60, left: 420 }, "pink", 0.12, 14, 9],
 ];
 
-/* the soft holo wash the bubbles float in front of, per bubble so the glow
-   drifts with it (the pre-bubble mesh look, kept) */
-function haloBg(lead) {
+/* the soft mesh wash (the pre-bubble look): stationary gradients sitting
+   behind the bubbles like soft shadows, offset down and toward the page */
+function washBg(lead) {
   const [a, b] = RIM[lead];
   return `radial-gradient(circle at 42% 40%, rgba(${a},0.46), rgba(${b},0.24) 58%, rgba(${b},0) 76%)`;
+}
+
+function washPos(pos, d) {
+  const p = {};
+  if (pos.top != null) p.top = pos.top + d;
+  if (pos.bottom != null) p.bottom = pos.bottom - d;
+  if (pos.left != null) p.left = pos.left + d;
+  if (pos.right != null) p.right = pos.right + d;
+  return p;
 }
 
 function Bubble({ size, pos, lead, speed, dur, delay, reduce, scrollY }) {
@@ -50,12 +59,13 @@ function Bubble({ size, pos, lead, speed, dur, delay, reduce, scrollY }) {
   return (
     <motion.div className="blob" style={{ width: size, height: size, ...pos, y }}>
       <div
-        className="bubble-drift relative h-full w-full"
-        style={{ animationDuration: `${dur}s`, animationDelay: `-${delay}s` }}
-      >
-        <div className="absolute -inset-[22%] rounded-full" style={{ background: haloBg(lead) }} />
-        <div className="absolute inset-0 rounded-full" style={{ background: bubbleBg(lead) }} />
-      </div>
+        className="bubble-drift h-full w-full rounded-full"
+        style={{
+          background: bubbleBg(lead),
+          animationDuration: `${dur}s`,
+          animationDelay: `-${delay}s`,
+        }}
+      />
     </motion.div>
   );
 }
@@ -65,6 +75,20 @@ export default function Blobs() {
   const { scrollY } = useScroll();
   return (
     <>
+      {/* stationary mesh washes behind everything */}
+      {BUBBLES.map(([size, pos, lead], i) => (
+        <div
+          key={`wash-${i}`}
+          className="blob"
+          style={{
+            width: size * 1.15,
+            height: size * 1.15,
+            ...washPos(pos, Math.round(size * 0.14)),
+            background: washBg(lead),
+          }}
+        />
+      ))}
+      {/* the bubbles floating in front */}
       {BUBBLES.map(([size, pos, lead, speed, dur, delay], i) => (
         <Bubble
           key={i}
