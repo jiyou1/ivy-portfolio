@@ -82,7 +82,7 @@ export default function DesignathonCaseStudy() {
       <div className="min-[880px]:pl-[256px]">
         <nav className="mx-auto max-w-[1080px] px-8 pt-8">
           <Link to="/" className="font-mono text-[13px] text-grayt transition-colors hover:text-ink">
-            ← ivy jiyou lee
+            ← back to home page
           </Link>
         </nav>
 

@@ -4,6 +4,7 @@ import { Xmark, StatsReport, TaskList, Community, QrCode, ClockRotateRight } fro
 import CaseVideo from "../case/CaseVideo";
 import Todo from "../case/Todo";
 import { ActivityLogScreen } from "./ActivityLog";
+import MemberRecordsScreen from "./MemberRecordsScreen";
 
 /* Section 05 "What shipped" — an interactive feature walkthrough, stacked so the
    screen reads large. Top to bottom: the screenshot inside a code-built laptop
@@ -69,8 +70,10 @@ const ICOI_FEATURES = [
     description:
       "One record shows a member's computed status, its history, and everyone covered under the family membership, mirroring how the bylaws define a household.",
     highlight: "family membership",
-    images: [SHIPPED + "ICOI-Member-Detail.webp", SHIPPED + "ICOI-Member-Detail-2.webp"],
-    alt: "ICOI member record showing computed status, history, and family membership",
+    // one continuous, scrollable member record (stitched from the two Figma
+    // scroll states) instead of two paged screenshots
+    Screen: MemberRecordsScreen,
+    alt: "ICOI member record showing computed status, history, and family membership; scrollable",
   },
   {
     id: "qr",
