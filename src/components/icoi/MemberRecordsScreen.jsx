@@ -26,13 +26,13 @@ export default function MemberRecordsScreen() {
         className="flex bg-[#F5F5F6]"
         style={{ width: 1440, height: 1024, transform: `scale(${scale})`, transformOrigin: "top left", visibility: scale ? "visible" : "hidden" }}
       >
-        <img alt="" aria-hidden src={APP + "member-sidebar.webp"} className="h-[1024px] w-[216px] flex-none" />
+        <img alt="" aria-hidden src={APP + "member-sidebar-2x.webp"} className="h-[1024px] w-[216px] flex-none" />
         <div className="flex min-w-0 flex-1 flex-col">
-          <img alt="" aria-hidden src={APP + "member-header.webp"} className="h-[115px] w-[1224px] flex-none" />
+          <img alt="" aria-hidden src={APP + "member-header-2x.webp"} className="h-[115px] w-[1224px] flex-none" />
           <div className="min-h-0 flex-1 overflow-y-auto" aria-label="Member record for Ahmad Hassan, scrollable">
             <img
               alt="Member record showing admin memo, personal information, membership details, digital membership card, recent activity, and family members"
-              src={APP + "member-content.webp"}
+              src={APP + "member-content-2x.webp"}
               className="block h-auto w-[1224px] max-w-none"
             />
           </div>
