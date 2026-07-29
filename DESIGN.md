@@ -146,7 +146,7 @@ One bright working blue over cool paper, with a holographic trio that exists onl
 **Display Font:** Instrument Serif (with Georgia fallback), plus specialty voices below
 **Heading Font:** Bricolage Grotesque (with system-ui fallback), set on h1-h4 globally; headings with their own font utility override it
 **Body Font:** Inter (with system-ui fallback)
-**Specialty voices:** Silkscreen (pixel keycaps), Caveat (handwritten polaroid captions), Spline Sans Mono (evidence, case-study pages), DM Serif Display (Playground and Brewing headlines), Jersey 10/25 (LatteLearn focus-screen pixel UI)
+**Specialty voices:** Silkscreen (pixel keycaps), Caveat (handwritten polaroid captions), Spline Sans Mono (evidence, case-study pages), DM Serif Display (Playground and Brewing headlines), Jersey 10/25 (LatteLearn focus-screen pixel UI), Poppins + IBM Plex Sans + IBM Plex Mono + DM Mono (ICOI admin-UI replica, exact product type)
 
 **Character:** Bricolage Grotesque gives headings a characterful voice over Inter's roomy body text. The other fonts are physical objects on the desk, not voices in the text: a serif flourish for the name, pixel type molded into keycaps, handwriting under polaroids.
 
