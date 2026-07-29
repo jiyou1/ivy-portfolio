@@ -330,6 +330,31 @@ export default function ShippedFeatures({
     tabRefs.current[next]?.focus();
   };
 
+  // arrow keys page through a multi-screen feature while focus is on the
+  // device (the zoom button or a page dot). Paging remounts the zoom button
+  // (the crossfade is keyed by page) and AnimatePresence keeps the outgoing
+  // one around, so keyboard-driven changes refocus the INCOMING screen by its
+  // view label rather than a ref (which can point at the dying node).
+  const keyNavRef = useRef(false);
+  const onPageKeyDown = (e) => {
+    if (!multi) return;
+    if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+      e.preventDefault();
+      keyNavRef.current = !!e.target.closest?.("[data-zoom-btn]");
+      const d = e.key === "ArrowRight" ? 1 : -1;
+      setPage((p) => (p + d + cur.images.length) % cur.images.length);
+    }
+  };
+  useEffect(() => {
+    if (!keyNavRef.current) return;
+    keyNavRef.current = false;
+    requestAnimationFrame(() => {
+      sectionRef.current
+        ?.querySelector(`[data-zoom-btn][aria-label*="view ${page + 1} of"]`)
+        ?.focus({ preventScroll: true });
+    });
+  }, [page]);
+
   const altFor = multi ? `${cur.alt} (view ${page + 1} of ${cur.images.length})` : cur.alt;
   const titleTodo = isTodo(cur.title);
   const descTodo = isTodo(cur.description);
@@ -342,6 +367,7 @@ export default function ShippedFeatures({
         onMouseLeave={() => setPaused(false)}
         onFocusCapture={() => setPaused(true)}
         onBlurCapture={() => setPaused(false)}
+        onKeyDown={onPageKeyDown}
       >
         <Frame>
           {cur.Screen ? (
@@ -382,6 +408,7 @@ export default function ShippedFeatures({
                 </div>
               ) : (
                 <button
+                  data-zoom-btn
                   type="button"
                   onClick={() => setZoom({ src, alt: altFor })}
                   aria-label={`Open ${altFor} at full resolution`}
