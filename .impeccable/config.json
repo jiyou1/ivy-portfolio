@@ -14,6 +14,64 @@
         "value": "inter",
         "createdAt": "2026-07-25T08:42:15.334Z",
         "reason": "User kept Inter as the deliberate neutral body face"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "*",
+        "files": [
+          "src/components/case/*",
+          "src/components/icoi/*",
+          "src/components/lattelearn/*",
+          "src/components/roomietask/*",
+          "src/pages/*CaseStudy.jsx"
+        ],
+        "createdAt": "2026-07-25T22:57:28.665Z",
+        "reason": "Case-study surfaces run their own documented type ramp (.impeccable/surfaces/icoi.md); detector only reads DESIGN.md"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "*",
+        "files": [
+          "src/components/icoi/CaseBlobs.jsx",
+          "src/components/lattelearn/CafeMesh.jsx",
+          "src/components/roomietask/SageMesh.jsx"
+        ],
+        "createdAt": "2026-07-26T03:35:58.324Z",
+        "reason": "Case-page aurora meshes carry per-surface palettes (user-directed, matched to each project's shipped UI), not the home DESIGN.md ramp"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#b3282d",
+        "createdAt": "2026-07-29T02:48:17.990Z",
+        "reason": "ICOI product crimson, user-directed accent for the ICOI case study and its product replicas"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(255, 255, 255, 0.55)",
+        "createdAt": "2026-07-29T02:49:16.104Z",
+        "reason": "Documented glass material fill (DESIGN.md Elevation: surfaces are 55% translucent white)"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(255, 255, 255, 0.95)",
+        "createdAt": "2026-07-29T02:49:16.152Z",
+        "reason": "Documented glass border (DESIGN.md Shapes: 1.5px rgba(255,255,255,0.95) on glass)"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(46, 97, 217, 0.10)",
+        "createdAt": "2026-07-29T02:49:16.184Z",
+        "reason": "Documented glass-ambient shadow token (DESIGN.md Shadow Vocabulary)"
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "*",
+        "files": [
+          "src/components/icoi/ShippedFeatures.jsx",
+          "src/components/lattelearn/FocusScreen.jsx"
+        ],
+        "createdAt": "2026-07-29T02:54:21.120Z",
+        "reason": "Code-built device mocks use fluid cqw radii by design; they cannot match the px radius scale"
       }
     ]
   }

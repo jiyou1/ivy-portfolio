@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { NavArrowDown } from "iconoir-react";
 
@@ -11,7 +11,11 @@ import { NavArrowDown } from "iconoir-react";
 
    Each type is a disclosure (button + aria-controls panel). Types with recorded
    fields render as rows with a mono "Records" line; simple action sets render as
-   tinted pills. Height animates open/closed, cut instantly under reduced motion. */
+   tinted pills. Height animates open/closed, cut instantly under reduced motion.
+
+   This file also exports ActivityLogScreen: a 1:1 interactive build of the
+   Figma Activity Log frames, rendered inside the walkthrough's laptop screen
+   (ShippedFeatures feature 05). */
 
 /* full literal class names per tone so Tailwind's scanner keeps them */
 const TONES = {
@@ -188,6 +192,364 @@ export default function ActivityLog() {
           reduce={reduce}
         />
       ))}
+    </div>
+  );
+}
+
+/* ============================================================================
+   ActivityLogScreen — 1:1 build of the Figma "Activity Log-u" frames
+   (GQ819Wp7f9BkFJvFvfPJ7f, nodes 1371:7260 / 1427:1948). Laid out at the
+   design's native 1440x1024 px with the exact Poppins / IBM Plex / DM Mono
+   type, concrete-ramp hexes, and exported icon + logo assets, then scaled to
+   fit the walkthrough's aspect-locked laptop screen. Expanding a row animates
+   height (instant under reduced motion); content scrolls inside the screen so
+   the device dimensions never move. */
+
+const APP = "/work/icoi/app/";
+
+/* exact fills from the exported ellipse assets */
+const DOT = {
+  updated: "#5582DD",
+  created: "#4DBF8C",
+  terminated: "#F5C22B",
+  terminatedOpen: "#D97706",
+  deleted: "#BA2930",
+  "sent email": "#BB5AD2",
+};
+const VERB = {
+  updated: "#4A6FA5",
+  created: "#448865",
+  terminated: "#C1840B",
+  deleted: "#A7252B",
+  "sent email": "#7B2D8F",
+};
+
+/* [id, avatarBg, who, verb, connective, target, meta, time, detail] */
+const ROWS_TODAY = [
+  { id: "e1", avatar: "#1C4966", init: "KB", who: "Karima Berrada", verb: "updated", rest: " membership for ", target: "Ahmad Hassan", meta: "3 fields", time: "2:47 PM",
+    detail: { fields: [
+      ["Email Address", "ahmad@old.com", "ahmad@new.com"],
+      ["Phone Number", "(949)555-0100", "(949)555-0123"],
+      ["Memo", "--", "Request address update"],
+    ] } },
+  { id: "e2", avatar: "#1C4966", init: "KB", who: "Karima Berrada", verb: "created", rest: " membership for ", target: "Hana Karimi", time: "2:31 PM" },
+  { id: "e3", avatar: "#C2195B", init: "MB", who: "Mohamed Benomar", verb: "terminated", rest: " membership for ", target: "Layla Rahman", meta: "auto", time: "1:33 PM",
+    detail: { reason: "Non payment of dues. Suspended since Jan 22, 2026. Auto-terminated per bylaws 3.4B after 9-month non payment period" } },
+  { id: "e4", avatar: "#C2195B", init: "MB", who: "Mohamed Benomar", verb: "deleted", rest: " duplicate record for ", target: "Noor Abbasl", time: "10:15 AM" },
+];
+const ROWS_YESTERDAY = [
+  { id: "e5", avatar: "#C2195B", init: "MB", who: "Mohamed Benomar", verb: "deleted", rest: " duplicate record for ", target: "Noor Abbasl", time: "4:15 PM",
+    detail: { fields: [["Phone Number", "(949)555-0133", "(949)555-0155"]] } },
+  { id: "e6", avatar: "#C2195B", init: "MB", who: "Mohamed Benomar", verb: "sent email", rest: " ", target: "to 23 voting members", targetColor: "#464A53", time: "1:33 PM" },
+  { id: "e7", avatar: "#4A5569", init: "MB", who: "Mohamed Benomar", verb: "deleted", rest: " duplicate record for ", target: "Noor Abbasl", time: "10:15 AM" },
+];
+const EXPANDABLE = ["e1", "e3", "e5"];
+
+function FieldsTable({ fields }) {
+  return (
+    <div className="flex flex-col items-start px-[16px] w-full">
+      <div className="flex flex-col items-start text-[12px] leading-[1.2] tracking-[0.6px] text-[#4D4A47]">
+        <div className="flex gap-[32px] items-start rounded-t-[8px] border border-[#D5D1CA] bg-[#F9F9F8] px-[16px] py-[8px]" style={{ fontFamily: "Poppins", fontWeight: 600 }}>
+          <p className="w-[320px]">FIELD</p>
+          <p className="w-[242px]">BEFORE</p>
+          <p className="w-[242px]">AFTER</p>
+        </div>
+        {fields.map(([f, before, after], i) => (
+          <div
+            key={f}
+            className={"flex gap-[32px] items-start border border-[#D5D1CA] bg-white px-[16px] py-[8px] -mt-px" + (i === fields.length - 1 ? " rounded-b-[8px]" : "")}
+            style={{ fontFamily: "Poppins", fontWeight: 500 }}
+          >
+            <p className="w-[320px]">{f}</p>
+            <p className="w-[242px]">{before}</p>
+            <p className="w-[242px]">{after}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function FieldsDetail({ fields }) {
+  return (
+    <div className="flex flex-col gap-[16px] items-start w-full pt-[16px]">
+      <FieldsTable fields={fields} />
+      <p className="w-full text-[12px] leading-[1.2] tracking-[0.6px] underline text-[#827D78]" style={{ fontFamily: "'IBM Plex Mono'", fontWeight: 500, textUnderlinePosition: "from-font" }}>
+        View Member Details→
+      </p>
+    </div>
+  );
+}
+
+function ReasonDetail({ reason }) {
+  return (
+    <div className="flex flex-col gap-[8px] items-start w-full pt-[16px]">
+      <div className="flex flex-col gap-[4px] items-start w-full">
+        <p className="px-[20px] text-[12px] leading-[1.2] tracking-[0.6px] text-[#4D4A47]" style={{ fontFamily: "Poppins", fontWeight: 600 }}>
+          REASON
+        </p>
+        <p className="px-[20px] w-full text-[12px] leading-[1.2] tracking-[0.6px] text-[#B6B1AB]" style={{ fontFamily: "Poppins", fontWeight: 500 }}>
+          {reason}
+        </p>
+      </div>
+      <div className="flex flex-col items-start px-[20px]">
+        <div className="flex gap-[8px] items-center rounded-[8px] bg-white py-[4px]">
+          <span className="flex items-center justify-center rounded-[32px] bg-[#EEF6F2] px-[8px] py-[4px] text-[#448865] text-[12px] leading-[1.2] tracking-[0.6px]" style={{ fontFamily: "Poppins", fontWeight: 500 }}>
+            Active
+          </span>
+          <img alt="" src={APP + "arrow-right.svg"} className="size-[16px]" />
+          <span className="flex items-center justify-center rounded-[32px] bg-[#FAEAEB] px-[8px] py-[4px] text-[#BA2930] text-[12px] leading-[1.2] tracking-[0.6px]" style={{ fontFamily: "Poppins", fontWeight: 500 }}>
+            Terminated
+          </span>
+        </div>
+      </div>
+      <p className="px-[20px] w-full text-[#BA2930] text-[12px] leading-[1.2] tracking-[0.6px]" style={{ fontFamily: "Poppins", fontWeight: 600 }}>
+        View Member Details→
+      </p>
+    </div>
+  );
+}
+
+function LogRow({ e, first, last, open, onToggle, reduce }) {
+  const expandable = !!e.detail;
+  const Tag = expandable ? "button" : "div";
+  const dot = e.verb === "terminated" && open ? DOT.terminatedOpen : DOT[e.verb];
+  return (
+    <div
+      className={
+        "w-full border border-[#F3F2F0] bg-white p-[16px]" +
+        (first ? " rounded-t-[8px]" : " -mt-px") +
+        (last ? " rounded-b-[8px]" : "")
+      }
+    >
+      <Tag
+        type={expandable ? "button" : undefined}
+        onClick={expandable ? onToggle : undefined}
+        aria-expanded={expandable ? open : undefined}
+        aria-controls={expandable ? `alog-${e.id}` : undefined}
+        className={"flex w-full items-center justify-between text-left" + (expandable ? " cursor-pointer" : "")}
+      >
+        <div className="flex gap-[8px] items-center">
+          <span aria-hidden className="size-[7px] rounded-full" style={{ background: dot }} />
+          <span aria-hidden className="flex size-[34px] items-center justify-center rounded-[17px] text-center text-[12px] text-[#F9F9F8]" style={{ background: e.avatar, fontFamily: "Poppins", fontWeight: 600 }}>
+            {e.init}
+          </span>
+          <p className="whitespace-nowrap text-[14px] leading-[1.2] text-[#827D78]" style={{ fontFamily: "Poppins", fontWeight: 500 }}>
+            <span className="text-[#353230]">{e.who}</span>{" "}
+            <span style={{ color: VERB[e.verb] }}>{e.verb}</span>
+            {e.rest}
+            <span style={{ color: e.targetColor || "#353230" }}>{e.target}</span>
+          </p>
+          {e.meta && (
+            <ul className="block whitespace-nowrap text-[12px] leading-[1.2] text-[#B6B1AB]" style={{ fontFamily: "Poppins", fontWeight: 500 }}>
+              <li className="list-disc ms-[18px]">{e.meta}</li>
+            </ul>
+          )}
+        </div>
+        <div className="flex gap-[16px] items-center">
+          <p className="whitespace-nowrap text-[12px] leading-[1.2] tracking-[0.6px] text-[#B6B1AB]" style={{ fontFamily: "Poppins", fontWeight: 600 }}>
+            {e.time}
+          </p>
+          <img
+            alt=""
+            aria-hidden
+            src={APP + "caret-down.svg"}
+            className="size-[16px] transition-transform duration-200"
+            style={{ transform: expandable && open ? "rotate(0deg)" : "rotate(-90deg)" }}
+          />
+        </div>
+      </Tag>
+      {expandable && (
+        <AnimatePresence initial={false}>
+          {open && (
+            <motion.div
+              id={`alog-${e.id}`}
+              key="panel"
+              initial={reduce ? false : { height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={reduce ? { opacity: 0 } : { height: 0, opacity: 0 }}
+              transition={{ duration: reduce ? 0 : 0.25, ease: "easeInOut" }}
+              className="overflow-hidden"
+            >
+              {e.detail.fields ? <FieldsDetail fields={e.detail.fields} /> : <ReasonDetail reason={e.detail.reason} />}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      )}
+    </div>
+  );
+}
+
+function Group({ date, count, rows, open, toggle, reduce }) {
+  return (
+    <div className="flex w-full flex-col gap-[16px] items-start">
+      <div className="flex w-full items-center justify-between leading-[1.2]">
+        <p className="flex-1 text-[12px] tracking-[0.6px] text-[#4D4A47]" style={{ fontFamily: "'IBM Plex Mono'", fontWeight: 600 }}>
+          {date}
+        </p>
+        <p className="whitespace-nowrap text-[10px] tracking-[0.5px] text-[#B6B1AB]" style={{ fontFamily: "Poppins", fontWeight: 600 }}>
+          {count}
+        </p>
+      </div>
+      <div className="flex w-full flex-col items-start drop-shadow-[0px_1px_1px_rgba(0,0,0,0.05)]">
+        {rows.map((e, i) => (
+          <LogRow key={e.id} e={e} first={i === 0} last={i === rows.length - 1} open={!!open[e.id]} onToggle={() => toggle(e.id)} reduce={reduce} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SideItem({ icon, label, active }) {
+  return (
+    <div className={"flex w-full items-center gap-[8px] rounded-[4px] py-[8px] pl-[8px]" + (active ? " bg-[#353230]" : "")}>
+      <img alt="" src={APP + icon} className="size-[24px]" />
+      <p className={"whitespace-nowrap text-[14px] leading-[1.2]" + (active ? " text-[#F9F9F8]" : " text-[#D5D1CA]")} style={{ fontFamily: "Poppins", fontWeight: 500 }}>
+        {label}
+      </p>
+    </div>
+  );
+}
+
+function Sidebar() {
+  return (
+    <div aria-hidden className="flex h-full w-[216px] flex-none flex-col bg-[#111110]">
+      <div className="flex w-full flex-col items-center">
+        <div className="flex h-[56px] w-full items-center gap-[8px] px-[24px] py-[4px]">
+          <img alt="" src={APP + "icoi-logo.png"} className="size-[25.132px] object-contain" />
+          <div className="flex flex-1 items-center justify-between">
+            <p className="text-[16px] leading-[1.2] tracking-[0.8px]" style={{ fontFamily: "Poppins", fontWeight: 500 }}>
+              <span className="text-[#F9F9F8]">ICOI </span>
+              <span className="text-[#B6B1AB]">Admin</span>
+            </p>
+            <img alt="" src={APP + "arrow-line-left.svg"} className="size-[16px]" />
+          </div>
+        </div>
+        <div className="h-px w-[192px] bg-[#353230]" />
+      </div>
+      <div className="mt-[32px] flex w-full flex-col gap-[2px] px-[12px]">
+        <p className="pb-[4px] pl-[4px] text-[12px] leading-[1.2] tracking-[1.2px] text-[#B6B1AB]" style={{ fontFamily: "'DM Mono'", fontWeight: 500 }}>
+          MAIN
+        </p>
+        <SideItem icon="house-line.svg" label="Dashboard" active />
+        <SideItem icon="file-plus.svg" label="Applications" />
+        <SideItem icon="users-three.svg" label="Members" />
+        <SideItem icon="barcode.svg" label="QR Code Logs" />
+      </div>
+      <div className="mt-auto flex w-full flex-col gap-[2px] px-[8px]">
+        <p className="pb-[4px] pl-[4px] text-[12px] leading-[1.2] tracking-[1.2px] text-[#B6B1AB]" style={{ fontFamily: "'DM Mono'", fontWeight: 500 }}>
+          ADMIN
+        </p>
+        <SideItem icon="file-plus.svg" label="Reports" />
+        <SideItem icon="gear-fine.svg" label="Settings" />
+        <div className="mx-auto my-[2px] h-px w-[192px] bg-[#353230]" />
+        <div className="flex w-full flex-col px-[8px] py-[16px]">
+          <div className="flex w-full items-center gap-[8px]">
+            <span className="flex size-[32px] items-center justify-center rounded-[16px] bg-[#1C4966] text-[12px] leading-[1.2] text-[#F9F9F8]" style={{ fontFamily: "Poppins", fontWeight: 500 }}>
+              KB
+            </span>
+            <div className="flex min-w-px flex-1 flex-col leading-[1.2]" style={{ fontFamily: "Poppins", fontWeight: 500 }}>
+              <p className="w-full text-[14px] text-[#E6E4DF]">Karima B.</p>
+              <p className="w-full text-[10px] text-[#B6B1AB]">Administrator</p>
+            </div>
+            <img alt="" src={APP + "dots-three.svg"} className="size-[24px]" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const TABS = ["All Activity", "Edit Detail", "Application Approval", "Status Transition", "Delete", "Bulk Actions"];
+
+export function ActivityLogScreen() {
+  const reduce = useReducedMotion();
+  const [open, setOpen] = useState({ e1: true, e5: true }); // matches the Activity Log-u frame
+  const [scale, setScale] = useState(0);
+  const boxRef = useRef(null);
+  const toggle = (id) => setOpen((o) => ({ ...o, [id]: !o[id] }));
+  const setAll = (v) => setOpen(Object.fromEntries(EXPANDABLE.map((id) => [id, v])));
+
+  // scale the fixed 1440x1024 design space to the aspect-locked screen box
+  useEffect(() => {
+    const el = boxRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) => setScale(entry.contentRect.width / 1440));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  return (
+    <div ref={boxRef} className="absolute inset-0 overflow-hidden">
+      <div
+        className="flex bg-[#F5F5F6] text-left antialiased"
+        style={{ width: 1440, height: 1024, transform: `scale(${scale})`, transformOrigin: "top left", visibility: scale ? "visible" : "hidden" }}
+      >
+        <Sidebar />
+        <div className="h-full min-w-0 flex-1 overflow-y-auto">
+          <div className="ml-[45px] mr-[32px] pb-[48px] pt-[37px]">
+            {/* header */}
+            <div className="flex w-full items-start justify-between">
+              <div className="flex h-[51px] flex-col gap-[8px] items-start">
+                <p className="text-[18px] leading-[1.2] text-[#252322]" style={{ fontFamily: "Poppins", fontWeight: 600 }}>
+                  Activity Log
+                </p>
+                <p className="text-[16px] leading-[1.2] text-[#635E5B]" style={{ fontFamily: "'IBM Plex Sans'", fontWeight: 400 }}>
+                  A record of every admin update across the system to particular member records
+                </p>
+              </div>
+              <div className="flex items-center gap-[16px]">
+                <button
+                  type="button"
+                  onClick={() => setAll(true)}
+                  className="flex cursor-pointer items-center justify-center gap-[8px] rounded-[4px] bg-white py-[8px] pl-[8px] pr-[16px] drop-shadow-[0px_1px_2.5px_rgba(0,0,0,0.1),0px_1px_1.5px_rgba(0,0,0,0.06)]"
+                >
+                  <img alt="" src={APP + "arrows-out.svg"} className="size-[16px]" />
+                  <span className="whitespace-nowrap text-[14px] leading-[1.2] text-[#4D4A47]" style={{ fontFamily: "Poppins", fontWeight: 500 }}>
+                    Expand all
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setAll(false)}
+                  className="flex cursor-pointer items-center justify-center gap-[8px] rounded-[4px] bg-white py-[8px] pl-[8px] pr-[16px] drop-shadow-[0px_1px_2.5px_rgba(0,0,0,0.1),0px_1px_1.5px_rgba(0,0,0,0.06)]"
+                >
+                  <img alt="" src={APP + "arrows-in.svg"} className="size-[16px]" />
+                  <span className="whitespace-nowrap text-[14px] leading-[1.2] text-[#4D4A47]" style={{ fontFamily: "Poppins", fontWeight: 500 }}>
+                    Collapse all
+                  </span>
+                </button>
+                <span aria-hidden className="flex items-center justify-center gap-[8px] rounded-[4px] bg-[#BA2930] py-[8px] pl-[8px] pr-[16px] drop-shadow-[0px_1px_2.5px_rgba(0,0,0,0.1),0px_1px_1.5px_rgba(0,0,0,0.06)]">
+                  <img alt="" src={APP + "share-network.svg"} className="size-[16px]" />
+                  <span className="whitespace-nowrap text-[14px] leading-[1.2] text-[#F9F9F8]" style={{ fontFamily: "Poppins", fontWeight: 500 }}>
+                    Export as CSV
+                  </span>
+                </span>
+              </div>
+            </div>
+
+            {/* filter tabs (decorative) + hairline */}
+            <div aria-hidden className="relative mt-[23px] w-full border-b border-[#E6E4DF] pb-[6px]">
+              <div className="flex items-center">
+                {TABS.map((t, i) => (
+                  <div key={t} className="relative flex items-center justify-center px-[16px]">
+                    <p className={"whitespace-nowrap text-[14px] leading-[1.2] " + (i === 0 ? "text-[#7D1C21]" : "text-[#827D78]")} style={{ fontFamily: "Poppins", fontWeight: 500 }}>
+                      {t}
+                    </p>
+                    {i === 0 && <span className="absolute inset-x-0 -bottom-[8px] h-[2px] bg-[#BA2930]" />}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* groups */}
+            <div className="mt-[27px] flex w-full flex-col gap-[16px] items-start">
+              <Group date="TODAY - APR 24, 2026" count="4 events" rows={ROWS_TODAY} open={open} toggle={toggle} reduce={reduce} />
+              <Group date="YESTERDAY - APR 23, 2026" count="3 events" rows={ROWS_YESTERDAY} open={open} toggle={toggle} reduce={reduce} />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

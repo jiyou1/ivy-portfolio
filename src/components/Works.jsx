@@ -11,14 +11,17 @@ import {
 import { Page, Eye } from "iconoir-react";
 import SectionLabel from "./SectionLabel";
 import { HOME_PROJECTS } from "../data/projects";
+import usePauseOffscreen from "../hooks/usePauseOffscreen";
 
 function Cover({ src, video, alt, position }) {
   // `position` sets object-position for cards whose media needs a nudge away
   // from the default center crop (e.g. a taller-than-card video).
+  const videoRef = usePauseOffscreen();
   const style = position ? { objectPosition: position } : undefined;
   if (video) {
     return (
       <video
+        ref={videoRef}
         src={video}
         poster={src}
         autoPlay

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import usePauseOffscreen from "../../hooks/usePauseOffscreen";
 
 /* Asset-or-placeholder. Reads real files from /public/case/icoi/ when they exist;
    otherwise renders a labelled dashed placeholder so the page can be built and
@@ -14,12 +15,14 @@ const MIN_H = {
 
 export default function Slot({ src, video, alt = "", label, variant = "default", className = "", bare = false, contain = false, width, height }) {
   const [failed, setFailed] = useState(!src && !video);
+  const videoRef = usePauseOffscreen();
   const edge = bare ? "" : "border border-stroke";
   const fit = contain ? "object-contain" : "object-cover";
 
   if (video) {
     return (
       <video
+        ref={videoRef}
         src={video}
         poster={src}
         autoPlay

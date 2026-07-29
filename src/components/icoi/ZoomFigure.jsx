@@ -88,7 +88,7 @@ export default function ZoomFigure({ src, alt, caption, aspect = "4 / 3", classN
       )}
 
       {caption && (
-        <figcaption className="mt-3 font-mono text-[12px] leading-[1.5] text-grayt">{caption}</figcaption>
+        <figcaption className="mt-3 max-w-[760px] text-pretty font-mono text-[12px] leading-[1.5] text-grayt">{caption}</figcaption>
       )}
 
       <AnimatePresence>

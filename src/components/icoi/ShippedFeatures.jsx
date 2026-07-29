@@ -3,6 +3,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Xmark, StatsReport, TaskList, Community, QrCode, ClockRotateRight } from "iconoir-react";
 import CaseVideo from "../case/CaseVideo";
 import Todo from "../case/Todo";
+import { ActivityLogScreen } from "./ActivityLog";
 
 /* Section 05 "What shipped" — an interactive feature walkthrough, stacked so the
    screen reads large. Top to bottom: the screenshot inside a code-built laptop
@@ -92,8 +93,10 @@ const ICOI_FEATURES = [
     description:
       "Every admin action is recorded automatically, satisfying §4.19.D without anyone maintaining a log.",
     highlight: "recorded automatically",
-    images: [SHIPPED + "ICOI-Activity-Log.webp"],
-    alt: "ICOI activity log showing an automatically recorded audit trail",
+    // a live replica instead of a screenshot: entries expand to show what each
+    // action recorded (sample data recreated for privacy)
+    Screen: ActivityLogScreen,
+    alt: "ICOI activity log, interactive: expand an entry to see what it recorded",
   },
 ];
 
@@ -338,7 +341,20 @@ export default function ShippedFeatures({
         onBlurCapture={() => setPaused(false)}
       >
         <Frame>
-          {cur.video ? (
+          {cur.Screen ? (
+            /* live component screen: fades in on tab switch, fills the
+               aspect-locked screen and scrolls internally */
+            <motion.div
+              key={cur.id}
+              className="absolute inset-0"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: reduce ? 0 : 0.15 }}
+              aria-label={cur.alt}
+            >
+              <cur.Screen />
+            </motion.div>
+          ) : cur.video ? (
             <CaseVideo
               sources={cur.video.sources}
               poster={cur.video.poster}

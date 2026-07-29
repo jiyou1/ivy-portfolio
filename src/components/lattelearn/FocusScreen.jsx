@@ -272,7 +272,10 @@ export default function FocusScreen() {
         <p className="absolute left-[169px] top-[15px] w-[248px] -translate-x-1/2 text-center font-['Jersey_25'] text-[20px] text-[#f5f0e6] opacity-85">
           POMODORO
         </p>
-        <p className="absolute left-[169px] top-[74.5px] w-[248px] -translate-x-1/2 -translate-y-1/2 text-center font-['Jersey_10'] text-[84px] leading-none text-[#f5f0e6]">
+        <p
+          className="absolute left-[169px] top-[74.5px] w-[248px] -translate-x-1/2 -translate-y-1/2 text-center font-['Jersey_10'] text-[84px] leading-none text-[#f5f0e6]"
+          style={{ fontVariantNumeric: "tabular-nums" }}
+        >
           {fmt(secondsLeft)}
         </p>
 

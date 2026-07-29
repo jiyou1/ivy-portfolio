@@ -32,6 +32,11 @@ typography:
     fontSize: "17px"
     fontWeight: 400
     lineHeight: 1.6
+  body-card:
+    fontFamily: "Inter, system-ui, sans-serif"
+    fontSize: "14px"
+    fontWeight: 400
+    lineHeight: 1.55
   label:
     fontFamily: "Inter, system-ui, sans-serif"
     fontSize: "11px"
@@ -59,6 +64,7 @@ typography:
   pixel-jersey:
     fontFamily: "Jersey 25, Jersey 10, monospace"
 rounded:
+  focus: "6px"
   chip: "12px"
   media: "16px"
   card: "28px"
@@ -109,7 +115,7 @@ Anti-references: dark brutalist developer portfolios, and template-grade Dribbbl
 **Key Characteristics:**
 - Frosted glass surfaces over pale blue paper, lit by holographic blob washes
 - One working accent (Sky Signal blue); candy colors reserved for physical toys
-- Inter carries the voice; specialty fonts appear only as physical objects (pixel keycaps, handwritten captions, serif signature)
+- Bricolage Grotesque headings over Inter body text; specialty fonts appear only as physical objects (pixel keycaps, handwritten captions, serif signature)
 - Springy, tactile motion with exact values and universal reduced-motion support
 - Case-study pages may shift quieter (see `.impeccable/surfaces/icoi.md`), the shell stays playful
 
@@ -128,7 +134,7 @@ One bright working blue over cool paper, with a holographic trio that exists onl
 - **Soft Panel** (#ECF1FA): Media placeholder fill, quiet panel backgrounds, hairline-adjacent surfaces.
 
 ### Tertiary (light, not ink)
-- **Holo Cyan / Holo Violet / Holo Pink** (#8CDEFF / #B89EFF / #FFB8EB): The holographic wash. They appear only inside blurred background blobs (70px blur, gradient pairs at 35 to 85% opacity) and, on the ICOI page, one pink text highlight. Never as text, borders, or fills of UI controls.
+- **Holo Cyan / Holo Violet / Holo Pink** (#8CDEFF / #B89EFF / #FFB8EB): The holographic wash. They appear only inside soft background blobs (pre-softened radial gradients fading to transparent, no runtime blur) and, on the ICOI page, one pink text highlight. Never as text, borders, or fills of UI controls.
 - **Keycap Pink / Keycap Yellow** (#FF4FA3 / #FFCE2E): Candy solids that exist only on the hero keycap toys, each with its own darker stroke and 3D bottom edge.
 
 ### Named Rules
@@ -201,7 +207,7 @@ Everything is soft and buoyant: glass cards at 28px radius, media wells at 16px,
 - White frame, 12px padding, Caveat caption, Polaroid-lift shadow; hover fans the stack, drag rearranges. Physical behavior over decoration.
 
 ### Blobs (atmosphere)
-- Absolute blurred circles (70px blur) of holo gradient pairs, 320 to 480px, bleeding off page edges. Pointer-events none, purely background. The ICOI page withholds them almost entirely; that restraint is deliberate.
+- Absolute soft circles of holo gradient pairs (pre-softened radial gradients, no blur filter), 320 to 480px, bleeding off page edges. Pointer-events none, purely background. Case-study pages swap in their own quieter aurora palettes.
 
 ### Section label
 - 12px semibold, +0.14em tracking, Sky Signal Text. Marks every section; the smallest reliable wayfinding element.

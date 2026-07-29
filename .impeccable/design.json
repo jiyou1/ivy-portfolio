@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-25T00:00:00Z",
+  "generatedAt": "2026-07-28T12:00:00Z",
   "title": "Design System: Ivy Jiyou Lee — Portfolio",
   "extensions": {
     "colorMeta": {
@@ -17,15 +17,18 @@
       "keycap-yellow": { "role": "tertiary", "displayName": "Keycap Yellow", "canonical": "#FFCE2E", "tonalRamp": ["#4D3A02", "#7D5F05", "#AD8508", "#DEAB0F", "#FFCE2E", "#FFDB63", "#FFE898", "#FFF4CC"] }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display (Instrument Serif)", "purpose": "The typed name in the hero headline only; appears nowhere else." },
-      "headline": { "displayName": "Headline", "purpose": "Section headings (About, Get in touch)." },
-      "title": { "displayName": "Title", "purpose": "Card titles." },
-      "body": { "displayName": "Body", "purpose": "Paragraphs at 17px/1.6; card body drops to 14px/1.55." },
+      "display": { "displayName": "Display (Instrument Serif)", "purpose": "The typed name in the hero headline and case-study H1s; the serif never sets running text." },
+      "headline": { "displayName": "Headline (Bricolage Grotesque)", "purpose": "Section headings (About, Get in touch); set on h1-h4 globally, overridden by explicit font utilities." },
+      "title": { "displayName": "Title (Bricolage Grotesque)", "purpose": "Card titles." },
+      "body": { "displayName": "Body", "purpose": "Paragraphs at 17px/1.6." },
+      "body-card": { "displayName": "Body (card)", "purpose": "Card body text at 14px/1.55." },
       "label": { "displayName": "Label", "purpose": "Uppercase tracked labels: cards, tags, pills, nav items." },
       "eyebrow": { "displayName": "Eyebrow", "purpose": "Section markers in Sky Signal Text or Slate Muted." },
       "hand": { "displayName": "Handwriting (Caveat)", "purpose": "Polaroid captions only." },
       "pixel": { "displayName": "Pixel (Silkscreen)", "purpose": "Hero keycap toys only." },
-      "mono": { "displayName": "Evidence (Spline Sans Mono)", "purpose": "Citations, data, labels, and machinery on case-study pages; never running prose." }
+      "mono": { "displayName": "Evidence (Spline Sans Mono)", "purpose": "Citations, data, labels, and machinery on case-study pages; never running prose." },
+      "serif-display": { "displayName": "Serif Display (DM Serif Display)", "purpose": "Playground and Brewing headlines only." },
+      "pixel-jersey": { "displayName": "Pixel (Jersey 10/25)", "purpose": "LatteLearn focus-screen pixel UI only." }
     },
     "shadows": [
       { "name": "glass-ambient", "value": "0 14px 36px rgba(46, 97, 217, 0.10)", "purpose": "Default float under every glass surface." },
@@ -107,7 +110,7 @@
     "keyCharacteristics": [
       "Frosted glass surfaces over pale blue paper, lit by holographic blob washes",
       "One working accent (Sky Signal blue); candy colors reserved for physical toys",
-      "Inter carries the voice; specialty fonts appear only as physical objects (pixel keycaps, handwritten captions, serif signature)",
+      "Bricolage Grotesque headings over Inter body text; specialty fonts appear only as physical objects (pixel keycaps, handwritten captions, serif signature)",
       "Springy, tactile motion with exact values and universal reduced-motion support",
       "Case-study pages may shift quieter (see .impeccable/surfaces/icoi.md), the shell stays playful"
     ],

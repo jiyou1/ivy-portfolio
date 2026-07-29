@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { Sparks, CursorPointer, Rocket } from "iconoir-react";
 
 /* Floating hero assets (inflatable vol.2 pack) — one overlapping cluster in the
@@ -20,7 +20,7 @@ const FLOATIES = [
   { src: "/floaties/chain.png", width: CHAIN_W, left: "67%", top: "46%", z: 30, drift: { y: 32, x: 10,  rotate: 8, duration: 4.8, delay: 0.2 } },
 ];
 
-function Floaties() {
+function Floaties({ paused }) {
   const reduce = useReducedMotion();
   return (
     <>
@@ -35,7 +35,7 @@ function Floaties() {
           className="pointer-events-none absolute hidden select-none drop-shadow-[0_24px_50px_rgba(51,89,204,0.18)] md:block"
           style={{ width: f.width, left: f.left, top: f.top, zIndex: f.z }}
           animate={
-            reduce
+            reduce || paused
               ? {}
               : { y: [0, f.drift.y, 0], x: [0, f.drift.x, 0], rotate: [0, f.drift.rotate, 0] }
           }
@@ -155,9 +155,13 @@ function Keycap({ label, variant, Icon }) {
 
 export default function Hero() {
   const reduce = useReducedMotion();
+  // pause the floaty drift loops once the hero scrolls out of view (looping
+  // animations off-screen burn CPU/GPU for nothing)
+  const headerRef = useRef(null);
+  const inView = useInView(headerRef);
   return (
-    <header id="home" className="relative px-5 pb-20 pt-24 sm:px-10 lg:px-16 lg:pt-28">
-      <Floaties />
+    <header ref={headerRef} id="home" className="relative px-5 pb-20 pt-24 sm:px-10 lg:px-16 lg:pt-28">
+      <Floaties paused={!inView} />
       <div className="flex flex-col gap-6">
         <div className="flex items-center gap-2">
           <p className="text-[12px] font-medium tracking-[0.14em] text-grayt">

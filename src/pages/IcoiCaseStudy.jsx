@@ -29,6 +29,16 @@ import {
 
 const ASSETS = "/case/icoi/";
 
+/* ICOI red skin: the shipped admin UI's crimson replaces the portfolio blue on
+   this page only, via the shared token names (same mechanism as LatteLearn's
+   café and RoomieTask's olive skins). --color-blue drives fills (pills, skip
+   circle); --color-blue-text is the deeper contrast-safe stop for small text
+   (eyebrows, links, TOC). Semantic status-ramp tokens are untouched. */
+const ICOI_TOKENS = {
+  "--color-blue": "#B3282D",
+  "--color-blue-text": "#9E2227",
+};
+
 /* ---------- small prose helpers (prose caps at 760px; media spans 1080) ---------- */
 function Eyebrow({ n, icon: Icon, children }) {
   return (
@@ -86,7 +96,7 @@ export default function IcoiCaseStudy() {
   };
 
   return (
-    <div className="relative overflow-x-hidden">
+    <div className="relative overflow-x-hidden" style={ICOI_TOKENS}>
       <CaseBlobs />
       <Toc />
 
@@ -120,15 +130,10 @@ export default function IcoiCaseStudy() {
                 in Figma and led the React build that now runs ICOI's daily operations.
               </p>
               <div className="mb-6 flex flex-wrap gap-2">
-                <a
-                  href="https://icoi.net"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-full border border-blue-text bg-blue px-3.5 py-1.5 font-mono text-[12px] text-white transition-transform hover:-translate-y-0.5"
-                >
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-text bg-blue px-3.5 py-1.5 font-mono text-[12px] text-white">
                   <Globe width={13} height={13} strokeWidth={2} aria-hidden />
-                  In production · icoi.net
-                </a>
+                  In production
+                </span>
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-stroke bg-white px-3.5 py-1.5 font-mono text-[12px] text-ink">
                   <Group width={13} height={13} strokeWidth={2} aria-hidden />
                   500+ members
@@ -179,9 +184,10 @@ export default function IcoiCaseStudy() {
           <Eyebrow n="01" icon={Book}>Context</Eyebrow>
           <H2>A nonprofit that runs on rules written for lawyers</H2>
           <P>
-            ICOI is a California nonprofit religious corporation. Who can join, who can vote, who gets
-            suspended, and who sits on the board is not decided by staff preference: it is written into
-            a 17-page amended and restated bylaws document, last signed in 2024.
+            ICOI (Islamic Center of Irvine) is a California nonprofit religious corporation. Who can
+            join, who can vote, who gets suspended, and who sits on the board is not decided by staff
+            preference: it is written into a 17-page amended and restated bylaws document, last
+            signed in 2024.
           </P>
           <P>
             The operational reality was Google Forms feeding a shared Sheet, managed by a handful of

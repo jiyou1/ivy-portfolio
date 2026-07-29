@@ -59,18 +59,35 @@ export default function VerdictTable() {
           <tr>
             <td className="border-b border-stroke px-5 py-3.5 align-top text-grayt">·</td>
             <td className="border-b border-stroke px-5 py-3.5 align-top">
-              §3.4.A · defined · the pivot state of the whole system
+              <StatusChip status="suspended">SUSPENDED</StatusChip> defined in §3.4.A, the pivot
+              state of the whole system: rights pause after 3 months of non-payment, 6 months to pay
+              and reinstate
             </td>
             <Verdict kind="missing">missing</Verdict>
           </tr>
           <tr>
-            <td className="border-b border-stroke px-5 py-3.5 align-top">"Canceled"</td>
-            <td className="border-b border-stroke px-5 py-3.5 align-top">appears nowhere in the document</td>
+            <td className="border-b border-stroke px-5 py-3.5 align-top text-grayt">·</td>
+            <td className="border-b border-stroke px-5 py-3.5 align-top">
+              <StatusChip status="terminated">TERMINATED</StatusChip> defined in §3.4.B-C, two
+              causes: auto after 6 more unpaid months (reapply in 6), or by 2/3 board vote (reapply
+              in 12, seniority reset)
+            </td>
+            <Verdict kind="missing">missing</Verdict>
+          </tr>
+          <tr>
+            <td className="border-b border-stroke px-5 py-3.5 align-top"><StatusChip status="canceled">CANCELED</StatusChip></td>
+            <td className="border-b border-stroke px-5 py-3.5 align-top">
+              appears nowhere in the document; the team later defined it as voluntary exit (no
+              consequences, seniority preserved, rejoin anytime)
+            </td>
             <Verdict kind="odd">undefined</Verdict>
           </tr>
           <tr>
-            <td className="border-b border-stroke px-5 py-3.5 align-top">"Eligible Nominee"</td>
-            <td className="border-b border-stroke px-5 py-3.5 align-top">an Article IV board-eligibility concept, not a membership status</td>
+            <td className="border-b border-stroke px-5 py-3.5 align-top"><StatusChip status="nominee">ELIGIBLE NOMINEE</StatusChip></td>
+            <td className="border-b border-stroke px-5 py-3.5 align-top">
+              an Article IV board-eligibility concept, not a membership status; shipped as a
+              board-eligible flag on the member, not a status
+            </td>
             <Verdict kind="odd">wrong column</Verdict>
           </tr>
         </tbody>

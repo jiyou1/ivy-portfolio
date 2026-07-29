@@ -53,6 +53,11 @@ body {
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(10, 133, 255, 0.18);
 }
 
 /* Headings set in Bricolage Grotesque; body stays Inter. In @layer base so
@@ -75,7 +80,6 @@ body {
 .blob {
   position: absolute;
   border-radius: 9999px;
-  filter: blur(70px);
   pointer-events: none;
 }
 

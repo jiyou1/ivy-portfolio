@@ -8,15 +8,27 @@ const RAMP = {
   honorary: "st-hon",
 };
 
+// gray, for sheet entries that aren't real statuses (Canceled, Eligible Nominee)
+const GRAY = {
+  color: "var(--color-grayt)",
+  borderColor: "var(--color-stroke)",
+  background: "var(--color-imgbg)",
+};
+
 export default function StatusChip({ status, children }) {
-  const c = RAMP[status] ?? "st-info";
+  const c = RAMP[status];
+  const colors = c
+    ? {
+        color: `var(--color-${c})`,
+        borderColor: `var(--color-${c}-border)`,
+        background: `var(--color-${c}-fill)`,
+      }
+    : GRAY;
   return (
     <span
       className="inline-block rounded-md border font-mono text-[11px] font-semibold uppercase tracking-[0.08em]"
       style={{
-        color: `var(--color-${c})`,
-        borderColor: `var(--color-${c}-border)`,
-        background: `var(--color-${c}-fill)`,
+        ...colors,
         padding: "3px 10px",
         verticalAlign: "1px",
       }}
