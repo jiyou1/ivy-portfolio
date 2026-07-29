@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { NavArrowDown } from "iconoir-react";
+import { APP, useAppScale, AppSidebar } from "./AppChrome";
 
 /* Section 05 "The audit trail" — a collapsible sample of the activity-type
    taxonomy built for ICOI (derived from the audit, sponsor meetings, and the
@@ -205,8 +206,6 @@ export default function ActivityLog() {
    height (instant under reduced motion); content scrolls inside the screen so
    the device dimensions never move. */
 
-const APP = "/work/icoi/app/";
-
 /* exact fills from the exported ellipse assets */
 const DOT = {
   updated: "#5582DD",
@@ -400,66 +399,6 @@ function Group({ date, count, rows, open, toggle, reduce }) {
   );
 }
 
-function SideItem({ icon, label, active }) {
-  return (
-    <div className={"flex w-full items-center gap-[8px] rounded-[4px] py-[8px] pl-[8px]" + (active ? " bg-[#353230]" : "")}>
-      <img alt="" src={APP + icon} className="size-[24px]" />
-      <p className={"whitespace-nowrap text-[14px] leading-[1.2]" + (active ? " text-[#F9F9F8]" : " text-[#D5D1CA]")} style={{ fontFamily: "Poppins", fontWeight: 500 }}>
-        {label}
-      </p>
-    </div>
-  );
-}
-
-function Sidebar() {
-  return (
-    <div aria-hidden className="flex h-full w-[216px] flex-none flex-col bg-[#111110]">
-      <div className="flex w-full flex-col items-center">
-        <div className="flex h-[56px] w-full items-center gap-[8px] px-[24px] py-[4px]">
-          <img alt="" src={APP + "icoi-logo.png"} className="size-[25.132px] object-contain" />
-          <div className="flex flex-1 items-center justify-between">
-            <p className="text-[16px] leading-[1.2] tracking-[0.8px]" style={{ fontFamily: "Poppins", fontWeight: 500 }}>
-              <span className="text-[#F9F9F8]">ICOI </span>
-              <span className="text-[#B6B1AB]">Admin</span>
-            </p>
-            <img alt="" src={APP + "arrow-line-left.svg"} className="size-[16px]" />
-          </div>
-        </div>
-        <div className="h-px w-[192px] bg-[#353230]" />
-      </div>
-      <div className="mt-[32px] flex w-full flex-col gap-[2px] px-[12px]">
-        <p className="pb-[4px] pl-[4px] text-[12px] leading-[1.2] tracking-[1.2px] text-[#B6B1AB]" style={{ fontFamily: "'DM Mono'", fontWeight: 500 }}>
-          MAIN
-        </p>
-        <SideItem icon="house-line.svg" label="Dashboard" active />
-        <SideItem icon="file-plus.svg" label="Applications" />
-        <SideItem icon="users-three.svg" label="Members" />
-        <SideItem icon="barcode.svg" label="QR Code Logs" />
-      </div>
-      <div className="mt-auto flex w-full flex-col gap-[2px] px-[8px]">
-        <p className="pb-[4px] pl-[4px] text-[12px] leading-[1.2] tracking-[1.2px] text-[#B6B1AB]" style={{ fontFamily: "'DM Mono'", fontWeight: 500 }}>
-          ADMIN
-        </p>
-        <SideItem icon="file-plus.svg" label="Reports" />
-        <SideItem icon="gear-fine.svg" label="Settings" />
-        <div className="mx-auto my-[2px] h-px w-[192px] bg-[#353230]" />
-        <div className="flex w-full flex-col px-[8px] py-[16px]">
-          <div className="flex w-full items-center gap-[8px]">
-            <span className="flex size-[32px] items-center justify-center rounded-[16px] bg-[#1C4966] text-[12px] leading-[1.2] text-[#F9F9F8]" style={{ fontFamily: "Poppins", fontWeight: 500 }}>
-              KB
-            </span>
-            <div className="flex min-w-px flex-1 flex-col leading-[1.2]" style={{ fontFamily: "Poppins", fontWeight: 500 }}>
-              <p className="w-full text-[14px] text-[#E6E4DF]">Karima B.</p>
-              <p className="w-full text-[10px] text-[#B6B1AB]">Administrator</p>
-            </div>
-            <img alt="" src={APP + "dots-three.svg"} className="size-[24px]" />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 const TABS = ["All Activity", "Edit Detail", "Application Approval", "Status Transition", "Delete", "Bulk Actions"];
 
 export function ActivityLogScreen() {
@@ -485,7 +424,7 @@ export function ActivityLogScreen() {
         className="flex bg-[#F5F5F6] text-left antialiased"
         style={{ width: 1440, height: 1024, transform: `scale(${scale})`, transformOrigin: "top left", visibility: scale ? "visible" : "hidden" }}
       >
-        <Sidebar />
+        <AppSidebar active="Dashboard" />
         <div className="h-full min-w-0 flex-1 overflow-y-auto">
           <div className="ml-[45px] mr-[32px] pb-[48px] pt-[37px]">
             {/* header */}

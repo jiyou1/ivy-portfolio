@@ -96,6 +96,17 @@
         "value": "dm mono",
         "createdAt": "2026-07-29T07:34:15.453Z",
         "reason": "Exact ICOI product font in the 1:1 admin-UI replica, user-required (no approximations)"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "*",
+        "files": [
+          "src/components/icoi/ActivityLog.jsx",
+          "src/components/icoi/AppChrome.jsx",
+          "src/components/icoi/MemberRecordsScreen.jsx"
+        ],
+        "createdAt": "2026-07-29T22:57:20.482Z",
+        "reason": "1:1 Figma product replicas use the shipped ICOI admin palette verbatim (user-required, no approximations)"
       }
     ]
   }

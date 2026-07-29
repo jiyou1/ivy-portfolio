@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Sparks } from "iconoir-react";
+import { Download } from "iconoir-react";
+import { LINKS } from "../data/site";
 
 export default function Nav() {
   const items = [
@@ -81,8 +81,11 @@ export default function Nav() {
           );
         })}
       </div>
-      <Link
-        to="/playground"
+      {/* Playground is brewing; this slot points at the resume until it ships */}
+      <a
+        href={LINKS.resume}
+        target="_blank"
+        rel="noreferrer"
         className="group glass relative isolate overflow-hidden rounded-full px-5 py-3 text-[11px] font-semibold tracking-[0.06em] text-blue-text transition-all duration-300 hover:-translate-y-0.5 hover:text-white hover:shadow-[0_10px_28px_rgba(88,28,180,0.45)]"
       >
         {/* smooth indigo -> violet fill, revealed on hover */}
@@ -92,16 +95,16 @@ export default function Nav() {
           style={{ background: "linear-gradient(135deg, #1e1b4b 0%, #4c1d95 55%, #7c3aed 100%)" }}
         />
         <span className="relative inline-flex items-center gap-1.5">
-          Join my Playground
-          <Sparks
+          Download my Resume
+          <Download
             width={14}
             height={14}
             strokeWidth={2}
             aria-hidden
-            className="transition-transform duration-500 group-hover:rotate-90"
+            className="transition-transform duration-300 group-hover:translate-y-0.5"
           />
         </span>
-      </Link>
+      </a>
     </nav>
   );
 }

@@ -1,0 +1,18 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="48.9796" height="48.9796" viewBox="0 0 48.9796 48.9796" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="QrCode" clip-path="url(#clip0_0_11)">
+<g id="Vector">
+</g>
+<path id="Vector_2" d="M19.898 9.18352H10.7143C9.86896 9.18352 9.18368 9.8688 9.18368 10.7141V19.8978C9.18368 20.7431 9.86896 21.4284 10.7143 21.4284H19.898C20.7433 21.4284 21.4286 20.7431 21.4286 19.8978V10.7141C21.4286 9.8688 20.7433 9.18352 19.898 9.18352Z" stroke="#D5D1CA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M19.898 27.5509H10.7143C9.86896 27.5509 9.18368 28.2361 9.18368 29.0815V38.2652C9.18368 39.1105 9.86896 39.7958 10.7143 39.7958H19.898C20.7433 39.7958 21.4286 39.1105 21.4286 38.2652V29.0815C21.4286 28.2361 20.7433 27.5509 19.898 27.5509Z" stroke="#D5D1CA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M38.2653 9.18352H29.0816C28.2363 9.18352 27.551 9.8688 27.551 10.7141V19.8978C27.551 20.7431 28.2363 21.4284 29.0816 21.4284H38.2653C39.1106 21.4284 39.7959 20.7431 39.7959 19.8978V10.7141C39.7959 9.8688 39.1106 9.18352 38.2653 9.18352Z" stroke="#D5D1CA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_5" d="M27.551 27.5509V33.6733" stroke="#D5D1CA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_6" d="M27.551 39.7958H33.6735V27.5509" stroke="#D5D1CA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_7" d="M33.6735 30.6121H39.7959" stroke="#D5D1CA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_8" d="M39.7959 36.7345V39.7958" stroke="#D5D1CA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_0_11">
+<rect width="48.9796" height="48.9796" fill="white"/>
+</clipPath>
+</defs>
+</svg>

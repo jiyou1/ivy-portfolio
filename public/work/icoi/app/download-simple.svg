@@ -1,0 +1,14 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="DownloadSimple" clip-path="url(#clip0_0_20)">
+<g id="Vector">
+</g>
+<path id="Vector_2" d="M6 6.75V1.5" stroke="#4D4A47" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M10.125 6.75V9.75H1.875V6.75" stroke="#4D4A47" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M7.875 4.875L6 6.75L4.125 4.875" stroke="#4D4A47" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_0_20">
+<rect width="12" height="12" fill="white"/>
+</clipPath>
+</defs>
+</svg>

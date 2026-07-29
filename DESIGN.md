@@ -44,7 +44,7 @@ typography:
     letterSpacing: "0.08em"
   eyebrow:
     fontFamily: "Inter, system-ui, sans-serif"
-    fontSize: "12px"
+    fontSize: "14px"
     fontWeight: 600
     letterSpacing: "0.14em"
   hand:
@@ -156,7 +156,7 @@ One bright working blue over cool paper, with a holographic trio that exists onl
 - **Title** (Bricolage Grotesque 700, 1.5rem, -0.01em): Card titles.
 - **Body** (Inter 400, 17px, lh 1.6): Paragraphs; card body drops to 14px/1.55.
 - **Label** (Inter 600, 10.5 to 11px, +0.06 to 0.12em, UPPERCASE): Card labels, tags, pill text, nav items.
-- **Eyebrow** (Inter 500 to 600, 12px, +0.14em, UPPERCASE): Section markers, in Sky Signal Text or Slate Muted.
+- **Eyebrow** (Inter 500 to 600, 14px, +0.14em, UPPERCASE): Section markers, in Sky Signal Text or Slate Muted.
 
 ### Named Rules
 **The Objects-Only Rule.** Silkscreen, Caveat, and Instrument Serif never set running text. Each is bound to its object: keycaps, polaroid captions, the name.
@@ -206,8 +206,8 @@ Everything is soft and buoyant: glass cards at 28px radius, media wells at 16px,
 ### Polaroids (About)
 - White frame, 12px padding, Caveat caption, Polaroid-lift shadow; hover fans the stack, drag rearranges. Physical behavior over decoration.
 
-### Blobs (atmosphere)
-- Absolute soft circles of holo gradient pairs (pre-softened radial gradients, no blur filter), 320 to 480px, bleeding off page edges. Pointer-events none, purely background. Case-study pages swap in their own quieter aurora palettes.
+### Bubbles (atmosphere)
+- Soap bubbles of the holo trio: a nearly transparent center, an iridescent thin-film rim, and a white specular highlight (pure radial gradients, no blur filter), 320 to 480px, bleeding off page edges. They drift on a slow wobble and rise gently with scroll; reduced motion stills both. Pointer-events none, purely background. Case-study pages swap in their own quieter aurora palettes.
 
 ### Section label
 - 12px semibold, +0.14em tracking, Sky Signal Text. Marks every section; the smallest reliable wayfinding element.

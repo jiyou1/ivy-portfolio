@@ -32,7 +32,11 @@
       "Bash(echo \"exit:$?\")",
       "Bash(node -e ' *)",
       "Bash(mkdir -p /Users/ivylee_1/Desktop/ivy-portfolio/public/fonts)",
-      "Bash(python3 -)"
+      "Bash(python3 -)",
+      "Bash(head -199 src/components/icoi/ActivityLog.jsx)",
+      "Read(//tmp/**)",
+      "Bash(python3 *)",
+      "mcp__claude_ai_Figma__get_design_context"
     ]
   },
   "hooks": {
