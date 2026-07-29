@@ -206,8 +206,8 @@ Everything is soft and buoyant: glass cards at 28px radius, media wells at 16px,
 ### Polaroids (About)
 - White frame, 12px padding, Caveat caption, Polaroid-lift shadow; hover fans the stack, drag rearranges. Physical behavior over decoration.
 
-### Bubbles (atmosphere)
-- Soap bubbles of the holo trio: a nearly transparent center, an iridescent thin-film rim, and a white specular highlight (pure radial gradients, no blur filter), 320 to 480px, bleeding off page edges. They drift on a slow wobble and rise gently with scroll; reduced motion stills both. Pointer-events none, purely background. Case-study pages swap in their own quieter aurora palettes.
+### Blobs (atmosphere)
+- Absolute soft circles of holo gradient pairs (pre-softened radial gradients, no blur filter), 320 to 480px, bleeding off page edges. Pointer-events none, purely background. Case-study pages swap in their own quieter aurora palettes.
 
 ### Section label
 - 12px semibold, +0.14em tracking, Sky Signal Text. Marks every section; the smallest reliable wayfinding element.
