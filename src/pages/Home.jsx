@@ -4,7 +4,6 @@ import Blobs from "../components/Blobs";
 import Nav from "../components/Nav";
 import Hero from "../components/Hero";
 import About from "../components/About";
-import Branding from "../components/Branding";
 import Works from "../components/Works";
 import Contact from "../components/Contact";
 
@@ -32,7 +31,6 @@ export default function Home() {
         <Hero />
         <About onSkill={handleSkill} />
         <Works filter={filter} onClear={() => setFilter(null)} headingRef={worksHeadingRef} />
-        <Branding />
         <Contact />
       </main>
     </div>
